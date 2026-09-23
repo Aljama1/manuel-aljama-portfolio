@@ -5,10 +5,22 @@ import { HomePage } from "@/components/home/HomePage";
 import { homeContent, profile, projects, uiContent } from "@/content";
 
 describe("Home content model", () => {
-  it("maintains structural parity between Spanish and English", () => {
+  it("maintains structural parity between Spanish and English for all sections", () => {
     expect(Object.keys(homeContent.es)).toEqual(Object.keys(homeContent.en));
     expect(Object.keys(homeContent.es.projects)).toEqual(
       Object.keys(homeContent.en.projects),
+    );
+    expect(Object.keys(homeContent.es.about)).toEqual(
+      Object.keys(homeContent.en.about),
+    );
+    expect(Object.keys(homeContent.es.about.facts)).toEqual(
+      Object.keys(homeContent.en.about.facts),
+    );
+    expect(homeContent.es.howIBuild.steps.map((s) => s.key)).toEqual(
+      homeContent.en.howIBuild.steps.map((s) => s.key),
+    );
+    expect(homeContent.es.aiEngineering.pillars.length).toEqual(
+      homeContent.en.aiEngineering.pillars.length,
     );
   });
 
@@ -26,7 +38,7 @@ describe("Home content model", () => {
   });
 });
 
-describe("Home Block 1", () => {
+describe("Home Block 1 & 2 sections", () => {
   it("renders the Spanish Hero with its CTAs and Trace route", () => {
     render(<HomePage locale="es" />);
 
@@ -71,5 +83,88 @@ describe("Home Block 1", () => {
     const { container } = render(<HeroVisual />);
 
     expect(container.firstElementChild).toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("renders AboutSection with editorial copy, factual card, and no fake photo", () => {
+    render(<HomePage locale="es" />);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: homeContent.es.about.title,
+      }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText(homeContent.es.about.facts.dam.value),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(homeContent.es.about.facts.focus.value),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(homeContent.es.about.facts.currently.value),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(homeContent.es.about.facts.lookingFor.value),
+    ).toBeInTheDocument();
+
+    // Sin fotografía si profile.photo es undefined
+    expect(screen.queryByRole("img")).toBeNull();
+  });
+
+  it("renders HowIBuildSection with the exact 7-step sequence and closure", () => {
+    render(<HomePage locale="es" />);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: homeContent.es.howIBuild.title,
+      }),
+    ).toBeInTheDocument();
+
+    const expectedKeys = [
+      "IDEA",
+      "DEFINE",
+      "SPEC",
+      "BUILD",
+      "TEST",
+      "REVIEW",
+      "ITERATE",
+    ];
+
+    expectedKeys.forEach((key) => {
+      expect(screen.getAllByText(key).length).toBeGreaterThanOrEqual(1);
+    });
+
+    expect(
+      screen.getByText(homeContent.es.howIBuild.closing),
+    ).toBeInTheDocument();
+  });
+
+  it("renders AiEngineeringSection with core message and 6 practice pillars", () => {
+    render(<HomePage locale="es" />);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: homeContent.es.aiEngineering.title,
+      }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText(
+        new RegExp(homeContent.es.aiEngineering.coreMessage, "i"),
+      ),
+    ).toBeInTheDocument();
+
+    homeContent.es.aiEngineering.pillars.forEach((pillar) => {
+      expect(
+        screen.getByRole("heading", {
+          level: 3,
+          name: pillar.title,
+        }),
+      ).toBeInTheDocument();
+      expect(screen.getByText(pillar.description)).toBeInTheDocument();
+    });
   });
 });

@@ -23,6 +23,22 @@ test.describe("Home Block 1 responsive layout", () => {
       );
       await expect(page.locator("h1")).toBeVisible();
       await expect(page.locator("#projects")).toBeVisible();
+      await expect(page.locator("#about")).toBeVisible();
+      await expect(page.locator("#how-i-build")).toBeVisible();
+      await expect(page.locator("#ai-engineering")).toBeVisible();
     });
   }
+
+  test("anchors scroll to respective sections", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto("/");
+
+    // Navegar a About
+    await page.locator("header nav a[href='#about']").click();
+    await expect(page.locator("#about")).toBeInViewport();
+
+    // Navegar a How I Build
+    await page.locator("header nav a[href='#how-i-build']").click();
+    await expect(page.locator("#how-i-build")).toBeInViewport();
+  });
 });

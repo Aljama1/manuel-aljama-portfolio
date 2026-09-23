@@ -1,5 +1,8 @@
 import { Hero } from "@/components/hero/Hero";
 import { ProjectsSection } from "@/components/projects/ProjectsSection";
+import { AboutSection } from "@/components/home/AboutSection";
+import { HowIBuildSection } from "@/components/home/HowIBuildSection";
+import { AiEngineeringSection } from "@/components/home/AiEngineeringSection";
 import { homeContent, profile, projects, uiContent } from "@/content";
 import type { Locale } from "@/content";
 
@@ -25,6 +28,9 @@ export function HomePage({ locale }: HomePageProps) {
         projects={projects}
         actions={ui.actions}
       />
+      <AboutSection content={home.about} profile={profile} locale={locale} />
+      <HowIBuildSection content={home.howIBuild} />
+      <AiEngineeringSection content={home.aiEngineering} />
     </>
   );
 }

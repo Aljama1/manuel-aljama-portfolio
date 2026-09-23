@@ -30,6 +30,51 @@ export interface HomeProjectContent {
   description: string;
 }
 
+export interface AboutFact {
+  label: string;
+  value: string;
+}
+
+export interface AboutContent {
+  eyebrow: string;
+  title: string;
+  paragraphs: string[];
+  facts: {
+    dam: AboutFact;
+    focus: AboutFact;
+    currently: AboutFact;
+    lookingFor: AboutFact;
+  };
+}
+
+export interface BuildStep {
+  number: string;
+  key: "IDEA" | "DEFINE" | "SPEC" | "BUILD" | "TEST" | "REVIEW" | "ITERATE";
+  title: string;
+  description: string;
+}
+
+export interface HowIBuildContent {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  steps: BuildStep[];
+  closing: string;
+}
+
+export interface AiPillar {
+  title: string;
+  description: string;
+}
+
+export interface AiEngineeringContent {
+  eyebrow: string;
+  title: string;
+  coreMessage: string;
+  description: string;
+  pillars: AiPillar[];
+}
+
 export interface HomeContent {
   hero: {
     headline: string;
@@ -41,6 +86,9 @@ export interface HomeContent {
     trace: HomeProjectContent;
     asisteo: HomeProjectContent;
   };
+  about: AboutContent;
+  howIBuild: HowIBuildContent;
+  aiEngineering: AiEngineeringContent;
 }
 
 export interface UiContent {
