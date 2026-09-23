@@ -107,11 +107,13 @@ export const esHome: HomeContent = {
           "Desplegar, analizar el comportamiento real y planificar la siguiente evolución basándome en evidencia.",
       },
     ],
+    cyclePhilosophyLabel: "Filosofía de ciclo",
     closing: "Build → Learn → Improve → Repeat",
   },
   aiEngineering: {
     eyebrow: "04 / IA & INGENIERÍA",
     title: "Ingeniería asistida por IA con criterio humano",
+    principleLabel: "Principio de ingeniería",
     coreMessage:
       "AI should accelerate the developer, not replace the developer.",
     description:
@@ -153,9 +155,11 @@ export const esHome: HomeContent = {
     eyebrow: "05 / TECNOLOGÍAS",
     title: "Tecnologías y herramientas",
     builtWith: {
+      groupLabel: "Grupo 01",
       title: "Experiencia demostrada",
       description:
         "Tecnologías utilizadas en proyectos académicos, personales y aplicaciones funcionales.",
+      countLabel: "tecnologías",
       items: [
         "Java",
         "TypeScript",
@@ -174,9 +178,11 @@ export const esHome: HomeContent = {
       ],
     },
     exploring: {
+      groupLabel: "Grupo 02",
       title: "Actualmente explorando",
       description:
         "Áreas de profundización técnica continua y metodologías de ingeniería.",
+      countLabel: "áreas",
       items: [
         "React / Next.js avanzado",
         "REST / backend",

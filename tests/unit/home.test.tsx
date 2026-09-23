@@ -25,8 +25,23 @@ describe("Home content model", () => {
     expect(homeContent.es.skills.builtWith.items).toEqual(
       homeContent.en.skills.builtWith.items,
     );
-    expect(homeContent.es.skills.exploring.items).toEqual(
-      homeContent.en.skills.exploring.items,
+    expect(homeContent.es.skills.exploring.items.length).toEqual(
+      homeContent.en.skills.exploring.items.length,
+    );
+    expect(homeContent.es.howIBuild.cyclePhilosophyLabel).toBeDefined();
+    expect(homeContent.en.howIBuild.cyclePhilosophyLabel).toBe(
+      "Cycle philosophy",
+    );
+    expect(homeContent.es.aiEngineering.principleLabel).toBeDefined();
+    expect(homeContent.en.aiEngineering.principleLabel).toBe(
+      "Engineering principle",
+    );
+    expect(homeContent.en.skills.builtWith.groupLabel).toBe("Group 01");
+    expect(homeContent.en.skills.exploring.groupLabel).toBe("Group 02");
+    expect(homeContent.en.skills.builtWith.countLabel).toBe("technologies");
+    expect(homeContent.en.skills.exploring.countLabel).toBe("areas");
+    expect(homeContent.en.skills.exploring.items).toContain(
+      "React / Next.js advanced",
     );
     expect(homeContent.es.experience.education.items.length).toEqual(
       homeContent.en.experience.education.items.length,
@@ -277,5 +292,29 @@ describe("Home Block 1 & 2 sections", () => {
         name: new RegExp(homeContent.es.contact.cvLabel, "i"),
       }),
     ).toBeNull();
+  });
+
+  it("renders English Home with localized labels for HowIBuild, AiEngineering, and Skills without hardcoded Spanish", () => {
+    render(<HomePage locale="en" />);
+
+    // How I build cycle philosophy
+    expect(screen.getByText("Cycle philosophy")).toBeInTheDocument();
+    expect(screen.queryByText("Filosofía de ciclo")).toBeNull();
+
+    // AI Engineering principle
+    expect(screen.getByText("Engineering principle")).toBeInTheDocument();
+    expect(screen.queryByText("Principio de ingeniería")).toBeNull();
+
+    // Skills group labels and count labels
+    expect(screen.getByText("Group 01")).toBeInTheDocument();
+    expect(screen.getByText("Group 02")).toBeInTheDocument();
+    expect(screen.queryByText("Grupo 01")).toBeNull();
+    expect(screen.queryByText("Grupo 02")).toBeNull();
+    expect(screen.getByText(/14 technologies/)).toBeInTheDocument();
+    expect(screen.getByText(/7 areas/)).toBeInTheDocument();
+    expect(screen.queryByText(/tecnologías/)).toBeNull();
+    expect(screen.queryByText(/áreas/)).toBeNull();
+    expect(screen.getByText("React / Next.js advanced")).toBeInTheDocument();
+    expect(screen.queryByText("React / Next.js avanzado")).toBeNull();
   });
 });

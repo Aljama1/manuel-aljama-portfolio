@@ -59,6 +59,7 @@ export interface HowIBuildContent {
   title: string;
   intro: string;
   steps: BuildStep[];
+  cyclePhilosophyLabel: string;
   closing: string;
 }
 
@@ -70,14 +71,17 @@ export interface AiPillar {
 export interface AiEngineeringContent {
   eyebrow: string;
   title: string;
+  principleLabel: string;
   coreMessage: string;
   description: string;
   pillars: AiPillar[];
 }
 
 export interface SkillsGroup {
+  groupLabel: string;
   title: string;
   description: string;
+  countLabel: string;
   items: string[];
 }
 

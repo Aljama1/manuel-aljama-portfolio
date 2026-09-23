@@ -107,11 +107,13 @@ export const enHome: HomeContent = {
           "Deploy, analyze real-world behavior, and plan the next iteration grounded in evidence.",
       },
     ],
+    cyclePhilosophyLabel: "Cycle philosophy",
     closing: "Build → Learn → Improve → Repeat",
   },
   aiEngineering: {
     eyebrow: "04 / AI & ENGINEERING",
     title: "AI-assisted engineering with human judgment",
+    principleLabel: "Engineering principle",
     coreMessage:
       "AI should accelerate the developer, not replace the developer.",
     description:
@@ -153,9 +155,11 @@ export const enHome: HomeContent = {
     eyebrow: "05 / SKILLS",
     title: "Technologies & tools",
     builtWith: {
+      groupLabel: "Group 01",
       title: "Built with",
       description:
         "Technologies used across academic coursework, personal projects, and functional applications.",
+      countLabel: "technologies",
       items: [
         "Java",
         "TypeScript",
@@ -174,11 +178,13 @@ export const enHome: HomeContent = {
       ],
     },
     exploring: {
+      groupLabel: "Group 02",
       title: "Currently exploring",
       description:
         "Areas of continuous technical deepening and engineering methodologies.",
+      countLabel: "areas",
       items: [
-        "React / Next.js avanzado",
+        "React / Next.js advanced",
         "REST / backend",
         "Docker / Linux / cloud",
         "AI agents",

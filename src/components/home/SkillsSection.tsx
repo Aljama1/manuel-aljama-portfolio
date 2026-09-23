@@ -28,10 +28,10 @@ export function SkillsSection({ content }: SkillsSectionProps) {
           <div>
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs font-medium tracking-[0.18em] text-primary uppercase">
-                Grupo 01
+                {builtWith.groupLabel}
               </span>
               <span className="font-mono text-xs text-foreground-muted">
-                {builtWith.items.length} tecnologías
+                {builtWith.items.length} {builtWith.countLabel}
               </span>
             </div>
             <h3 className="mt-4 font-heading text-2xl font-bold tracking-tight text-foreground">
@@ -62,10 +62,10 @@ export function SkillsSection({ content }: SkillsSectionProps) {
           <div>
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs font-medium tracking-[0.18em] text-secondary uppercase">
-                Grupo 02
+                {exploring.groupLabel}
               </span>
               <span className="font-mono text-xs text-foreground-muted">
-                {exploring.items.length} áreas
+                {exploring.items.length} {exploring.countLabel}
               </span>
             </div>
             <h3 className="mt-4 font-heading text-2xl font-bold tracking-tight text-foreground">

@@ -47,7 +47,7 @@ export function AiEngineeringSection({ content }: AiEngineeringSectionProps) {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <span className="font-mono text-[11px] font-semibold tracking-[0.18em] text-secondary uppercase">
-              Principio de ingeniería
+              {content.principleLabel}
             </span>
             <p className="mt-2 font-heading text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl">
               &ldquo;{content.coreMessage}&rdquo;

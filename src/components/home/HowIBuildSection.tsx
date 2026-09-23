@@ -78,7 +78,7 @@ export function HowIBuildSection({ content }: HowIBuildSectionProps) {
       {/* Cierre conceptual */}
       <div className="mt-12 rounded-lg border border-border/80 bg-surface/50 p-6 text-center sm:p-8">
         <p className="font-mono text-xs font-medium tracking-[0.2em] text-foreground-muted uppercase">
-          Filosofía de ciclo
+          {content.cyclePhilosophyLabel}
         </p>
         <p className="mt-2 font-heading text-xl font-bold tracking-[-0.03em] text-primary sm:text-2xl">
           {content.closing}
