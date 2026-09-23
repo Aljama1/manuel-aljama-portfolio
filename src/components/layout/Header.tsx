@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Download, Menu, X } from "lucide-react";
@@ -12,8 +13,15 @@ interface HeaderProps {
   lang: "es" | "en";
 }
 
+const emptySubscribe = () => () => {};
+
 export function Header({ lang }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
   const rawPathname = usePathname();
   const pathname = rawPathname || (lang === "en" ? "/en" : "/");
 
@@ -152,81 +160,88 @@ export function Header({ lang }: HeaderProps) {
         </div>
       </Container>
 
-      {/* Menú móvil desplegable */}
-      {mobileMenuOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={content.nav.menuAriaLabel}
-          className="fixed inset-x-0 top-16 bottom-0 z-50 flex flex-col border-b border-border bg-background px-6 py-6 md:hidden"
-        >
-          <nav
-            className="flex flex-col gap-5"
-            aria-label={content.nav.mobileAriaLabel}
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={closeMobileMenu}
-                className="font-heading text-xl font-medium text-foreground transition-colors hover:text-primary"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="my-6 h-px w-full bg-border" />
-
-          <div className="flex flex-col gap-4">
-            <a
-              href={profile.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeMobileMenu}
-              className="inline-flex items-center justify-between text-base font-medium text-foreground-muted hover:text-foreground"
+      {/* Menú móvil desplegable montado en document.body */}
+      {mounted && mobileMenuOpen
+        ? createPortal(
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label={content.nav.menuAriaLabel}
+              className="fixed inset-x-0 top-16 bottom-0 z-50 flex flex-col overflow-y-auto border-b border-border bg-background px-6 py-6 md:hidden"
             >
-              <span>{content.actions.github}</span>
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-
-            {profile.cvUrl ? (
-              <a
-                href={profile.cvUrl}
-                download
-                onClick={closeMobileMenu}
-                className="inline-flex items-center justify-between text-base font-medium text-foreground-muted hover:text-foreground"
+              <nav
+                className="flex flex-col gap-5"
+                aria-label={content.nav.mobileAriaLabel}
               >
-                <span>{content.actions.downloadCv}</span>
-                <Download className="h-4 w-4" aria-hidden="true" />
-              </a>
-            ) : null}
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={closeMobileMenu}
+                    className="font-heading text-xl font-medium text-foreground transition-colors hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
 
-            <div className="flex items-center justify-between pt-2">
-              <span className="text-sm font-medium text-foreground-muted">
-                {content.nav.languageLabel}
-              </span>
-              <Link
-                href={counterpartPath}
-                onClick={closeMobileMenu}
-                className="inline-flex items-center rounded-sm border border-border px-3 py-1.5 font-mono text-sm font-medium text-foreground-muted transition-colors hover:bg-surface hover:text-foreground"
-              >
-                <span
-                  className={lang === "es" ? "font-semibold text-primary" : ""}
+              <div className="my-6 h-px w-full bg-border" />
+
+              <div className="flex flex-col gap-4">
+                <a
+                  href={profile.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeMobileMenu}
+                  className="inline-flex items-center justify-between text-base font-medium text-foreground-muted hover:text-foreground"
                 >
-                  ES
-                </span>
-                <span className="mx-1.5 text-foreground-muted">/</span>
-                <span
-                  className={lang === "en" ? "font-semibold text-primary" : ""}
-                >
-                  EN
-                </span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
+                  <span>{content.actions.github}</span>
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+
+                {profile.cvUrl ? (
+                  <a
+                    href={profile.cvUrl}
+                    download
+                    onClick={closeMobileMenu}
+                    className="inline-flex items-center justify-between text-base font-medium text-foreground-muted hover:text-foreground"
+                  >
+                    <span>{content.actions.downloadCv}</span>
+                    <Download className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                ) : null}
+
+                <div className="flex items-center justify-between pt-2">
+                  <span className="text-sm font-medium text-foreground-muted">
+                    {content.nav.languageLabel}
+                  </span>
+                  <Link
+                    href={counterpartPath}
+                    onClick={closeMobileMenu}
+                    className="inline-flex items-center rounded-sm border border-border px-3 py-1.5 font-mono text-sm font-medium text-foreground-muted transition-colors hover:bg-surface hover:text-foreground"
+                  >
+                    <span
+                      className={
+                        lang === "es" ? "font-semibold text-primary" : ""
+                      }
+                    >
+                      ES
+                    </span>
+                    <span className="mx-1.5 text-foreground-muted">/</span>
+                    <span
+                      className={
+                        lang === "en" ? "font-semibold text-primary" : ""
+                      }
+                    >
+                      EN
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </header>
   );
 }
