@@ -5,12 +5,12 @@
 - [x] completar la auditoría final de la documentación;
 - [x] resolver cualquier contradicción entre documentos;
 - [x] verificar versiones compatibles actuales y consolidar baseline (Next.js 16.3.5, React 19.3.0, TS 6.0.3, Tailwind 4.3.3, Node 24.21.0, pnpm 12.5.1);
-- [ ] crear el proyecto Next.js;
-- [ ] inicializar pnpm;
-- [ ] activar TypeScript estricto;
-- [ ] establecer Git y protección de ramas;
-- [ ] crear `docs/` y reglas de agentes;
-- [ ] establecer CI básica.
+- [x] crear el proyecto Next.js (commit 3704bda);
+- [x] inicializar pnpm (commit 3704bda);
+- [x] activar TypeScript estricto (commit 3704bda);
+- [x] establecer Git y protección de ramas (commit 3704bda);
+- [x] crear `docs/` y reglas de agentes (commit 3704bda);
+- [x] establecer CI básica (commit 3704bda — GitHub Actions + Playwright integrado en c610b11).
 
 ## Fase 1 — Base del portfolio
 

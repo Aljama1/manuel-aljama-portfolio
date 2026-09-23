@@ -1,8 +1,14 @@
+import { Container } from "@/components/ui/Container";
+
 export default function TraceProjectPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
-      <h1 className="font-heading text-4xl font-bold text-foreground">Trace</h1>
-      <p className="mt-4 text-foreground-muted">Case study — Próximamente</p>
-    </main>
+    <Container className="flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center py-20 text-center">
+      <h1 className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+        Trace
+      </h1>
+      <p className="mt-4 max-w-md text-foreground-muted">
+        Case study — Próximamente
+      </p>
+    </Container>
   );
 }
