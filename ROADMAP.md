@@ -46,7 +46,7 @@
 - [x] reproducir y corregir discrepancias visuales de producción (incluyendo corrección de temas);
 - [x] revisar seguridad y configuración (Firestore Rules, facturación, generación PDF y hash SHA-256);
 - [x] revisar y ampliar tests;
-- [ ] revisar/refactorizar KDS (inspeccionado; no requirió refactor al no ser necesario para el alcance actual);
+- [x] revisar KDS y determinar que no requiere refactor para Portfolio Polish;
 - [x] revisión factual de documentación;
 - [x] revisión y corrección del lenguaje relacionado con Veri*Factu;
 - [ ] capturas finales del producto (pendiente como material gráfico definitivo);
@@ -67,8 +67,8 @@
 - [x] resultado;
 - [x] aprendizajes;
 - [x] deep dive (facturación encadenada y hash SHA-256);
-- [x] enlaces verificados (repositorio público y demo de facturación);
-- [ ] vídeo / walkthrough grabado definitivo (pendiente como material audiovisual final).
+- [x] enlaces al repositorio (código fuente público verificado);
+- [ ] vídeo/walkthrough definitivo;
 
 ## Fase 5 — Calidad y publicación
 
