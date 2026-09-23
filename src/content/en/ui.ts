@@ -1,4 +1,4 @@
-import type { UiContent } from "../es/ui";
+import type { UiContent } from "../types";
 
 export const enUi: UiContent = {
   brand: "MANUEL ALJAMA",
@@ -20,6 +20,8 @@ export const enUi: UiContent = {
     github: "GitHub",
     downloadCv: "Download CV",
     switchLanguage: "Switch language to Spanish",
+    viewProjects: "View projects",
+    viewTrace: "View Trace",
   },
   theme: {
     toLight: "Switch to light mode",

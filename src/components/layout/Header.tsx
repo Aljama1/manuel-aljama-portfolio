@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight, Download, Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { uiContent } from "@/content";
+import { profile, uiContent } from "@/content";
 
 interface HeaderProps {
   lang: "es" | "en";
@@ -89,7 +89,7 @@ export function Header({ lang }: HeaderProps) {
         {/* Acciones Desktop */}
         <div className="hidden md:flex md:items-center md:gap-4">
           <a
-            href="https://github.com/Aljama1"
+            href={profile.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-sm font-medium text-foreground-muted transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
@@ -101,14 +101,16 @@ export function Header({ lang }: HeaderProps) {
             />
           </a>
 
-          <a
-            href="/assets/cv-manuel-aljama.pdf"
-            download
-            className="inline-flex items-center gap-1.5 rounded-sm border border-border bg-surface px-2.5 py-1 text-xs font-medium text-foreground transition-colors hover:bg-surface-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            <Download className="h-3 w-3 opacity-70" aria-hidden="true" />
-            {content.actions.downloadCv}
-          </a>
+          {profile.cvUrl ? (
+            <a
+              href={profile.cvUrl}
+              download
+              className="inline-flex items-center gap-1.5 rounded-sm border border-border bg-surface px-2.5 py-1 text-xs font-medium text-foreground transition-colors hover:bg-surface-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              <Download className="h-3 w-3 opacity-70" aria-hidden="true" />
+              {content.actions.downloadCv}
+            </a>
+          ) : null}
 
           {/* Selector de idioma */}
           <Link
@@ -178,7 +180,7 @@ export function Header({ lang }: HeaderProps) {
 
           <div className="flex flex-col gap-4">
             <a
-              href="https://github.com/Aljama1"
+              href={profile.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMobileMenu}
@@ -188,15 +190,17 @@ export function Header({ lang }: HeaderProps) {
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
 
-            <a
-              href="/assets/cv-manuel-aljama.pdf"
-              download
-              onClick={closeMobileMenu}
-              className="inline-flex items-center justify-between text-base font-medium text-foreground-muted hover:text-foreground"
-            >
-              <span>{content.actions.downloadCv}</span>
-              <Download className="h-4 w-4" aria-hidden="true" />
-            </a>
+            {profile.cvUrl ? (
+              <a
+                href={profile.cvUrl}
+                download
+                onClick={closeMobileMenu}
+                className="inline-flex items-center justify-between text-base font-medium text-foreground-muted hover:text-foreground"
+              >
+                <span>{content.actions.downloadCv}</span>
+                <Download className="h-4 w-4" aria-hidden="true" />
+              </a>
+            ) : null}
 
             <div className="flex items-center justify-between pt-2">
               <span className="text-sm font-medium text-foreground-muted">

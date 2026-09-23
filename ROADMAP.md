@@ -14,16 +14,16 @@
 
 ## Fase 1 — Base del portfolio
 
-- [ ] armazón de la aplicación;
-- [ ] ruta pública únicamente para Trace en el lanzamiento;
-- [ ] navegación;
-- [ ] sistema de temas;
-- [ ] rutas i18n;
-- [ ] tokens de diseño;
-- [ ] tipografía;
-- [ ] grid responsive;
-- [ ] footer;
-- [ ] estados error/404/loading.
+- [x] armazón de la aplicación;
+- [x] ruta pública únicamente para Trace en el lanzamiento;
+- [x] navegación;
+- [x] sistema de temas;
+- [x] rutas i18n;
+- [x] tokens de diseño;
+- [x] tipografía;
+- [x] grid responsive;
+- [x] footer;
+- [x] estados error/404/loading.
 
 ## Fase 2 — Contenido de Home
 

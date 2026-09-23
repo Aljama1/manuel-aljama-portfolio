@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { uiContent } from "@/content";
+import { profile, uiContent } from "@/content";
 
 interface FooterProps {
   lang: "es" | "en";
@@ -18,21 +18,33 @@ export function Footer({ lang }: FooterProps) {
   ];
 
   const socialLinks = [
-    {
-      label: content.actions.github,
-      href: "https://github.com/Aljama1",
-      external: true,
-    },
-    {
-      label: "LinkedIn",
-      href: "https://linkedin.com",
-      external: true,
-    },
-    {
-      label: "Email",
-      href: "mailto:manuelaljama9@gmail.com",
-      external: false,
-    },
+    ...(profile.githubUrl
+      ? [
+          {
+            label: content.actions.github,
+            href: profile.githubUrl,
+            external: true,
+          },
+        ]
+      : []),
+    ...(profile.linkedInUrl
+      ? [
+          {
+            label: "LinkedIn",
+            href: profile.linkedInUrl,
+            external: true,
+          },
+        ]
+      : []),
+    ...(profile.email
+      ? [
+          {
+            label: "Email",
+            href: `mailto:${profile.email}`,
+            external: false,
+          },
+        ]
+      : []),
   ];
 
   return (
