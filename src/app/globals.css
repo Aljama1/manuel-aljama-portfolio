@@ -13,6 +13,7 @@
   --surface-raised: #18181b;
   --foreground: #f4f4f5;
   --foreground-muted: #a1a1aa;
+  --foreground-dim: #71717a;
   --border: #27272a;
   --primary: #b8f34a;
   --primary-hover: #c7ff6a;
@@ -20,15 +21,16 @@
 }
 
 html.light {
-  /* Modo claro con contraste propio */
+  /* Modo claro con contraste propio (WCAG AA >= 4.5:1) */
   --background: #fafafa;
   --surface: #ffffff;
   --surface-raised: #f4f4f5;
   --foreground: #18181b;
   --foreground-muted: #52525b;
+  --foreground-dim: #71717a;
   --border: #e4e4e7;
-  --primary: #5e8f12;
-  --primary-hover: #4d760f;
+  --primary: #4d760f;
+  --primary-hover: #3f610c;
   --secondary: #7c3aed;
 }
 
@@ -39,6 +41,7 @@ html.light {
   --color-surface-raised: var(--surface-raised);
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-dim: var(--foreground-dim);
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
@@ -56,6 +59,12 @@ html.light {
 
   /* Contenedor */
   --max-width-container: 1280px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
