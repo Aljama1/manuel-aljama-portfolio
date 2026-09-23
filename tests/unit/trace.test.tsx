@@ -216,35 +216,95 @@ describe("Trace Case Study presentation components", () => {
     expect(screen.queryByText("FLUJO DE PRODUCTO")).toBeNull();
   });
 
-  it("renders CaseStudyFlowDiagram with all steps and roles", () => {
-    render(<CaseStudyFlowDiagram steps={traceContent.es.productFlow.steps} />);
+  it("renders CaseStudyFlowDiagram with localized strings and no Spanish leakage in English", () => {
+    const { rerender } = render(
+      <CaseStudyFlowDiagram
+        steps={traceContent.en.productFlow.steps}
+        subtitle={traceContent.en.productFlow.diagramSubtitle}
+        legend={traceContent.en.productFlow.legend}
+        ariaLabel={traceContent.en.productFlow.ariaLabel}
+      />,
+    );
 
-    traceContent.es.productFlow.steps.forEach((step) => {
-      expect(screen.getByText(step.title)).toBeInTheDocument();
-    });
+    // English strings present
+    expect(
+      screen.getByText(traceContent.en.productFlow.diagramSubtitle),
+    ).toBeInTheDocument();
+    expect(screen.getAllByText("Diner").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Staff").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("System").length).toBeGreaterThan(0);
+
+    // Spanish strings must NOT be present
+    expect(screen.queryByText(/Recorrido completo/i)).toBeNull();
+    expect(screen.queryByText("Comensal")).toBeNull();
+    expect(screen.queryByText("Personal")).toBeNull();
+    expect(screen.queryByText("Sistema")).toBeNull();
+
+    // Rerender with Spanish content
+    rerender(
+      <CaseStudyFlowDiagram
+        steps={traceContent.es.productFlow.steps}
+        subtitle={traceContent.es.productFlow.diagramSubtitle}
+        legend={traceContent.es.productFlow.legend}
+        ariaLabel={traceContent.es.productFlow.ariaLabel}
+      />,
+    );
+
+    expect(
+      screen.getByText(traceContent.es.productFlow.diagramSubtitle),
+    ).toBeInTheDocument();
+    expect(screen.getAllByText("Comensal").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Personal").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Sistema").length).toBeGreaterThan(0);
   });
 
-  it("renders CaseStudyArchitectureDiagram with all layer titles", () => {
-    render(
+  it("renders CaseStudyArchitectureDiagram with localized strings and no Spanish leakage in English", () => {
+    const { rerender } = render(
+      <CaseStudyArchitectureDiagram
+        webPwa={traceContent.en.architecture.webPwa}
+        mobileBridge={traceContent.en.architecture.mobileBridge}
+        backend={traceContent.en.architecture.backend}
+        integrity={traceContent.en.architecture.integrity}
+        subtitle={traceContent.en.architecture.diagramSubtitle}
+        ariaLabel={traceContent.en.architecture.ariaLabel}
+        techBadge={traceContent.en.architecture.techBadge}
+        pipelineTag={traceContent.en.architecture.pipelineTag}
+      />,
+    );
+
+    // English strings present
+    expect(
+      screen.getByText(traceContent.en.architecture.diagramSubtitle),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Key components:")).toBeInTheDocument();
+    expect(screen.getByText("Native capabilities:")).toBeInTheDocument();
+    expect(screen.getByText("Firebase infrastructure:")).toBeInTheDocument();
+
+    // Spanish strings must NOT be present
+    expect(screen.queryByText(/Separación de capas/i)).toBeNull();
+    expect(screen.queryByText("Componentes clave:")).toBeNull();
+    expect(screen.queryByText("Capacidades nativas:")).toBeNull();
+    expect(screen.queryByText("Infraestructura Firebase:")).toBeNull();
+
+    // Rerender with Spanish content
+    rerender(
       <CaseStudyArchitectureDiagram
         webPwa={traceContent.es.architecture.webPwa}
         mobileBridge={traceContent.es.architecture.mobileBridge}
         backend={traceContent.es.architecture.backend}
         integrity={traceContent.es.architecture.integrity}
+        subtitle={traceContent.es.architecture.diagramSubtitle}
+        ariaLabel={traceContent.es.architecture.ariaLabel}
+        techBadge={traceContent.es.architecture.techBadge}
+        pipelineTag={traceContent.es.architecture.pipelineTag}
       />,
     );
 
     expect(
-      screen.getByText(traceContent.es.architecture.webPwa.title),
+      screen.getByText(traceContent.es.architecture.diagramSubtitle),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(traceContent.es.architecture.mobileBridge.title),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(traceContent.es.architecture.backend.title),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(traceContent.es.architecture.integrity.title),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Componentes clave:")).toBeInTheDocument();
+    expect(screen.getByText("Capacidades nativas:")).toBeInTheDocument();
+    expect(screen.getByText("Infraestructura Firebase:")).toBeInTheDocument();
   });
 });
