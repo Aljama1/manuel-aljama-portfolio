@@ -51,7 +51,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               {hero.backLabel}
             </Button>
-            <span className="font-mono text-xs tracking-wider text-foreground-dim uppercase">
+            <span className="font-mono text-xs tracking-wider text-foreground-muted uppercase">
               {hero.breadcrumb}
             </span>
           </div>
@@ -131,7 +131,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
             className="rounded-lg border border-border bg-surface/60 p-6 lg:col-span-4"
             aria-label="Metadatos del proyecto"
           >
-            <h3 className="font-mono text-xs font-semibold tracking-wider text-foreground-dim uppercase">
+            <h3 className="font-mono text-xs font-semibold tracking-wider text-foreground-muted uppercase">
               {locale === "es" ? "Ficha técnica" : "Project Specs"}
             </h3>
             <dl className="mt-4 space-y-4">
@@ -140,7 +140,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
                   key={item.label}
                   className="border-b border-border/40 pb-3 last:border-b-0 last:pb-0"
                 >
-                  <dt className="font-mono text-xs text-foreground-dim uppercase">
+                  <dt className="font-mono text-xs text-foreground-muted uppercase">
                     {item.label}
                   </dt>
                   <dd className="mt-1 font-sans text-sm font-medium text-foreground">
@@ -299,24 +299,24 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
                     {decision.title}
                   </h3>
                 </div>
-                <span className="font-mono text-xs text-foreground-dim">
+                <span className="font-mono text-xs text-foreground-muted">
                   {decision.subtitle}
                 </span>
               </div>
 
               {decision.legalDisclaimer && (
-                <div className="mt-4 flex items-start gap-3 rounded-md border border-amber-500/30 bg-amber-500/10 p-4 text-amber-200">
+                <div className="mt-4 flex items-start gap-3 rounded-md border border-border bg-surface-raised p-4">
                   <AlertTriangle
-                    className="mt-0.5 h-5 w-5 shrink-0 text-amber-400"
+                    className="mt-0.5 h-5 w-5 shrink-0 text-primary"
                     aria-hidden="true"
                   />
                   <div className="text-xs leading-relaxed">
-                    <span className="font-semibold tracking-wider uppercase">
+                    <span className="font-mono font-semibold tracking-wider text-foreground uppercase">
                       {locale === "es"
                         ? "Aviso técnico y legal"
                         : "Technical and Legal Disclaimer"}
                     </span>
-                    <p className="mt-1 text-amber-300/90">
+                    <p className="mt-1 text-foreground-muted">
                       {decision.legalDisclaimer}
                     </p>
                   </div>
@@ -325,7 +325,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
 
               <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <h4 className="font-mono text-xs font-semibold tracking-wider text-foreground-dim uppercase">
+                  <h4 className="font-mono text-xs font-semibold tracking-wider text-foreground-muted uppercase">
                     {locale === "es"
                       ? "Contexto del problema"
                       : "Problem Context"}
@@ -335,7 +335,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-mono text-xs font-semibold tracking-wider text-foreground-dim uppercase">
+                  <h4 className="font-mono text-xs font-semibold tracking-wider text-foreground-muted uppercase">
                     {locale === "es"
                       ? "Decisión implementada"
                       : "Decision Taken"}
@@ -404,7 +404,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
                 </div>
 
                 <div className="mt-4">
-                  <span className="font-mono text-[11px] text-foreground-dim uppercase">
+                  <span className="font-mono text-[11px] text-foreground-muted uppercase">
                     {locale === "es" ? "Reto:" : "Challenge:"}
                   </span>
                   <p className="mt-1 text-xs leading-relaxed text-foreground-muted">
@@ -646,7 +646,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
                   {link.description}
                 </p>
               </div>
-              <span className="mt-3 inline-flex items-center font-mono text-xs text-foreground-dim transition-colors group-hover:text-foreground">
+              <span className="mt-3 inline-flex items-center font-mono text-xs text-foreground-muted transition-colors group-hover:text-foreground">
                 {locale === "es" ? "Ir a sección" : "Jump to section"} →
               </span>
             </a>

@@ -82,7 +82,7 @@ export function CaseStudyFlowDiagram({
             >
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-semibold text-foreground-dim">
+                  <span className="font-mono text-xs font-semibold text-foreground-muted">
                     {step.stepNumber}
                   </span>
                   <span
@@ -109,9 +109,9 @@ export function CaseStudyFlowDiagram({
                     }`}
                     aria-hidden="true"
                   />
-                  <h4 className="font-heading text-sm font-semibold tracking-tight text-foreground">
+                  <h3 className="font-heading text-sm font-semibold tracking-tight text-foreground">
                     {step.title}
-                  </h4>
+                  </h3>
                 </div>
 
                 <p className="mt-2 text-xs leading-relaxed text-foreground-muted">
@@ -121,7 +121,7 @@ export function CaseStudyFlowDiagram({
 
               {idx < steps.length - 1 && (
                 <div
-                  className="mt-3 hidden items-center justify-end text-foreground-dim lg:flex"
+                  className="mt-3 hidden items-center justify-end text-foreground-muted lg:flex"
                   aria-hidden="true"
                 >
                   <ArrowRight className="h-3.5 w-3.5 opacity-60" />

@@ -31,7 +31,7 @@ export function CaseStudyArchitectureDiagram({
             servicios BaaS realtime y módulo de integridad.
           </p>
         </div>
-        <span className="font-mono text-xs text-foreground-dim">
+        <span className="font-mono text-xs text-foreground-muted">
           Angular 20 · Ionic 8 · Capacitor 8 · Firebase
         </span>
       </div>
@@ -46,15 +46,15 @@ export function CaseStudyArchitectureDiagram({
                 01 / Client & Reactive UI
               </span>
             </div>
-            <h4 className="mt-2 font-heading text-lg font-bold text-foreground">
+            <h3 className="mt-2 font-heading text-lg font-bold text-foreground">
               {webPwa.title}
-            </h4>
+            </h3>
             <p className="mt-2 text-xs leading-relaxed text-foreground-muted">
               {webPwa.description}
             </p>
           </div>
           <div className="mt-4 border-t border-border/60 pt-3">
-            <span className="font-mono text-[11px] text-foreground-dim">
+            <span className="font-mono text-[11px] text-foreground-muted">
               Componentes clave:
             </span>
             <ul className="mt-2 space-y-1.5 font-mono text-xs text-foreground">
@@ -77,15 +77,15 @@ export function CaseStudyArchitectureDiagram({
                 02 / Mobile Bridge
               </span>
             </div>
-            <h4 className="mt-2 font-heading text-lg font-bold text-foreground">
+            <h3 className="mt-2 font-heading text-lg font-bold text-foreground">
               {mobileBridge.title}
-            </h4>
+            </h3>
             <p className="mt-2 text-xs leading-relaxed text-foreground-muted">
               {mobileBridge.description}
             </p>
           </div>
           <div className="mt-4 border-t border-border/60 pt-3">
-            <span className="font-mono text-[11px] text-foreground-dim">
+            <span className="font-mono text-[11px] text-foreground-muted">
               Capacidades nativas:
             </span>
             <ul className="mt-2 space-y-1.5 font-mono text-xs text-foreground">
@@ -108,15 +108,15 @@ export function CaseStudyArchitectureDiagram({
                 03 / Realtime BaaS
               </span>
             </div>
-            <h4 className="mt-2 font-heading text-lg font-bold text-foreground">
+            <h3 className="mt-2 font-heading text-lg font-bold text-foreground">
               {backend.title}
-            </h4>
+            </h3>
             <p className="mt-2 text-xs leading-relaxed text-foreground-muted">
               {backend.description}
             </p>
           </div>
           <div className="mt-4 border-t border-border/60 pt-3">
-            <span className="font-mono text-[11px] text-foreground-dim">
+            <span className="font-mono text-[11px] text-foreground-muted">
               Infraestructura Firebase:
             </span>
             <ul className="mt-2 space-y-1.5 font-mono text-xs text-foreground">
@@ -141,9 +141,9 @@ export function CaseStudyArchitectureDiagram({
                 <span className="font-mono text-[10px] tracking-wider text-secondary uppercase">
                   Auditability & Verification Pipeline
                 </span>
-                <h4 className="font-heading text-base font-bold text-foreground">
+                <h3 className="font-heading text-base font-bold text-foreground">
                   {integrity.title}
-                </h4>
+                </h3>
               </div>
             </div>
             <div className="flex flex-wrap gap-2 font-mono text-xs">
