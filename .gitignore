@@ -42,3 +42,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agents
+/.agents/*
+!/.agents/skills/
+/.agents/skills/*
+!/.agents/skills/portfolio-visual-qa/
+/skills-lock.json
