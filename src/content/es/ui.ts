@@ -1,51 +1,4 @@
-export interface UiContent {
-  brand: string;
-  role: string;
-  skipToContent: string;
-  nav: {
-    work: string;
-    about: string;
-    howIBuild: string;
-    contact: string;
-    ariaLabel: string;
-    mobileAriaLabel: string;
-    menuAriaLabel: string;
-    openMenu: string;
-    closeMenu: string;
-    languageLabel: string;
-  };
-  actions: {
-    github: string;
-    downloadCv: string;
-    switchLanguage: string;
-  };
-  theme: {
-    toLight: string;
-    toDark: string;
-  };
-  footer: {
-    tagline: string;
-    sectionsHeading: string;
-    connectHeading: string;
-    copyright: string;
-  };
-  error: {
-    badge: string;
-    title: string;
-    description: string;
-    retry: string;
-    backHome: string;
-  };
-  notFound: {
-    badge: string;
-    title: string;
-    description: string;
-    backHome: string;
-  };
-  loading: {
-    ariaLabel: string;
-  };
-}
+import type { UiContent } from "../types";
 
 export const esUi: UiContent = {
   brand: "MANUEL ALJAMA",
@@ -67,6 +20,8 @@ export const esUi: UiContent = {
     github: "GitHub",
     downloadCv: "Download CV",
     switchLanguage: "Cambiar idioma a inglés",
+    viewProjects: "Ver proyectos",
+    viewTrace: "Ver Trace",
   },
   theme: {
     toLight: "Cambiar a modo claro",

@@ -1,15 +1,5 @@
-import { Container } from "@/components/ui/Container";
-import { homeContent } from "@/content";
+import { HomePage } from "@/components/home/HomePage";
 
 export default function EnHomePage() {
-  const { hero } = homeContent.en;
-
-  return (
-    <Container className="flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center py-20 text-center">
-      <h1 className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-        {hero.name}
-      </h1>
-      <p className="mt-4 max-w-md text-foreground-muted">{hero.headline}</p>
-    </Container>
-  );
+  return <HomePage locale="en" />;
 }

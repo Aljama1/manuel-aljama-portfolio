@@ -4,13 +4,45 @@ test.describe("Smoke — rutas principales", () => {
   test("home ES (/) carga correctamente", async ({ page }) => {
     await page.goto("/");
     await expect(page).toHaveTitle(/Manuel Aljama/);
-    await expect(page.locator("h1")).toContainText("Manuel Aljama");
+    await expect(page.locator("h1")).toContainText(
+      "CONVIERTO IDEAS EN SOFTWARE REAL.",
+    );
   });
 
   test("home EN (/en/) carga correctamente", async ({ page }) => {
     await page.goto("/en/");
     await expect(page).toHaveTitle(/Manuel Aljama/);
-    await expect(page.locator("h1")).toContainText("Manuel Aljama");
+    await expect(page.locator("h1")).toContainText(
+      "I TURN IDEAS INTO REAL SOFTWARE.",
+    );
+  });
+
+  test("Hero ES navigates to Projects and shows factual links", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    await page.getByRole("link", { name: "Ver proyectos" }).click();
+    await expect(page).toHaveURL(/#projects$/);
+    await expect(page.locator("#projects")).toBeVisible();
+
+    const home = page.locator("main");
+    await expect(home.getByRole("link", { name: "GitHub" })).toHaveAttribute(
+      "href",
+      "https://github.com/Aljama1",
+    );
+    await expect(home.getByRole("link", { name: "Ver Trace" })).toHaveAttribute(
+      "href",
+      "/projects/trace",
+    );
+  });
+
+  test("Asisteo does not show a public case study CTA", async ({ page }) => {
+    await page.goto("/");
+
+    const asisteo = page.locator("article").filter({ hasText: "ASISTEO" });
+    await expect(asisteo).toHaveCount(1);
+    await expect(asisteo.getByRole("link")).toHaveCount(0);
   });
 
   test("Trace ES (/projects/trace/) carga correctamente", async ({ page }) => {

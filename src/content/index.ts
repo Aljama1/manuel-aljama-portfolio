@@ -1,16 +1,38 @@
-import { esUi, type UiContent } from "./es/ui";
+import { esUi } from "./es/ui";
 import { enUi } from "./en/ui";
-import { esHome, type HomeContent } from "./es/home";
+import { esHome } from "./es/home";
 import { enHome } from "./en/home";
+import { profile } from "./profile";
+import { projects } from "./projects";
+import type {
+  HomeContent,
+  HomeProjectContent,
+  Locale,
+  Profile,
+  ProjectDefinition,
+  ProjectId,
+  ProjectStatus,
+  UiContent,
+} from "./types";
 
-export const uiContent: Record<"es" | "en", UiContent> = {
+export const uiContent: Record<Locale, UiContent> = {
   es: esUi,
   en: enUi,
 };
 
-export const homeContent: Record<"es" | "en", HomeContent> = {
+export const homeContent: Record<Locale, HomeContent> = {
   es: esHome,
   en: enHome,
 };
 
-export type { UiContent, HomeContent };
+export { profile, projects };
+export type {
+  HomeContent,
+  HomeProjectContent,
+  Locale,
+  Profile,
+  ProjectDefinition,
+  ProjectId,
+  ProjectStatus,
+  UiContent,
+};
