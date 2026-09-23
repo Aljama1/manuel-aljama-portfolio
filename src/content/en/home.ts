@@ -149,4 +149,86 @@ export const enHome: HomeContent = {
       },
     ],
   },
+  skills: {
+    eyebrow: "05 / SKILLS",
+    title: "Technologies & tools",
+    builtWith: {
+      title: "Built with",
+      description:
+        "Technologies used across academic coursework, personal projects, and functional applications.",
+      items: [
+        "Java",
+        "TypeScript",
+        "JavaScript",
+        "SQL",
+        "Kotlin",
+        "HTML/CSS",
+        "Angular",
+        "Ionic",
+        "Android",
+        "Next.js / React",
+        "Supabase / PostgreSQL",
+        "Firebase / Firestore",
+        "Git / GitHub",
+        "VS Code",
+      ],
+    },
+    exploring: {
+      title: "Currently exploring",
+      description:
+        "Areas of continuous technical deepening and engineering methodologies.",
+      items: [
+        "React / Next.js avanzado",
+        "REST / backend",
+        "Docker / Linux / cloud",
+        "AI agents",
+        "MCP",
+        "SDD",
+        "TDD",
+      ],
+    },
+  },
+  experience: {
+    eyebrow: "06 / BACKGROUND",
+    title: "Education & background",
+    education: {
+      heading: "Academic education",
+      items: [
+        {
+          period: "2024 — 2026",
+          title: "Multiplatform Application Development (DAM)",
+          institutionOrContext: "Vocational Higher Education Degree",
+          description:
+            "Specialized in cross-platform software architecture, relational databases, web and mobile development, and software engineering best practices.",
+          tag: "DAM",
+        },
+      ],
+    },
+    languages: {
+      heading: "Languages",
+      items: [
+        { language: "Spanish", level: "Native" },
+        {
+          language: "English",
+          level: "B2 · Professional technical proficiency",
+        },
+      ],
+    },
+    targetRole: {
+      label: "CURRENT FOCUS",
+      role: "Junior Software Developer",
+      description:
+        "Actively seeking my first professional opportunity to contribute in full-stack development, product engineering, and collaborative workflows.",
+    },
+  },
+  contact: {
+    eyebrow: "07 / CONTACT",
+    headline: "LET'S BUILD SOMETHING.",
+    description:
+      "Open to junior software developer opportunities and impactful projects. Feel free to reach out.",
+    emailLabel: "Send email",
+    githubLabel: "View GitHub profile",
+    linkedinLabel: "LinkedIn",
+    cvLabel: "Download CV",
+  },
 };

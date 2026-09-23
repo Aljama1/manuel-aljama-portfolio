@@ -10,6 +10,8 @@ import type {
   AiEngineeringContent,
   AiPillar,
   BuildStep,
+  ContactContent,
+  ExperienceContent,
   HomeContent,
   HomeProjectContent,
   HowIBuildContent,
@@ -18,6 +20,9 @@ import type {
   ProjectDefinition,
   ProjectId,
   ProjectStatus,
+  SkillsContent,
+  SkillsGroup,
+  TimelineEntry,
   UiContent,
 } from "./types";
 
@@ -38,6 +43,8 @@ export type {
   AiEngineeringContent,
   AiPillar,
   BuildStep,
+  ContactContent,
+  ExperienceContent,
   HomeContent,
   HomeProjectContent,
   HowIBuildContent,
@@ -46,5 +53,8 @@ export type {
   ProjectDefinition,
   ProjectId,
   ProjectStatus,
+  SkillsContent,
+  SkillsGroup,
+  TimelineEntry,
   UiContent,
 };

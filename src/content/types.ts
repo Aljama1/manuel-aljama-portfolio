@@ -75,6 +75,55 @@ export interface AiEngineeringContent {
   pillars: AiPillar[];
 }
 
+export interface SkillsGroup {
+  title: string;
+  description: string;
+  items: string[];
+}
+
+export interface SkillsContent {
+  eyebrow: string;
+  title: string;
+  builtWith: SkillsGroup;
+  exploring: SkillsGroup;
+}
+
+export interface TimelineEntry {
+  period: string;
+  title: string;
+  institutionOrContext: string;
+  description: string;
+  tag?: string;
+}
+
+export interface ExperienceContent {
+  eyebrow: string;
+  title: string;
+  education: {
+    heading: string;
+    items: TimelineEntry[];
+  };
+  languages: {
+    heading: string;
+    items: { language: string; level: string }[];
+  };
+  targetRole: {
+    label: string;
+    role: string;
+    description: string;
+  };
+}
+
+export interface ContactContent {
+  eyebrow: string;
+  headline: string;
+  description: string;
+  emailLabel: string;
+  githubLabel: string;
+  linkedinLabel: string;
+  cvLabel: string;
+}
+
 export interface HomeContent {
   hero: {
     headline: string;
@@ -89,6 +138,9 @@ export interface HomeContent {
   about: AboutContent;
   howIBuild: HowIBuildContent;
   aiEngineering: AiEngineeringContent;
+  skills: SkillsContent;
+  experience: ExperienceContent;
+  contact: ContactContent;
 }
 
 export interface UiContent {

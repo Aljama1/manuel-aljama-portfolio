@@ -1,7 +1,8 @@
 import type { Profile } from "./types";
 
-export const profile = {
+export const profile: Profile = {
   name: "Manuel Aljama",
   role: "Software Developer",
   githubUrl: "https://github.com/Aljama1",
-} satisfies Profile;
+  email: "manuelaljama9@gmail.com",
+};

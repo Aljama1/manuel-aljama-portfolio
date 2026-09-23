@@ -149,4 +149,83 @@ export const esHome: HomeContent = {
       },
     ],
   },
+  skills: {
+    eyebrow: "05 / TECNOLOGÍAS",
+    title: "Tecnologías y herramientas",
+    builtWith: {
+      title: "Experiencia demostrada",
+      description:
+        "Tecnologías utilizadas en proyectos académicos, personales y aplicaciones funcionales.",
+      items: [
+        "Java",
+        "TypeScript",
+        "JavaScript",
+        "SQL",
+        "Kotlin",
+        "HTML/CSS",
+        "Angular",
+        "Ionic",
+        "Android",
+        "Next.js / React",
+        "Supabase / PostgreSQL",
+        "Firebase / Firestore",
+        "Git / GitHub",
+        "VS Code",
+      ],
+    },
+    exploring: {
+      title: "Actualmente explorando",
+      description:
+        "Áreas de profundización técnica continua y metodologías de ingeniería.",
+      items: [
+        "React / Next.js avanzado",
+        "REST / backend",
+        "Docker / Linux / cloud",
+        "AI agents",
+        "MCP",
+        "SDD",
+        "TDD",
+      ],
+    },
+  },
+  experience: {
+    eyebrow: "06 / TRAYECTORIA",
+    title: "Educación y trayectoria",
+    education: {
+      heading: "Formación académica",
+      items: [
+        {
+          period: "2024 — 2026",
+          title: "Desarrollo de Aplicaciones Multiplataforma (DAM)",
+          institutionOrContext: "Formación Profesional de Grado Superior",
+          description:
+            "Especialización en arquitectura de aplicaciones multiplataforma, bases de datos relacionales, desarrollo web y móvil, y buenas prácticas de ingeniería de software.",
+          tag: "DAM",
+        },
+      ],
+    },
+    languages: {
+      heading: "Idiomas",
+      items: [
+        { language: "Español", level: "Nativo" },
+        { language: "Inglés", level: "B2 · Competencia profesional técnica" },
+      ],
+    },
+    targetRole: {
+      label: "OBJETIVO PROFESIONAL",
+      role: "Junior Software Developer",
+      description:
+        "Búsqueda activa de primera oportunidad profesional para aportar en desarrollo full-stack, ingeniería de producto y flujos colaborativos.",
+    },
+  },
+  contact: {
+    eyebrow: "07 / CONTACTO",
+    headline: "LET'S BUILD SOMETHING.",
+    description:
+      "Abierto a oportunidades como Junior Software Developer y proyectos donde construir software útil. Escríbeme y hablemos.",
+    emailLabel: "Enviar correo",
+    githubLabel: "Ver perfil en GitHub",
+    linkedinLabel: "LinkedIn",
+    cvLabel: "Descargar CV",
+  },
 };

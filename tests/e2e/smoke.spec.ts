@@ -27,10 +27,9 @@ test.describe("Smoke — rutas principales", () => {
     await expect(page.locator("#projects")).toBeVisible();
 
     const home = page.locator("main");
-    await expect(home.getByRole("link", { name: "GitHub" })).toHaveAttribute(
-      "href",
-      "https://github.com/Aljama1",
-    );
+    await expect(
+      home.getByRole("link", { name: "GitHub", exact: true }),
+    ).toHaveAttribute("href", "https://github.com/Aljama1");
     await expect(home.getByRole("link", { name: "Ver Trace" })).toHaveAttribute(
       "href",
       "/projects/trace",

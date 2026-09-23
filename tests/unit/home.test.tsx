@@ -22,6 +22,21 @@ describe("Home content model", () => {
     expect(homeContent.es.aiEngineering.pillars.length).toEqual(
       homeContent.en.aiEngineering.pillars.length,
     );
+    expect(homeContent.es.skills.builtWith.items).toEqual(
+      homeContent.en.skills.builtWith.items,
+    );
+    expect(homeContent.es.skills.exploring.items).toEqual(
+      homeContent.en.skills.exploring.items,
+    );
+    expect(homeContent.es.experience.education.items.length).toEqual(
+      homeContent.en.experience.education.items.length,
+    );
+    expect(homeContent.es.experience.languages.items.length).toEqual(
+      homeContent.en.experience.languages.items.length,
+    );
+    expect(Object.keys(homeContent.es.contact)).toEqual(
+      Object.keys(homeContent.en.contact),
+    );
   });
 
   it("declares Trace and Asisteo with their correct public states", () => {
@@ -104,12 +119,16 @@ describe("Home Block 1 & 2 sections", () => {
     expect(
       screen.getByText(homeContent.es.about.facts.currently.value),
     ).toBeInTheDocument();
+    const aboutSection = document.getElementById("about");
+    expect(aboutSection).not.toBeNull();
     expect(
-      screen.getByText(homeContent.es.about.facts.lookingFor.value),
+      within(aboutSection as HTMLElement).getByText(
+        homeContent.es.about.facts.lookingFor.value,
+      ),
     ).toBeInTheDocument();
 
     // Sin fotografía si profile.photo es undefined
-    expect(screen.queryByRole("img")).toBeNull();
+    expect(within(aboutSection as HTMLElement).queryByRole("img")).toBeNull();
   });
 
   it("renders HowIBuildSection with the exact 7-step sequence and closure", () => {
@@ -166,5 +185,97 @@ describe("Home Block 1 & 2 sections", () => {
       ).toBeInTheDocument();
       expect(screen.getByText(pillar.description)).toBeInTheDocument();
     });
+  });
+
+  it("renders SkillsSection with Built With and Exploring groups without progress bars or percentages", () => {
+    render(<HomePage locale="es" />);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: homeContent.es.skills.title,
+      }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByText(homeContent.es.skills.builtWith.title),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(homeContent.es.skills.exploring.title),
+    ).toBeInTheDocument();
+
+    // Verificación de tecnologías clave
+    expect(screen.getByText("Java")).toBeInTheDocument();
+    expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    expect(screen.getByText("AI agents")).toBeInTheDocument();
+
+    // Sin barras de progreso ni porcentajes inventados
+    expect(screen.queryByRole("progressbar")).toBeNull();
+    expect(screen.queryByText(/%/)).toBeNull();
+  });
+
+  it("renders ExperienceSection with DAM education and target role without invented data", () => {
+    render(<HomePage locale="es" />);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: homeContent.es.experience.title,
+      }),
+    ).toBeInTheDocument();
+
+    const expSection = document.getElementById("experience");
+    expect(expSection).not.toBeNull();
+    expect(
+      within(expSection as HTMLElement).getByText("2024 — 2026"),
+    ).toBeInTheDocument();
+    expect(
+      within(expSection as HTMLElement).getByText(
+        "Desarrollo de Aplicaciones Multiplataforma (DAM)",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      within(expSection as HTMLElement).getByText("Junior Software Developer"),
+    ).toBeInTheDocument();
+    expect(
+      within(expSection as HTMLElement).getByText(
+        "B2 · Competencia profesional técnica",
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it("renders ContactSection with confirmed email and GitHub, and hides LinkedIn and CV when undefined", () => {
+    render(<HomePage locale="es" />);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: homeContent.es.contact.headline,
+      }),
+    ).toBeInTheDocument();
+
+    // Email confirmado visible
+    const emailLink = screen.getByRole("link", {
+      name: new RegExp(profile.email as string, "i"),
+    });
+    expect(emailLink).toHaveAttribute("href", `mailto:${profile.email}`);
+
+    // GitHub confirmado visible
+    const githubLink = screen.getByRole("link", {
+      name: new RegExp(homeContent.es.contact.githubLabel, "i"),
+    });
+    expect(githubLink).toHaveAttribute("href", profile.githubUrl);
+
+    // LinkedIn y CV ocultos porque son undefined en profile
+    expect(
+      screen.queryByRole("link", {
+        name: new RegExp(homeContent.es.contact.linkedinLabel, "i"),
+      }),
+    ).toBeNull();
+    expect(
+      screen.queryByRole("link", {
+        name: new RegExp(homeContent.es.contact.cvLabel, "i"),
+      }),
+    ).toBeNull();
   });
 });
