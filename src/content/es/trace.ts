@@ -124,6 +124,14 @@ export const esTrace: TraceCaseStudyContent = {
     title: "Recorrido de punta a punta: de la mesa al ticket cerrado",
     intro:
       "El diseño del flujo prioriza la inmediatez para el cliente y la claridad operativa para el personal de servicio:",
+    diagramSubtitle:
+      "Recorrido completo desde la lectura del QR en mesa hasta el registro inmutable de facturación.",
+    ariaLabel: "Flujo conceptual del producto",
+    legend: {
+      guest: "Comensal",
+      staff: "Personal",
+      system: "Sistema",
+    },
     steps: [
       {
         stepNumber: "01",
@@ -202,10 +210,17 @@ export const esTrace: TraceCaseStudyContent = {
     title: "Estructura por capas y modelo de distribución de datos",
     intro:
       "La aplicación utiliza una base de código común basada en componentes standalone de Angular 20 e Ionic 8, compilada tanto a aplicación web progresiva como a ejecutable nativo Android con Capacitor:",
+    diagramSubtitle:
+      "Separación de capas: cliente multiplataforma, reactividad en UI, servicios BaaS realtime y módulo de integridad.",
+    ariaLabel: "Diagrama conceptual de arquitectura",
+    techBadge: "Angular 20 · Ionic 8 · Capacitor 8 · Firebase",
+    pipelineTag: "Auditability & Verification Pipeline",
     webPwa: {
+      layerBadge: "01 / Client & Reactive UI",
       title: "Angular 20 & Ionic 8 (Standalone)",
       description:
         "Estructura modular orientada a vistas (guest, staff, admin), servicios de negocio desacoplados y estados locales gestionados con Angular Signals y computed properties.",
+      listHeading: "Componentes clave:",
       items: [
         "Angular Signals para estado reactivo sin sobrecarga",
         "Ionic Framework para componentes UI táctiles adaptativos",
@@ -214,9 +229,11 @@ export const esTrace: TraceCaseStudyContent = {
       ],
     },
     mobileBridge: {
+      layerBadge: "02 / Mobile Bridge",
       title: "Capacitor 8 Bridge (Android)",
       description:
         "Empaquetado móvil nativo mediante Capacitor 8 para dispositivos Android del personal, facilitando acceso a almacenamiento seguro y capacidades nativas.",
+      listHeading: "Capacidades nativas:",
       items: [
         "Build nativo para terminales de sala y barra",
         "Compatibilidad con lectores de código de barras / QR",
@@ -225,9 +242,11 @@ export const esTrace: TraceCaseStudyContent = {
       ],
     },
     backend: {
+      layerBadge: "03 / Realtime BaaS",
       title: "Firebase Auth & Cloud Firestore",
       description:
         "BaaS serverless con autenticación dual (anónima para comensales, email/password para administradores) y suscripciones a snapshots en tiempo real para sincronización instantánea.",
+      listHeading: "Infraestructura Firebase:",
       items: [
         "onSnapshot listeners para propagación instantánea de tickets",
         "Colecciones normalizadas: tables, orders, catalog, invoices",
@@ -236,6 +255,7 @@ export const esTrace: TraceCaseStudyContent = {
       ],
     },
     integrity: {
+      layerBadge: "Auditability & Verification Pipeline",
       title: "Mecanismo Demostrativo de Integridad SHA-256",
       description:
         "Módulo de facturación experimental que calcula un hash criptográfico SHA-256 para cada factura, concatenándolo con el hash del registro previo. Implementa un registro inmutable append-only con fines educativos y de auditoría técnica.",

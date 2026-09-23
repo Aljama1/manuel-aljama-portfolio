@@ -127,6 +127,14 @@ export const enTrace: TraceCaseStudyContent = {
     title: "End-to-end journey: from table QR scan to settled bill",
     intro:
       "The service workflow was structured to maximize guest autonomy while giving staff real-time clarity at every stage:",
+    diagramSubtitle:
+      "End-to-end service cycle from table QR scan to tamper-evident invoice registration.",
+    ariaLabel: "Conceptual product flow diagram",
+    legend: {
+      guest: "Diner",
+      staff: "Staff",
+      system: "System",
+    },
     steps: [
       {
         stepNumber: "01",
@@ -205,10 +213,17 @@ export const enTrace: TraceCaseStudyContent = {
     title: "Layered design and distributed data distribution model",
     intro:
       "The application leverages a unified codebase built on Angular 20 standalone components and Ionic 8, packaged as both a Progressive Web App and a native Android app via Capacitor:",
+    diagramSubtitle:
+      "Layer separation: cross-platform client, reactive UI, real-time BaaS services, and data integrity module.",
+    ariaLabel: "Conceptual technical architecture diagram",
+    techBadge: "Angular 20 · Ionic 8 · Capacitor 8 · Firebase",
+    pipelineTag: "Auditability & Verification Pipeline",
     webPwa: {
+      layerBadge: "01 / Client & Reactive UI",
       title: "Angular 20 & Ionic 8 (Standalone)",
       description:
         "Modular architecture organized into distinct views (guest, staff, admin), decoupled business services, and synchronous local state managed via Angular Signals and computed properties.",
+      listHeading: "Key components:",
       items: [
         "Angular Signals for lean reactive UI state",
         "Ionic Framework for adaptive touch UI components",
@@ -217,9 +232,11 @@ export const enTrace: TraceCaseStudyContent = {
       ],
     },
     mobileBridge: {
+      layerBadge: "02 / Mobile Bridge",
       title: "Capacitor 8 Bridge (Android)",
       description:
         "Native Android packaging powered by Capacitor 8 for staff handheld terminals, enabling direct access to hardware and local storage.",
+      listHeading: "Native capabilities:",
       items: [
         "Native compilation for staff floor tablets and mobile phones",
         "Integration with camera/hardware QR scanners",
@@ -228,9 +245,11 @@ export const enTrace: TraceCaseStudyContent = {
       ],
     },
     backend: {
+      layerBadge: "03 / Realtime BaaS",
       title: "Firebase Auth & Cloud Firestore",
       description:
         "Serverless BaaS infrastructure featuring dual authentication (anonymous for diners, email/password for staff) and real-time snapshot subscriptions for sub-second updates.",
+      listHeading: "Firebase infrastructure:",
       items: [
         "onSnapshot listeners for instant ticket propagation",
         "Normalized collections: tables, orders, catalog, invoices",
@@ -239,6 +258,7 @@ export const enTrace: TraceCaseStudyContent = {
       ],
     },
     integrity: {
+      layerBadge: "Auditability & Verification Pipeline",
       title: "Demonstrative SHA-256 Integrity Engine",
       description:
         "Experimental billing module that calculates a SHA-256 cryptographic hash for each invoice, concatenating it with the preceding invoice hash to create a tamper-evident append-only ledger.",

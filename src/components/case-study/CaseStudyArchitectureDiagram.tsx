@@ -6,7 +6,11 @@ interface CaseStudyArchitectureDiagramProps {
   mobileBridge: CaseStudyArchBlock;
   backend: CaseStudyArchBlock;
   integrity: CaseStudyArchBlock;
-  title?: string;
+  subtitle?: string | undefined;
+  ariaLabel?: string | undefined;
+  techBadge?: string | undefined;
+  pipelineTag?: string | undefined;
+  title?: string | undefined;
 }
 
 export function CaseStudyArchitectureDiagram({
@@ -14,25 +18,28 @@ export function CaseStudyArchitectureDiagram({
   mobileBridge,
   backend,
   integrity,
+  subtitle,
+  ariaLabel,
+  techBadge,
+  pipelineTag,
   title,
 }: CaseStudyArchitectureDiagramProps) {
   return (
     <div
       className="relative overflow-hidden rounded-xl border border-border bg-surface/70 p-5 sm:p-8"
-      aria-label={title ?? "Diagrama conceptual de arquitectura"}
+      aria-label={ariaLabel ?? title ?? "Diagrama conceptual de arquitectura"}
     >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 pb-5">
         <div>
           <span className="font-mono text-xs font-semibold tracking-[0.18em] text-secondary">
             TECHNICAL ARCHITECTURE & INTEGRATION
           </span>
-          <p className="mt-1 text-sm text-foreground-muted">
-            Separación de capas: cliente multiplataforma, reactividad en UI,
-            servicios BaaS realtime y módulo de integridad.
-          </p>
+          {subtitle && (
+            <p className="mt-1 text-sm text-foreground-muted">{subtitle}</p>
+          )}
         </div>
         <span className="font-mono text-xs text-foreground-muted">
-          Angular 20 · Ionic 8 · Capacitor 8 · Firebase
+          {techBadge ?? "Angular 20 · Ionic 8 · Capacitor 8 · Firebase"}
         </span>
       </div>
 
@@ -43,7 +50,7 @@ export function CaseStudyArchitectureDiagram({
             <div className="flex items-center gap-2 text-primary">
               <Globe className="h-4 w-4" aria-hidden="true" />
               <span className="font-mono text-xs font-semibold tracking-wider uppercase">
-                01 / Client & Reactive UI
+                {webPwa.layerBadge ?? "01 / Client & Reactive UI"}
               </span>
             </div>
             <h3 className="mt-2 font-heading text-lg font-bold text-foreground">
@@ -55,7 +62,7 @@ export function CaseStudyArchitectureDiagram({
           </div>
           <div className="mt-4 border-t border-border/60 pt-3">
             <span className="font-mono text-[11px] text-foreground-muted">
-              Componentes clave:
+              {webPwa.listHeading ?? "Componentes clave:"}
             </span>
             <ul className="mt-2 space-y-1.5 font-mono text-xs text-foreground">
               {webPwa.items.map((item) => (
@@ -74,7 +81,7 @@ export function CaseStudyArchitectureDiagram({
             <div className="flex items-center gap-2 text-secondary">
               <Smartphone className="h-4 w-4" aria-hidden="true" />
               <span className="font-mono text-xs font-semibold tracking-wider uppercase">
-                02 / Mobile Bridge
+                {mobileBridge.layerBadge ?? "02 / Mobile Bridge"}
               </span>
             </div>
             <h3 className="mt-2 font-heading text-lg font-bold text-foreground">
@@ -86,7 +93,7 @@ export function CaseStudyArchitectureDiagram({
           </div>
           <div className="mt-4 border-t border-border/60 pt-3">
             <span className="font-mono text-[11px] text-foreground-muted">
-              Capacidades nativas:
+              {mobileBridge.listHeading ?? "Capacidades nativas:"}
             </span>
             <ul className="mt-2 space-y-1.5 font-mono text-xs text-foreground">
               {mobileBridge.items.map((item) => (
@@ -105,7 +112,7 @@ export function CaseStudyArchitectureDiagram({
             <div className="flex items-center gap-2 text-primary">
               <Database className="h-4 w-4" aria-hidden="true" />
               <span className="font-mono text-xs font-semibold tracking-wider uppercase">
-                03 / Realtime BaaS
+                {backend.layerBadge ?? "03 / Realtime BaaS"}
               </span>
             </div>
             <h3 className="mt-2 font-heading text-lg font-bold text-foreground">
@@ -117,7 +124,7 @@ export function CaseStudyArchitectureDiagram({
           </div>
           <div className="mt-4 border-t border-border/60 pt-3">
             <span className="font-mono text-[11px] text-foreground-muted">
-              Infraestructura Firebase:
+              {backend.listHeading ?? "Infraestructura Firebase:"}
             </span>
             <ul className="mt-2 space-y-1.5 font-mono text-xs text-foreground">
               {backend.items.map((item) => (
@@ -139,7 +146,9 @@ export function CaseStudyArchitectureDiagram({
               </div>
               <div>
                 <span className="font-mono text-[10px] tracking-wider text-secondary uppercase">
-                  Auditability & Verification Pipeline
+                  {pipelineTag ??
+                    integrity.layerBadge ??
+                    "Auditability & Verification Pipeline"}
                 </span>
                 <h3 className="font-heading text-base font-bold text-foreground">
                   {integrity.title}

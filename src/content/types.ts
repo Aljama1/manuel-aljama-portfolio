@@ -208,6 +208,12 @@ export interface CaseStudyPoint {
   description: string;
 }
 
+export interface CaseStudyFlowLegend {
+  guest: string;
+  staff: string;
+  system: string;
+}
+
 export interface CaseStudyFlowStep {
   stepNumber: string;
   role: "guest" | "staff" | "system";
@@ -216,8 +222,10 @@ export interface CaseStudyFlowStep {
 }
 
 export interface CaseStudyArchBlock {
+  layerBadge?: string | undefined;
   title: string;
   description: string;
+  listHeading?: string | undefined;
   items: string[];
 }
 
@@ -296,12 +304,19 @@ export interface TraceCaseStudyContent {
     eyebrow: string;
     title: string;
     intro: string;
+    diagramSubtitle: string;
+    ariaLabel: string;
+    legend: CaseStudyFlowLegend;
     steps: CaseStudyFlowStep[];
   };
   architecture: {
     eyebrow: string;
     title: string;
     intro: string;
+    diagramSubtitle: string;
+    ariaLabel: string;
+    techBadge?: string | undefined;
+    pipelineTag?: string | undefined;
     webPwa: CaseStudyArchBlock;
     mobileBridge: CaseStudyArchBlock;
     backend: CaseStudyArchBlock;

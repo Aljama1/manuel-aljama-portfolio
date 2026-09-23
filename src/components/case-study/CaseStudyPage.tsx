@@ -238,7 +238,12 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
         </div>
 
         <div className="mt-10">
-          <CaseStudyFlowDiagram steps={productFlow.steps} />
+          <CaseStudyFlowDiagram
+            steps={productFlow.steps}
+            subtitle={productFlow.diagramSubtitle}
+            legend={productFlow.legend}
+            ariaLabel={productFlow.ariaLabel}
+          />
         </div>
       </Section>
 
@@ -262,6 +267,10 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
             mobileBridge={architecture.mobileBridge}
             backend={architecture.backend}
             integrity={architecture.integrity}
+            subtitle={architecture.diagramSubtitle}
+            ariaLabel={architecture.ariaLabel}
+            techBadge={architecture.techBadge}
+            pipelineTag={architecture.pipelineTag}
           />
         </div>
       </Section>

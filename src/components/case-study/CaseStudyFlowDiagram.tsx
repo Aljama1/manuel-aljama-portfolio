@@ -11,11 +11,14 @@ import {
   Receipt,
   Lock,
 } from "lucide-react";
-import type { CaseStudyFlowStep } from "@/content/types";
+import type { CaseStudyFlowStep, CaseStudyFlowLegend } from "@/content/types";
 
 interface CaseStudyFlowDiagramProps {
   steps: CaseStudyFlowStep[];
-  title?: string;
+  subtitle?: string | undefined;
+  legend?: CaseStudyFlowLegend | undefined;
+  ariaLabel?: string | undefined;
+  title?: string | undefined;
 }
 
 const getIconForIndex = (index: number) => {
@@ -36,35 +39,55 @@ const getIconForIndex = (index: number) => {
 
 export function CaseStudyFlowDiagram({
   steps,
+  subtitle,
+  legend,
+  ariaLabel,
   title,
 }: CaseStudyFlowDiagramProps) {
+  const defaultLegend: CaseStudyFlowLegend = {
+    guest: "Comensal",
+    staff: "Personal",
+    system: "Sistema",
+  };
+  const activeLegend = legend ?? defaultLegend;
+
+  const getRoleLabel = (role: "guest" | "staff" | "system") => {
+    switch (role) {
+      case "guest":
+        return activeLegend.guest;
+      case "staff":
+        return activeLegend.staff;
+      case "system":
+        return activeLegend.system;
+    }
+  };
+
   return (
     <div
       className="relative overflow-hidden rounded-xl border border-border bg-surface/70 p-5 sm:p-8"
-      aria-label={title ?? "Flujo conceptual del producto"}
+      aria-label={ariaLabel ?? title ?? "Flujo conceptual del producto"}
     >
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-5">
         <div>
           <span className="font-mono text-xs font-semibold tracking-[0.18em] text-primary">
             CONCEPTUAL PRODUCT FLOW
           </span>
-          <p className="mt-1 text-sm text-foreground-muted">
-            Recorrido completo desde la lectura del QR en mesa hasta el registro
-            inmutable de facturación.
-          </p>
+          {subtitle && (
+            <p className="mt-1 text-sm text-foreground-muted">{subtitle}</p>
+          )}
         </div>
         <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
           <span className="inline-flex items-center gap-1.5 rounded-sm border border-primary/30 bg-primary/10 px-2 py-0.5 text-primary">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            Comensal
+            {activeLegend.guest}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-sm border border-secondary/30 bg-secondary/10 px-2 py-0.5 text-secondary">
             <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
-            Personal
+            {activeLegend.staff}
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-sm border border-border bg-surface-raised px-2 py-0.5 text-foreground-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-foreground-muted" />
-            Sistema
+            {activeLegend.system}
           </span>
         </div>
       </div>
@@ -74,6 +97,7 @@ export function CaseStudyFlowDiagram({
           const Icon = getIconForIndex(idx);
           const isGuest = step.role === "guest";
           const isStaff = step.role === "staff";
+          const roleLabel = getRoleLabel(step.role);
 
           return (
             <li
@@ -94,7 +118,7 @@ export function CaseStudyFlowDiagram({
                           : "border border-border bg-surface-raised text-foreground-muted"
                     }`}
                   >
-                    {step.role}
+                    {roleLabel}
                   </span>
                 </div>
 
