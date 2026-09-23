@@ -2,6 +2,8 @@ import { esUi } from "./es/ui";
 import { enUi } from "./en/ui";
 import { esHome } from "./es/home";
 import { enHome } from "./en/home";
+import { esTrace } from "./es/trace";
+import { enTrace } from "./en/trace";
 import { profile } from "./profile";
 import { projects } from "./projects";
 import type {
@@ -44,6 +46,11 @@ export const uiContent: Record<Locale, UiContent> = {
 export const homeContent: Record<Locale, HomeContent> = {
   es: esHome,
   en: enHome,
+};
+
+export const traceContent: Record<Locale, TraceCaseStudyContent> = {
+  es: esTrace,
+  en: enTrace,
 };
 
 export { profile, projects };
