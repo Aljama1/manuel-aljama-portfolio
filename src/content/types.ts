@@ -197,3 +197,167 @@ export interface UiContent {
     ariaLabel: string;
   };
 }
+
+export interface CaseStudyMetadataItem {
+  label: string;
+  value: string;
+}
+
+export interface CaseStudyPoint {
+  title: string;
+  description: string;
+}
+
+export interface CaseStudyFlowStep {
+  stepNumber: string;
+  role: "guest" | "staff" | "system";
+  title: string;
+  description: string;
+}
+
+export interface CaseStudyArchBlock {
+  title: string;
+  description: string;
+  items: string[];
+}
+
+export interface CaseStudyDecision {
+  id: string;
+  number: string;
+  title: string;
+  subtitle: string;
+  context: string;
+  decision: string;
+  justification: string;
+  tradeOff: string;
+  legalDisclaimer?: string;
+}
+
+export interface CaseStudyChallengeItem {
+  id: string;
+  number: string;
+  title: string;
+  challenge: string;
+  solution: string;
+}
+
+export interface CaseStudyTestedArea {
+  area: string;
+  description: string;
+}
+
+export interface CaseStudyQualityGate {
+  title: string;
+  description: string;
+}
+
+export interface CaseStudyDeepDiveLink {
+  anchor: string;
+  title: string;
+  description: string;
+}
+
+export interface TraceCaseStudyContent {
+  meta: {
+    title: string;
+    description: string;
+  };
+  hero: {
+    breadcrumb: string;
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    status: string;
+    stack: string[];
+    githubUrl: string;
+    githubLabel: string;
+    backLabel: string;
+    backHref: string;
+  };
+  overview: {
+    eyebrow: string;
+    title: string;
+    summary: string[];
+    metadata: CaseStudyMetadataItem[];
+  };
+  problem: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    points: CaseStudyPoint[];
+  };
+  solution: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    layers: Array<{ role: string; description: string }>;
+  };
+  productFlow: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    steps: CaseStudyFlowStep[];
+  };
+  architecture: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    webPwa: CaseStudyArchBlock;
+    mobileBridge: CaseStudyArchBlock;
+    backend: CaseStudyArchBlock;
+    integrity: CaseStudyArchBlock;
+  };
+  keyDecisions: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    decisions: CaseStudyDecision[];
+  };
+  challenges: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    items: CaseStudyChallengeItem[];
+  };
+  testing: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    testSummary: {
+      countLabel: string;
+      note: string;
+    };
+    testedAreas: CaseStudyTestedArea[];
+    qualityGates: CaseStudyQualityGate[];
+  };
+  security: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    pillars: CaseStudyPoint[];
+  };
+  result: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    deliverables: CaseStudyPoint[];
+  };
+  whatILearned: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    learnings: CaseStudyPoint[];
+  };
+  deepDive: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    links: CaseStudyDeepDiveLink[];
+  };
+  navigation: {
+    backLabel: string;
+    backHref: string;
+    githubLabel: string;
+    githubUrl: string;
+  };
+}
