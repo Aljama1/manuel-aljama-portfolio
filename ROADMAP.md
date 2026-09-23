@@ -2,9 +2,9 @@
 
 ## Fase 0 — Verificación previa al bootstrap
 
-- [ ] completar la auditoría final de la documentación;
-- [ ] resolver cualquier contradicción entre documentos;
-- [ ] verificar versiones compatibles actuales;
+- [x] completar la auditoría final de la documentación;
+- [x] resolver cualquier contradicción entre documentos;
+- [x] verificar versiones compatibles actuales y consolidar baseline (Next.js 16.3.5, React 19.3.0, TS 6.0.3, Tailwind 4.3.3, Node 24.21.0, pnpm 12.5.1);
 - [ ] crear el proyecto Next.js;
 - [ ] inicializar pnpm;
 - [ ] activar TypeScript estricto;

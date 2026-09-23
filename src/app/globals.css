@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/*
+ * Tokens semánticos — fuente única de verdad para el design system.
+ * Los componentes consumen únicamente: bg-background, bg-surface, text-foreground, etc.
+ * Dark-first según PROJECT_CONSTITUTION.md sección 18.
+ */
+
+:root {
+  /* Dark por defecto */
+  --background: #09090b;
+  --surface: #111113;
+  --surface-raised: #18181b;
+  --foreground: #f4f4f5;
+  --foreground-muted: #a1a1aa;
+  --border: #27272a;
+  --primary: #b8f34a;
+  --primary-hover: #c7ff6a;
+  --secondary: #a78bfa;
+}
+
+html.light {
+  /* Modo claro con contraste propio */
+  --background: #fafafa;
+  --surface: #ffffff;
+  --surface-raised: #f4f4f5;
+  --foreground: #18181b;
+  --foreground-muted: #52525b;
+  --border: #e4e4e7;
+  --primary: #5e8f12;
+  --primary-hover: #4d760f;
+  --secondary: #7c3aed;
+}
+
+@theme {
+  /* Paleta semántica consumida por Tailwind */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+
+  /* Tipografías */
+  --font-heading: var(--font-space-grotesk), sans-serif;
+  --font-sans: var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* Radios */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Contenedor */
+  --max-width-container: 1280px;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}

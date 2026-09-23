@@ -1433,21 +1433,26 @@ No se crean abstracciones “por si acaso”.
 
 ## Baseline inicial
 
-Versiones de referencia verificadas durante la fase de especificación:
+Versiones de referencia consolidadas tras la verificación técnica de la Fase 0A (2026-09-21):
 
 ```text
-Next.js       16.3.3
+Next.js       16.3.5
 React         19.3.0
 TypeScript    6.0.3
-Tailwind CSS  4.3
+Tailwind CSS  4.3.3
 Node.js       24.21.0 LTS
 pnpm          12.5.1
 ESLint        10.11.0
 Playwright    1.63.0
-Vitest        5.x
+Vitest        5.0.1
 ```
 
-Estas versiones son **baseline**, no una autorización para instalar a ciegas. Antes del bootstrap se vuelve a comprobar compatibilidad y estado actual de cada paquete.
+Motivos y criterios de compatibilidad de la baseline consolidada:
+
+- **Next.js 16.3.5**: sustituye la referencia preliminar 16.3.3 como actualización de parche dentro de la misma línea menor para estabilidad y corrección de bugs.
+- **Tailwind CSS 4.3.3**: consolida el parche vigente de la línea 4.3 decidida.
+- **TypeScript 6.0.3**: se ratifica estrictamente en 6.0.3. No se adopta TypeScript 7 (disponible como latest en registro) porque `@typescript-eslint` (v8.70+) soporta actualmente TypeScript `<6.1.0`; saltar a TS 7 provocaría incompatibilidades con el linter.
+- **Dependencias secundarias**: para paquetes secundarios como `@types/node` o plugins específicos, no se fijan versiones rígidas prematuras; se verificará compatibilidad exacta durante el bootstrap (por ejemplo, asegurando tipos compatibles con Node 24).
 
 ## Tecnologías decididas
 
@@ -2162,7 +2167,7 @@ Un agente no puede cambiar unilateralmente:
 
 Estas cuestiones no son decisiones de producto abiertas; son pasos de verificación.
 
-1. Volver a comprobar versiones compatibles exactas antes de crear el proyecto.
+1. Volver a comprobar versiones compatibles exactas antes de crear el proyecto (COMPLETADA en Fase 0A: Next.js 16.3.5, React 19.3.0, TypeScript 6.0.3, Tailwind CSS 4.3.3, Node 24.21.0, pnpm 12.5.1).
 2. Ejecutar el análisis/Portfolio Polish de Trace sobre el estado actual.
 3. Verificar cifras y afirmaciones finales de Trace después del polish.
 4. Auditar completamente Asisteo V1 antes de decidir reconstrucción completa o selectiva.

@@ -49,12 +49,12 @@ Este registro resume las decisiones tomadas durante la planificación. Las regla
 45. El sitemap solo incluye rutas publicadas.
 46. Canonical + hreflang son obligatorios.
 47. pnpm es el gestor de paquetes.
-48. Node 24 LTS como baseline.
-49. Next 16.3.3 como baseline.
-50. React 19.3 como baseline.
-51. TypeScript 6.0.3 como baseline, vuelto a verificar antes del bootstrap.
-52. Tailwind 4.3 como baseline.
-53. Vitest 5.0.1 como baseline.
+48. Node 24 LTS (24.21.0) como baseline consolidada.
+49. Next 16.3.5 como baseline consolidada (sustituye 16.3.3 como actualización de parche).
+50. React 19.3.0 como baseline.
+51. TypeScript 6.0.3 como baseline consolidada (descartado TS 7 por restricción de compatibilidad de @typescript-eslint a <6.1.0).
+52. Tailwind CSS 4.3.3 como baseline consolidada (parche sobre 4.3).
+53. Vitest 5.0.1 como baseline consolidada.
 54. Playwright 1.63.0 como baseline.
 55. ESLint 10.11.0 como baseline.
 56. Componentes UI propios con Tailwind. Motion for React (`motion`) solo si las necesidades reales lo justifican.

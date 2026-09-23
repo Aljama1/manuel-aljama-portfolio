@@ -12,16 +12,16 @@ El repositorio contiene **un único commit** (`a793e05 docs: establecer especifi
 
 ### Archivos presentes
 
-| Archivo | Tamaño | Rol |
-|---------|--------|-----|
-| [PROJECT_CONSTITUTION.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/PROJECT_CONSTITUTION.md) | 42 KB, 55 secciones | **Fuente de verdad principal.** Identidad, contenido, diseño, stack, testing, CI, seguridad, lanzamiento, autonomía del agente. |
-| [AGENTS.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/AGENTS.md) | 5.8 KB | Reglas compartidas para cualquier agente de IA. |
-| [ANTIGRAVITY_MASTER_PROMPT.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/ANTIGRAVITY_MASTER_PROMPT.md) | 5.6 KB | Prompt de inicio para Antigravity: 12 pasos de implementación ordenados. |
-| [DECISION_REGISTER.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/DECISION_REGISTER.md) | 6 KB, 104 decisiones | Registro resumido de todas las decisiones tomadas en planificación. |
-| [ROADMAP.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/ROADMAP.md) | 2.7 KB, 7 fases | Fases 0–6 + evolución post-Asisteo V2. |
-| [CONSISTENCY_REVIEW.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/CONSISTENCY_REVIEW.md) | 1.9 KB | Revisión cruzada de consistencia (aprobada con puertas pendientes). |
-| [CLAUDE.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/CLAUDE.md) | 0.5 KB | Adaptador mínimo para Claude Code. |
-| [README.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/README.md) | 1.5 KB | Índice del paquete de especificación y repos de referencia. |
+| Archivo                                                                                                                       | Tamaño               | Rol                                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| [PROJECT_CONSTITUTION.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/PROJECT_CONSTITUTION.md)           | 42 KB, 55 secciones  | **Fuente de verdad principal.** Identidad, contenido, diseño, stack, testing, CI, seguridad, lanzamiento, autonomía del agente. |
+| [AGENTS.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/AGENTS.md)                                       | 5.8 KB               | Reglas compartidas para cualquier agente de IA.                                                                                 |
+| [ANTIGRAVITY_MASTER_PROMPT.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/ANTIGRAVITY_MASTER_PROMPT.md) | 5.6 KB               | Prompt de inicio para Antigravity: 12 pasos de implementación ordenados.                                                        |
+| [DECISION_REGISTER.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/DECISION_REGISTER.md)                 | 6 KB, 104 decisiones | Registro resumido de todas las decisiones tomadas en planificación.                                                             |
+| [ROADMAP.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/ROADMAP.md)                                     | 2.7 KB, 7 fases      | Fases 0–6 + evolución post-Asisteo V2.                                                                                          |
+| [CONSISTENCY_REVIEW.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/CONSISTENCY_REVIEW.md)               | 1.9 KB               | Revisión cruzada de consistencia (aprobada con puertas pendientes).                                                             |
+| [CLAUDE.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/CLAUDE.md)                                       | 0.5 KB               | Adaptador mínimo para Claude Code.                                                                                              |
+| [README.md](file:///c:/Users/manue/Desktop/Proyectos/portfolio-manuel-aljama/README.md)                                       | 1.5 KB               | Índice del paquete de especificación y repos de referencia.                                                                     |
 
 ### Ausencias notables
 
@@ -119,20 +119,20 @@ Vitest        5.x
 
 ### Tecnologías decididas
 
-| Capa | Tecnologías |
-|------|-------------|
-| Framework | Next.js + React |
-| Lenguaje | TypeScript estricto |
-| Estilos | Tailwind CSS, componentes propios |
-| Motion | `motion` (Motion for React) — solo si se justifica |
-| Iconos | Lucide React |
-| Contenido | MDX para case studies, archivos `.ts` para datos |
-| Testing unitario | Vitest |
-| Testing E2E | Playwright |
-| Linting | ESLint + Prettier |
-| Git hooks | Husky + lint-staged + commitlint |
-| CI/CD | GitHub Actions → Vercel |
-| Analytics | Plausible o Umami (elección en despliegue) |
+| Capa             | Tecnologías                                        |
+| ---------------- | -------------------------------------------------- |
+| Framework        | Next.js + React                                    |
+| Lenguaje         | TypeScript estricto                                |
+| Estilos          | Tailwind CSS, componentes propios                  |
+| Motion           | `motion` (Motion for React) — solo si se justifica |
+| Iconos           | Lucide React                                       |
+| Contenido        | MDX para case studies, archivos `.ts` para datos   |
+| Testing unitario | Vitest                                             |
+| Testing E2E      | Playwright                                         |
+| Linting          | ESLint + Prettier                                  |
+| Git hooks        | Husky + lint-staged + commitlint                   |
+| CI/CD            | GitHub Actions → Vercel                            |
+| Analytics        | Plausible o Umami (elección en despliegue)         |
 
 ### Explícitamente excluido
 
@@ -192,18 +192,18 @@ Asisteo reservado. Las secciones de Home son anchors (`/#projects`, `/#about`, e
 
 Estas son **puertas de verificación** explícitas (sección 54 de la Constitución + CONSISTENCY_REVIEW.md), **no decisiones de producto abiertas**:
 
-| # | Puerta | Estado | Notas |
-|---|--------|--------|-------|
-| 1 | Re-verificar versiones compatibles actuales del stack | ⏳ Pendiente | Debe hacerse justo antes del `pnpm create next-app`. Las versiones baseline pueden haber cambiado. |
-| 2 | Portfolio Polish de Trace (auditoría del repo) | ⏳ Pendiente | No se pueden cerrar las afirmaciones técnicas del case study sin inspeccionar el código de [Trace](https://github.com/Aljama1/Trace). |
-| 3 | Verificar cifras/afirmaciones finales de Trace post-polish | ⏳ Pendiente | Tests, módulos, estados, plataformas, mecanismos de integridad — todo debe salir del repo real. |
-| 4 | Auditar Asisteo V1 completa antes de decidir V2 | ⏳ Pendiente | No decidir reescritura vs reconstrucción selectiva antes de la auditoría. |
-| 5 | URLs finales de contacto y redes | ⏳ Pendiente | Email, LinkedIn, GitHub definitivos. |
-| 6 | CV definitivo (archivo descargable) | ⏳ Pendiente | |
-| 7 | Fotografía de perfil | ⏳ Pendiente | Para sección About. |
-| 8 | Capturas reales de Trace post-polish | ⏳ Pendiente | Solo capturas del producto real después del polish. |
-| 9 | Proveedor de analytics | ⏳ Pendiente | Plausible o Umami, se decide al desplegar. |
-| 10 | Dominio de producción | ⏳ Pendiente | |
+| #   | Puerta                                                     | Estado       | Notas                                                                                                                                 |
+| --- | ---------------------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Re-verificar versiones compatibles actuales del stack      | ⏳ Pendiente | Debe hacerse justo antes del `pnpm create next-app`. Las versiones baseline pueden haber cambiado.                                    |
+| 2   | Portfolio Polish de Trace (auditoría del repo)             | ⏳ Pendiente | No se pueden cerrar las afirmaciones técnicas del case study sin inspeccionar el código de [Trace](https://github.com/Aljama1/Trace). |
+| 3   | Verificar cifras/afirmaciones finales de Trace post-polish | ⏳ Pendiente | Tests, módulos, estados, plataformas, mecanismos de integridad — todo debe salir del repo real.                                       |
+| 4   | Auditar Asisteo V1 completa antes de decidir V2            | ⏳ Pendiente | No decidir reescritura vs reconstrucción selectiva antes de la auditoría.                                                             |
+| 5   | URLs finales de contacto y redes                           | ⏳ Pendiente | Email, LinkedIn, GitHub definitivos.                                                                                                  |
+| 6   | CV definitivo (archivo descargable)                        | ⏳ Pendiente |                                                                                                                                       |
+| 7   | Fotografía de perfil                                       | ⏳ Pendiente | Para sección About.                                                                                                                   |
+| 8   | Capturas reales de Trace post-polish                       | ⏳ Pendiente | Solo capturas del producto real después del polish.                                                                                   |
+| 9   | Proveedor de analytics                                     | ⏳ Pendiente | Plausible o Umami, se decide al desplegar.                                                                                            |
+| 10  | Dominio de producción                                      | ⏳ Pendiente |                                                                                                                                       |
 
 > [!WARNING]
 > Ninguna de estas puertas debe rellenarse con suposiciones. Si falta la evidencia, se declara como pendiente.
@@ -273,13 +273,13 @@ Basándome en el Roadmap (Fase 0) y el ANTIGRAVITY_MASTER_PROMPT (Paso 1–2), e
 
 ## Resumen ejecutivo
 
-| Aspecto | Estado |
-|---------|--------|
-| Documentación | Completa y consistente. No hay contradicciones abiertas. |
-| Código fuente | **No existe.** El repositorio es solo especificación. |
-| Stack | Definido con versiones baseline, pendiente de re-verificación. |
-| Diseño | Completamente especificado (paleta, tipografía, espaciado, grid, motion). |
-| Contenido | Estructura definida, textos base en la constitución, datos personales pendientes. |
-| Puertas de verificación | 10 puertas identificadas, ninguna cerrada. |
-| Rama Git | `master` (debería ser `main`). |
-| Próximo paso viable | Fase 0A: verificar versiones actuales del stack. |
+| Aspecto                 | Estado                                                                            |
+| ----------------------- | --------------------------------------------------------------------------------- |
+| Documentación           | Completa y consistente. No hay contradicciones abiertas.                          |
+| Código fuente           | **No existe.** El repositorio es solo especificación.                             |
+| Stack                   | Definido con versiones baseline, pendiente de re-verificación.                    |
+| Diseño                  | Completamente especificado (paleta, tipografía, espaciado, grid, motion).         |
+| Contenido               | Estructura definida, textos base en la constitución, datos personales pendientes. |
+| Puertas de verificación | 10 puertas identificadas, ninguna cerrada.                                        |
+| Rama Git                | `master` (debería ser `main`).                                                    |
+| Próximo paso viable     | Fase 0A: verificar versiones actuales del stack.                                  |

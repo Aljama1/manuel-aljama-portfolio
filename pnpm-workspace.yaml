@@ -1,0 +1,5 @@
+allowBuilds:
+  unrs-resolver: true
+  sharp: true
+  "@img/sharp-win32-x64": true
+  "@next/swc-win32-x64-msvc": true

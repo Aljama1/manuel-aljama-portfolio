@@ -26,9 +26,22 @@ No inventes datos que falten para que el documento parezca completo.
 Trace: https://github.com/Aljama1/Trace
 Asisteo: https://github.com/Aljama1/Asisteo
 
-## Regla de bootstrap
+## Regla de bootstrap y baseline aprobada
 
-Antes de crear la aplicación, vuelve a comprobar las versiones compatibles actuales y después fija exactamente las versiones utilizadas por el repositorio.
+Tras la verificación técnica de la Fase 0A (2026-09-21), la baseline tecnológica aprobada queda consolidada en:
+
+- Node.js 24.21.0 LTS
+- pnpm 12.5.1
+- Next.js 16.3.5 (parche de estabilidad sobre 16.3)
+- React 19.3.0
+- React DOM 19.3.0
+- TypeScript 6.0.3 (fijado en 6.0.3 por compatibilidad de `@typescript-eslint` con `<6.1.0`; descartado TS 7)
+- Tailwind CSS 4.3.3 (parche vigente de la línea 4.3)
+- ESLint 10.11.0
+- Playwright 1.63.0
+- Vitest 5.0.1
+
+Para dependencias secundarias como `@types/node`, se verificará compatibilidad exacta durante la inicialización.
 
 ## Nota sobre el idioma
 
