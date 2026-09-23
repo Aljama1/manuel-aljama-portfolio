@@ -13,6 +13,7 @@ const config = [
       "node_modules/**",
       "coverage/**",
       "playwright-report/**",
+      "output/**",
     ],
   },
   ...coreWebVitals,

@@ -60,7 +60,7 @@ describe("Home content model", () => {
       es: "/projects/trace/",
       en: "/en/projects/trace/",
     });
-    expect(projects.trace.technicalClaimsVerified).toBe(false);
+    expect(projects.trace.technicalClaimsVerified).toBe(true);
 
     expect(projects.asisteo.status).toBe("BUILDING_REBUILDING");
     expect(projects.asisteo.caseStudyPath).toBeUndefined();

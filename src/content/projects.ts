@@ -8,7 +8,8 @@ export const projects: Record<ProjectId, ProjectDefinition> = {
       es: "/projects/trace/",
       en: "/en/projects/trace/",
     },
-    technicalClaimsVerified: false,
+    // Los claims técnicos que el portfolio publica sobre Trace han sido revisados y verificados
+    technicalClaimsVerified: true,
   },
   asisteo: {
     id: "asisteo",
