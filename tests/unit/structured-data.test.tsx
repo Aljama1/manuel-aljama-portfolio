@@ -114,7 +114,7 @@ describe("Structured Data (JSON-LD)", () => {
 
       expect(person).toBeDefined();
       expect(person?.name).toBe(profile.name);
-      expect(person?.jobTitle).toBe(profile.role);
+      expect(person?.["jobTitle"]).toBeUndefined();
       expect(person?.sameAs).toEqual([profile.githubUrl]);
 
       // Assert absence of unverified/unpresent attributes
