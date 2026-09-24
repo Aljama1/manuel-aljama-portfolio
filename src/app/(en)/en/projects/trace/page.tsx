@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { CaseStudyPage } from "@/components/case-study/CaseStudyPage";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { traceContent } from "@/content";
+import { getTraceStructuredData } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: traceContent.en.meta.title,
@@ -21,5 +23,10 @@ export const metadata: Metadata = {
 };
 
 export default function EnTraceProjectPage() {
-  return <CaseStudyPage content={traceContent.en} locale="en" />;
+  return (
+    <>
+      <JsonLd data={getTraceStructuredData("en")} />
+      <CaseStudyPage content={traceContent.en} locale="en" />
+    </>
+  );
 }

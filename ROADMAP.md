@@ -81,7 +81,7 @@
 - [x] generación de sitemap (`/sitemap.xml`) y directivas de robots (`/robots.txt`);
 - [x] infraestructura de Visual QA automatizado con Playwright (`.agents/skills/portfolio-visual-qa/SKILL.md`);
 - [x] pipeline de verificación estricto consolidado (`typecheck` + `lint` + `format:check` + `test:unit` + `test:e2e` + `build`);
-- [ ] datos estructurados (JSON-LD);
+- [x] datos estructurados (JSON-LD);
 - [ ] tarjetas Open Graph definitivas con imágenes dedicadas;
 - [ ] auditoría de rendimiento con Lighthouse y Core Web Vitals en producción;
 - [ ] revisión de seguridad final previa a despliegue;
