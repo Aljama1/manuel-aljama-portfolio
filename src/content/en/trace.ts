@@ -208,6 +208,17 @@ export const enTrace: TraceCaseStudyContent = {
       },
     ],
   },
+  demo: {
+    eyebrow: "DEMO / VIDEO",
+    title: "Trace demo",
+    description:
+      "Automated walkthrough video of the guest and restaurant workflow, including real-time synchronization between the kitchen and the guest device.",
+    videoSrc: "/media/projects/trace/demo.mp4",
+    posterSrc: "/media/projects/trace/demo-poster.png",
+    ariaLabel:
+      "Demonstration video of the Trace guest flow and restaurant operations",
+    fallbackText: "Your browser does not support HTML5 video playback.",
+  },
   architecture: {
     eyebrow: "05 / ARCHITECTURE",
     title: "Layered design and distributed data distribution model",

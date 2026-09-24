@@ -205,6 +205,16 @@ export const esTrace: TraceCaseStudyContent = {
       },
     ],
   },
+  demo: {
+    eyebrow: "DEMO / VÍDEO",
+    title: "Demo real de Trace",
+    description:
+      "Recorrido automatizado del flujo de comensal y operación del restaurante, incluyendo sincronización en tiempo real entre Cocina y el dispositivo del comensal.",
+    videoSrc: "/media/projects/trace/demo.mp4",
+    posterSrc: "/media/projects/trace/demo-poster.png",
+    ariaLabel: "Vídeo demostrativo del flujo de comensal y operativa de Trace",
+    fallbackText: "Tu navegador no soporta la reproducción de vídeo HTML5.",
+  },
   architecture: {
     eyebrow: "05 / ARQUITECTURA",
     title: "Estructura por capas y modelo de distribución de datos",

@@ -50,6 +50,17 @@ describe("Trace Case Study content model", () => {
       en.deepDive.links.map((l) => l.anchor),
     );
 
+    expect(es.demo).toBeDefined();
+    expect(en.demo).toBeDefined();
+    expect(es.demo.videoSrc).toBe("/media/projects/trace/demo.mp4");
+    expect(en.demo.videoSrc).toBe("/media/projects/trace/demo.mp4");
+    expect(es.demo.posterSrc).toBe("/media/projects/trace/demo-poster.png");
+    expect(en.demo.posterSrc).toBe("/media/projects/trace/demo-poster.png");
+    expect(es.demo.title.length).toBeGreaterThan(0);
+    expect(en.demo.title.length).toBeGreaterThan(0);
+    expect(es.demo.description.length).toBeGreaterThan(0);
+    expect(en.demo.description.length).toBeGreaterThan(0);
+
     expect(es.navigation.githubUrl).toBe("https://github.com/Aljama1/Trace");
     expect(en.navigation.githubUrl).toBe("https://github.com/Aljama1/Trace");
   });
@@ -142,6 +153,27 @@ describe("Trace Case Study presentation components", () => {
     expect(
       screen.getByRole("heading", {
         level: 2,
+        name: traceContent.es.demo.title,
+      }),
+    ).toBeInTheDocument();
+
+    const video = document.querySelector("video");
+    expect(video).toBeInTheDocument();
+    expect(video).toHaveAttribute(
+      "poster",
+      "/media/projects/trace/demo-poster.png",
+    );
+    expect(video).toHaveAttribute("preload", "metadata");
+    expect(video).toHaveAttribute("controls");
+    expect(video).not.toHaveAttribute("autoplay");
+    const source = video?.querySelector("source");
+    expect(source).toBeInTheDocument();
+    expect(source).toHaveAttribute("src", "/media/projects/trace/demo.mp4");
+    expect(source).toHaveAttribute("type", "video/mp4");
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
         name: traceContent.es.architecture.title,
       }),
     ).toBeInTheDocument();
@@ -210,10 +242,18 @@ describe("Trace Case Study presentation components", () => {
         name: traceContent.en.problem.title,
       }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: traceContent.en.demo.title,
+      }),
+    ).toBeInTheDocument();
 
+    expect(screen.queryByText(traceContent.es.demo.title)).toBeNull();
     expect(screen.queryByText("EL PROBLEMA")).toBeNull();
     expect(screen.queryByText("LA SOLUCIÓN")).toBeNull();
     expect(screen.queryByText("FLUJO DE PRODUCTO")).toBeNull();
+    expect(screen.queryByText("DEMO / VÍDEO")).toBeNull();
   });
 
   it("renders CaseStudyFlowDiagram with localized strings and no Spanish leakage in English", () => {

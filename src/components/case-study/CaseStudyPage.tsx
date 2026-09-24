@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { CaseStudyArchitectureDiagram } from "./CaseStudyArchitectureDiagram";
 import { CaseStudyFlowDiagram } from "./CaseStudyFlowDiagram";
+import { CaseStudyVideo } from "./CaseStudyVideo";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
@@ -25,6 +26,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
     problem,
     solution,
     productFlow,
+    demo,
     architecture,
     keyDecisions,
     challenges,
@@ -243,6 +245,32 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
             subtitle={productFlow.diagramSubtitle}
             legend={productFlow.legend}
             ariaLabel={productFlow.ariaLabel}
+          />
+        </div>
+      </Section>
+
+      {/* DEMO SECTION */}
+      <Section id="demo" className="border-b border-border/60">
+        <div className="max-w-3xl">
+          {demo.eyebrow && (
+            <p className="font-mono text-xs font-semibold tracking-[0.18em] text-primary">
+              {demo.eyebrow}
+            </p>
+          )}
+          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            {demo.title}
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-foreground-muted sm:text-lg">
+            {demo.description}
+          </p>
+        </div>
+
+        <div className="mt-10">
+          <CaseStudyVideo
+            videoSrc={demo.videoSrc}
+            posterSrc={demo.posterSrc}
+            ariaLabel={demo.ariaLabel}
+            fallbackText={demo.fallbackText}
           />
         </div>
       </Section>

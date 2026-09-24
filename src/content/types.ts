@@ -265,6 +265,16 @@ export interface CaseStudyDeepDiveLink {
   description: string;
 }
 
+export interface CaseStudyDemoContent {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  videoSrc: string;
+  posterSrc: string;
+  ariaLabel: string;
+  fallbackText: string;
+}
+
 export interface TraceCaseStudyContent {
   meta: {
     title: string;
@@ -309,6 +319,7 @@ export interface TraceCaseStudyContent {
     legend: CaseStudyFlowLegend;
     steps: CaseStudyFlowStep[];
   };
+  demo: CaseStudyDemoContent;
   architecture: {
     eyebrow: string;
     title: string;

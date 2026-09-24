@@ -14,6 +14,22 @@ test.describe("Trace Case Study — Rutas y navegación", () => {
     await expect(page.locator("#problem")).toBeVisible();
     await expect(page.locator("#solution")).toBeVisible();
     await expect(page.locator("#product-flow")).toBeVisible();
+    await expect(page.locator("#demo")).toBeVisible();
+
+    const videoES = page.locator("#demo video");
+    await expect(videoES).toBeVisible();
+    await expect(videoES).toHaveAttribute("controls", "");
+    await expect(videoES).toHaveAttribute("preload", "metadata");
+    await expect(videoES).toHaveAttribute(
+      "poster",
+      "/media/projects/trace/demo-poster.png",
+    );
+    await expect(videoES.locator("source")).toHaveAttribute(
+      "src",
+      "/media/projects/trace/demo.mp4",
+    );
+    await expect(videoES).not.toHaveAttribute("autoplay", "");
+
     await expect(page.locator("#architecture")).toBeVisible();
     await expect(page.locator("#decisions")).toBeVisible();
     await expect(page.locator("#challenges")).toBeVisible();
@@ -56,6 +72,19 @@ test.describe("Trace Case Study — Rutas y navegación", () => {
     await expect(
       page.getByRole("heading", { level: 2, name: /bridging table service/i }),
     ).toBeVisible();
+
+    // Sección demo visible y con video
+    await expect(page.locator("#demo")).toBeVisible();
+    const videoEN = page.locator("#demo video");
+    await expect(videoEN).toBeVisible();
+    await expect(videoEN).toHaveAttribute(
+      "poster",
+      "/media/projects/trace/demo-poster.png",
+    );
+    await expect(videoEN.locator("source")).toHaveAttribute(
+      "src",
+      "/media/projects/trace/demo.mp4",
+    );
 
     // Enlace GitHub en inglés
     const githubLink = page
