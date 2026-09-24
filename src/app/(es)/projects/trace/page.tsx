@@ -1,26 +1,11 @@
 import type { Metadata } from "next";
 import { CaseStudyPage } from "@/components/case-study/CaseStudyPage";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { traceContent } from "@/content";
+import { getTraceMetadata } from "@/lib/metadata";
 import { getTraceStructuredData } from "@/lib/structured-data";
+import { traceContent } from "@/content";
 
-export const metadata: Metadata = {
-  title: traceContent.es.meta.title,
-  description: traceContent.es.meta.description,
-  alternates: {
-    canonical: "/projects/trace",
-    languages: {
-      en: "/en/projects/trace",
-      es: "/projects/trace",
-    },
-  },
-  openGraph: {
-    title: traceContent.es.meta.title,
-    description: traceContent.es.meta.description,
-    url: "/projects/trace",
-    type: "article",
-  },
-};
+export const metadata: Metadata = getTraceMetadata("es");
 
 export default function TraceProjectPage() {
   return (

@@ -3,7 +3,10 @@ import Script from "next/script";
 import { RootShell } from "@/components/layout/RootShell";
 import "../../globals.css";
 
+import { SITE_URL } from "@/lib/site";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Manuel Aljama — Software Developer",
   description: "Portfolio of Manuel Aljama. I turn ideas into real software.",
 };
