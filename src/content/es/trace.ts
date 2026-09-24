@@ -211,7 +211,7 @@ export const esTrace: TraceCaseStudyContent = {
     description:
       "Recorrido automatizado del flujo de comensal y operación del restaurante, incluyendo sincronización en tiempo real entre Cocina y el dispositivo del comensal.",
     videoSrc: "/media/projects/trace/demo.mp4",
-    posterSrc: "/media/projects/trace/demo-poster.png",
+    posterSrc: "/media/projects/trace/demo-poster.webp",
     ariaLabel: "Vídeo demostrativo del flujo de comensal y operativa de Trace",
     fallbackText: "Tu navegador no soporta la reproducción de vídeo HTML5.",
   },

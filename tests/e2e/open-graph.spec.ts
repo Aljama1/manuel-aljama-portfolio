@@ -118,7 +118,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     );
   });
 
-  test("Trace ES (/projects/trace/) renders Open Graph with real demo-poster.png", async ({
+  test("Trace ES (/projects/trace/) renders Open Graph with real demo-poster.webp", async ({
     page,
   }) => {
     await page.goto("/projects/trace/");
@@ -151,7 +151,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     await expect(ogImage).toHaveCount(1);
     await expect(ogImage).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.png$/,
+      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.webp$/,
     );
     await expect(
       page.locator('meta[property="og:image:width"]'),
@@ -171,7 +171,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     );
     await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.png$/,
+      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.webp$/,
     );
 
     // Canonical
@@ -187,7 +187,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     );
   });
 
-  test("Trace EN (/en/projects/trace/) renders localized Open Graph with real demo-poster.png", async ({
+  test("Trace EN (/en/projects/trace/) renders localized Open Graph with real demo-poster.webp", async ({
     page,
   }) => {
     await page.goto("/en/projects/trace/");
@@ -220,7 +220,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     await expect(ogImage).toHaveCount(1);
     await expect(ogImage).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.png$/,
+      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.webp$/,
     );
     await expect(
       page.locator('meta[property="og:image:width"]'),
@@ -240,7 +240,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     );
     await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.png$/,
+      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.webp$/,
     );
 
     // Canonical

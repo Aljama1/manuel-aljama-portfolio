@@ -44,7 +44,7 @@ export function getHomeMetadata(locale: Locale): Metadata {
 
 /**
  * Genera la metadata completa (incluyendo Open Graph y Twitter Cards) para el Case Study de Trace.
- * Utiliza la captura real 16:9 HD del vídeo demo existente en public/media/projects/trace/demo-poster.png.
+ * Utiliza la captura real 16:9 HD del vídeo demo existente en public/media/projects/trace/demo-poster.webp.
  */
 export function getTraceMetadata(locale: Locale): Metadata {
   const isEs = locale === "es";
@@ -75,11 +75,11 @@ export function getTraceMetadata(locale: Locale): Metadata {
       alternateLocale: [isEs ? "en_US" : "es_ES"],
       images: [
         {
-          url: "/media/projects/trace/demo-poster.png",
+          url: "/media/projects/trace/demo-poster.webp",
           width: 1280,
           height: 720,
           alt: imageAlt,
-          type: "image/png",
+          type: "image/webp",
         },
       ],
     },
@@ -87,7 +87,7 @@ export function getTraceMetadata(locale: Locale): Metadata {
       card: "summary_large_image",
       title: content.meta.title,
       description: content.meta.description,
-      images: ["/media/projects/trace/demo-poster.png"],
+      images: ["/media/projects/trace/demo-poster.webp"],
     },
   };
 }

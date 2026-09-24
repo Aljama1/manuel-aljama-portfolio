@@ -54,8 +54,8 @@ describe("Trace Case Study content model", () => {
     expect(en.demo).toBeDefined();
     expect(es.demo.videoSrc).toBe("/media/projects/trace/demo.mp4");
     expect(en.demo.videoSrc).toBe("/media/projects/trace/demo.mp4");
-    expect(es.demo.posterSrc).toBe("/media/projects/trace/demo-poster.png");
-    expect(en.demo.posterSrc).toBe("/media/projects/trace/demo-poster.png");
+    expect(es.demo.posterSrc).toBe("/media/projects/trace/demo-poster.webp");
+    expect(en.demo.posterSrc).toBe("/media/projects/trace/demo-poster.webp");
     expect(es.demo.title.length).toBeGreaterThan(0);
     expect(en.demo.title.length).toBeGreaterThan(0);
     expect(es.demo.description.length).toBeGreaterThan(0);
@@ -161,7 +161,7 @@ describe("Trace Case Study presentation components", () => {
     expect(video).toBeInTheDocument();
     expect(video).toHaveAttribute(
       "poster",
-      "/media/projects/trace/demo-poster.png",
+      "/media/projects/trace/demo-poster.webp",
     );
     expect(video).toHaveAttribute("preload", "metadata");
     expect(video).toHaveAttribute("controls");

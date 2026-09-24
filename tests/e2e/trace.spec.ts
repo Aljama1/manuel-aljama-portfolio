@@ -22,7 +22,7 @@ test.describe("Trace Case Study — Rutas y navegación", () => {
     await expect(videoES).toHaveAttribute("preload", "metadata");
     await expect(videoES).toHaveAttribute(
       "poster",
-      "/media/projects/trace/demo-poster.png",
+      "/media/projects/trace/demo-poster.webp",
     );
     await expect(videoES.locator("source")).toHaveAttribute(
       "src",
@@ -79,7 +79,7 @@ test.describe("Trace Case Study — Rutas y navegación", () => {
     await expect(videoEN).toBeVisible();
     await expect(videoEN).toHaveAttribute(
       "poster",
-      "/media/projects/trace/demo-poster.png",
+      "/media/projects/trace/demo-poster.webp",
     );
     await expect(videoEN.locator("source")).toHaveAttribute(
       "src",

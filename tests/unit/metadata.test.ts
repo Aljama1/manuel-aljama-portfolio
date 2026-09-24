@@ -106,17 +106,17 @@ describe("Metadata & Open Graph Generators", () => {
 
       const images = og.images as Array<Record<string, unknown>>;
       expect(images).toHaveLength(1);
-      expect(images[0]?.url).toBe("/media/projects/trace/demo-poster.png");
+      expect(images[0]?.url).toBe("/media/projects/trace/demo-poster.webp");
       expect(images[0]?.width).toBe(1280);
       expect(images[0]?.height).toBe(720);
-      expect(images[0]?.type).toBe("image/png");
+      expect(images[0]?.type).toBe("image/webp");
       expect(images[0]?.alt).toContain("Demo del producto");
 
       const tw = meta.twitter as Record<string, unknown>;
       expect(tw.card).toBe("summary_large_image");
       expect(tw.title).toBe(traceContent.es.meta.title);
       expect(tw.description).toBe(traceContent.es.meta.description);
-      expect(tw.images).toEqual(["/media/projects/trace/demo-poster.png"]);
+      expect(tw.images).toEqual(["/media/projects/trace/demo-poster.webp"]);
     });
 
     it("generates correct English metadata for Trace with localized image alt and zero Spanish leakage", () => {
@@ -142,7 +142,7 @@ describe("Metadata & Open Graph Generators", () => {
 
       const images = og.images as Array<Record<string, unknown>>;
       expect(images).toHaveLength(1);
-      expect(images[0]?.url).toBe("/media/projects/trace/demo-poster.png");
+      expect(images[0]?.url).toBe("/media/projects/trace/demo-poster.webp");
       expect(images[0]?.width).toBe(1280);
       expect(images[0]?.height).toBe(720);
       expect(images[0]?.alt).toBe(
@@ -157,7 +157,7 @@ describe("Metadata & Open Graph Generators", () => {
 
       const tw = meta.twitter as Record<string, unknown>;
       expect(tw.card).toBe("summary_large_image");
-      expect(tw.images).toEqual(["/media/projects/trace/demo-poster.png"]);
+      expect(tw.images).toEqual(["/media/projects/trace/demo-poster.webp"]);
     });
 
     it("maintains structural parity between ES and EN for Trace metadata", () => {

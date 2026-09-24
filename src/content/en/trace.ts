@@ -214,7 +214,7 @@ export const enTrace: TraceCaseStudyContent = {
     description:
       "Automated walkthrough video of the guest and restaurant workflow, including real-time synchronization between the kitchen and the guest device.",
     videoSrc: "/media/projects/trace/demo.mp4",
-    posterSrc: "/media/projects/trace/demo-poster.png",
+    posterSrc: "/media/projects/trace/demo-poster.webp",
     ariaLabel:
       "Demonstration video of the Trace guest flow and restaurant operations",
     fallbackText: "Your browser does not support HTML5 video playback.",
