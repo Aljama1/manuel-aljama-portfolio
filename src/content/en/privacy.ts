@@ -15,17 +15,17 @@ export const privacyContent = {
     {
       heading: "Technologies and Local Storage (Cookies)",
       content:
-        "The site has been designed with privacy in mind. It does not use commercial, advertising, or third-party tracking cookies that require explicit consent.\n\nThe site uses the browser's Local Storage solely and exclusively to:\n- Remember your display preference (dark or light mode).\n\nThis usage is strictly limited to technical interface customization and is not used to track, identify, or profile visitors.",
+        "This site does not use commercial, advertising, or third-party tracking cookies.\n\nThe site uses the browser's Local Storage. It is used solely to conserve the visitor's visual theme preference (dark or light mode). It is not used to identify users or perform analytics.",
     },
     {
       heading: "Web Analytics",
       content:
-        "Vercel Web Analytics is used to collect basic metrics regarding visits and website performance. According to Vercel's documentation, this service:\n- Does not use tracking cookies.\n- Does not collect personally identifiable information (PII).\n- Uses a randomized hash identifier derived from the IP and User-Agent, which rotates daily.\n- The gathered data (visits, page views, referrers) is aggregated and anonymous.\n\nThis configuration allows obtaining traffic statistics and understanding which projects draw the most interest without compromising individual visitor privacy.",
+        "Vercel Web Analytics is used to obtain basic metrics regarding website visits and performance. Vercel Web Analytics does not use cookies and, according to Vercel's documentation, uses temporary identifiers derived from the incoming request to generate aggregated metrics.\n\nThis aggregated data allows understanding site performance and which projects draw interest.",
     },
     {
       heading: "Personal Data and Forms",
       content:
-        "The portfolio does not have native contact forms, registration systems, user databases, or newsletters. Therefore, no personal data is actively collected on the server during navigation.",
+        "The portfolio does not directly request or store names, identity documents, email addresses, or other identifying information through forms, user accounts, or its own storage systems.",
     },
     {
       heading: "Third-Party Services",

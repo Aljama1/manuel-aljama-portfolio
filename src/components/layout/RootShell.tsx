@@ -3,7 +3,7 @@ import { spaceGrotesk, inter, jetbrainsMono } from "@/app/fonts";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import { uiContent } from "@/content";
 
 interface RootShellProps {

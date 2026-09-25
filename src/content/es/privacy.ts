@@ -15,17 +15,17 @@ export const privacyContent = {
     {
       heading: "Tecnologías y Almacenamiento Local (Cookies)",
       content:
-        "El sitio ha sido diseñado respetando la máxima privacidad posible. No utiliza cookies comerciales, publicitarias ni de seguimiento de terceros que requieran consentimiento explícito.\n\nEl sitio utiliza almacenamiento local (Local Storage) del navegador única y exclusivamente para:\n- Recordar tu preferencia de visualización (modo oscuro o claro).\n\nEste uso está estrictamente limitado a la personalización de la interfaz técnica y no se utiliza para rastrear, identificar ni elaborar perfiles de los visitantes.",
+        "Este sitio no utiliza cookies comerciales, publicitarias ni de seguimiento de terceros.\n\nEl sitio utiliza almacenamiento local (Local Storage) del navegador. Se utiliza únicamente para conservar la preferencia de tema visual del visitante (modo oscuro o claro). No se utiliza para identificar usuarios ni para realizar analítica.",
     },
     {
       heading: "Analítica Web",
       content:
-        "Se emplea Vercel Web Analytics para recoger métricas básicas sobre las visitas y rendimiento del sitio web. Según la documentación de Vercel, este servicio:\n- No utiliza cookies de seguimiento.\n- No recopila información de identificación personal (PII).\n- Emplea un identificador aleatorizado (hash) derivado de la IP y el User-Agent que se rota diariamente.\n- Los datos obtenidos (visitas, páginas vistas, referenciadores) son agregados y anónimos.\n\nEsta configuración permite obtener estadísticas de tráfico y entender qué proyectos despiertan más interés sin comprometer la privacidad individual del visitante.",
+        "Se emplea Vercel Web Analytics para obtener métricas básicas sobre las visitas y rendimiento del sitio web. Vercel Web Analytics no utiliza cookies y, según la documentación de Vercel, utiliza identificadores temporales derivados de la solicitud para generar métricas agregadas.\n\nEstos datos agregados permiten entender el rendimiento del sitio y qué proyectos despiertan interés.",
     },
     {
       heading: "Datos Personales y Formularios",
       content:
-        "El portfolio no dispone de formularios de contacto nativos, sistemas de registro, bases de datos de usuarios ni boletines (newsletters). Por tanto, no se recogen datos personales de forma activa en el servidor durante la navegación.",
+        "El portfolio no solicita ni almacena directamente nombres, documentos de identidad, direcciones de correo u otros datos identificativos mediante formularios, cuentas de usuario o sistemas propios de almacenamiento.",
     },
     {
       heading: "Servicios de Terceros",
