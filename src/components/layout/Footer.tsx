@@ -106,10 +106,16 @@ export function Footer({ lang }: FooterProps) {
       </Container>
 
       {/* Copyright inferior */}
-      <Container className="mt-8 border-t border-border/40 pt-6">
+      <Container className="mt-8 flex flex-col justify-between gap-4 border-t border-border/40 pt-6 sm:flex-row sm:items-center">
         <p className="font-mono text-xs text-foreground-muted">
           {content.footer.copyright}
         </p>
+        <Link
+          href={`${anchorPrefix}/privacy`}
+          className="font-mono text-xs text-foreground-muted transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          {content.footer.privacyPolicy}
+        </Link>
       </Container>
     </footer>
   );

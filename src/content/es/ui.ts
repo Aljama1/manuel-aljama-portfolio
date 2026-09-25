@@ -32,6 +32,7 @@ export const esUi: UiContent = {
     sectionsHeading: "Navegación",
     connectHeading: "Conectar",
     copyright: "© 2026 Manuel Aljama",
+    privacyPolicy: "Privacidad",
   },
   error: {
     badge: "Algo no ha ido como se esperaba",

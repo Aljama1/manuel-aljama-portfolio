@@ -91,3 +91,47 @@ export function getTraceMetadata(locale: Locale): Metadata {
     },
   };
 }
+
+/**
+ * Genera la metadata para la página de Política de Privacidad.
+ */
+export function getPrivacyMetadata(locale: Locale): Metadata {
+  const isEs = locale === "es";
+  const title = isEs
+    ? "Política de Privacidad | Manuel Aljama"
+    : "Privacy Policy | Manuel Aljama";
+  const description = isEs
+    ? "Política de privacidad y analítica de manuelaljama.com"
+    : "Privacy policy and analytics for manuelaljama.com";
+  const path = isEs ? "/privacy" : "/en/privacy";
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title,
+    description,
+    robots: {
+      index: false,
+    },
+    alternates: {
+      canonical: path,
+      languages: {
+        es: "/privacy",
+        en: "/en/privacy",
+      },
+    },
+    openGraph: {
+      type: "website",
+      siteName: profile.name,
+      title,
+      description,
+      url: path,
+      locale: isEs ? "es_ES" : "en_US",
+      alternateLocale: [isEs ? "en_US" : "es_ES"],
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
+}

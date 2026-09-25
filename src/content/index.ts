@@ -4,6 +4,8 @@ import { esHome } from "./es/home";
 import { enHome } from "./en/home";
 import { esTrace } from "./es/trace";
 import { enTrace } from "./en/trace";
+import { privacyContent as esPrivacy } from "./es/privacy";
+import { privacyContent as enPrivacy } from "./en/privacy";
 import { profile } from "./profile";
 import { projects } from "./projects";
 import type {
@@ -36,11 +38,17 @@ import type {
   CaseStudyQualityGate,
   CaseStudyDeepDiveLink,
   UiContent,
+  PrivacyContent,
 } from "./types";
 
 export const uiContent: Record<Locale, UiContent> = {
   es: esUi,
   en: enUi,
+};
+
+export const privacyContent: Record<Locale, PrivacyContent> = {
+  es: esPrivacy,
+  en: enPrivacy,
 };
 
 export const homeContent: Record<Locale, HomeContent> = {

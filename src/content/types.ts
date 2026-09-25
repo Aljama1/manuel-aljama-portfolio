@@ -30,6 +30,17 @@ export interface HomeProjectContent {
   description: string;
 }
 
+export interface PrivacySection {
+  heading: string;
+  content: string;
+}
+
+export interface PrivacyContent {
+  title: string;
+  lastUpdated: string;
+  sections: PrivacySection[];
+}
+
 export interface AboutFact {
   label: string;
   value: string;
@@ -179,6 +190,7 @@ export interface UiContent {
     sectionsHeading: string;
     connectHeading: string;
     copyright: string;
+    privacyPolicy: string;
   };
   error: {
     badge: string;

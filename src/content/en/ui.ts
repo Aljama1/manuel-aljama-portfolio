@@ -32,6 +32,7 @@ export const enUi: UiContent = {
     sectionsHeading: "Navigation",
     connectHeading: "Connect",
     copyright: "© 2026 Manuel Aljama",
+    privacyPolicy: "Privacy",
   },
   error: {
     badge: "Something went wrong",

@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { profile, traceContent } from "@/content";
-import { getHomeMetadata, getTraceMetadata } from "@/lib/metadata";
+import {
+  getHomeMetadata,
+  getTraceMetadata,
+  getPrivacyMetadata,
+} from "@/lib/metadata";
 import { SITE_URL } from "@/lib/site";
 
 describe("Metadata & Open Graph Generators", () => {
@@ -171,6 +175,22 @@ describe("Metadata & Open Graph Generators", () => {
       expect(Object.keys(esMeta.twitter ?? {})).toEqual(
         Object.keys(enMeta.twitter ?? {}),
       );
+    });
+  });
+
+  describe("getPrivacyMetadata", () => {
+    it("generates correct metadata for ES Privacy page", () => {
+      const meta = getPrivacyMetadata("es");
+      expect(meta.title).toBe("Política de Privacidad | Manuel Aljama");
+      expect(meta.alternates?.canonical).toBe("/privacy");
+      expect(meta.robots).toEqual({ index: false });
+    });
+
+    it("generates correct metadata for EN Privacy page", () => {
+      const meta = getPrivacyMetadata("en");
+      expect(meta.title).toBe("Privacy Policy | Manuel Aljama");
+      expect(meta.alternates?.canonical).toBe("/en/privacy");
+      expect(meta.robots).toEqual({ index: false });
     });
   });
 });
