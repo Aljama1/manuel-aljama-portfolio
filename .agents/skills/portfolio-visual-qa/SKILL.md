@@ -1,264 +1,350 @@
 ---
 name: portfolio-visual-qa
-description: Audits portfolio pages with Playwright for responsive layout, dark/light themes, accessibility, navigation, console errors and visual regressions without modifying project files. Use when visually or functionally reviewing a portfolio page before a PR or release.
+description: Audits portfolio pages with Playwright or Browser tools for responsive layout, dark/light themes, accessibility, navigation, console errors, network requests, storage, headers and visual regressions on Local, Preview, or Production URLs.
 ---
 
-# Portfolio Visual & Functional QA Skill
+# Portfolio Visual & Technical QA Skill
 
-Skill de auditoría exhaustiva, visual y funcional para las páginas del portfolio. Utiliza la infraestructura de Playwright y Axe instalada en el repositorio para auditar diseño responsivo, temas claro/oscuro, accesibilidad, navegación y posibles regresiones visuales.
+Skill de auditoría exhaustiva, visual y técnica para las páginas del portfolio. Diseñada para evaluar tanto entornos locales (`http://localhost:3000`) como despliegues reales remotos (**Preview Deployments de Vercel** o **Producción**).
 
 > [!IMPORTANT]
 > **Modo SOLO AUDITORÍA (Read-Only):**
-> - Esta skill **NUNCA** modifica archivos del código fuente del proyecto.
-> - **NO** corrige bugs automáticamente.
+> - Esta skill **NUNCA** modifica archivos del código fuente del proyecto durante la auditoría.
+> - **NO** corrige bugs automáticamente durante la fase de análisis.
 > - **NO** ejecuta `git add`, `git commit`, `git push` ni `git merge`.
-> - Reutiliza la configuración existente de Playwright y el servidor local del proyecto sin levantar servidores duplicados ni añadir dependencias.
+> - Sigue la metodología de dos fases:
+>   1. **Auditoría:** `DISCOVER → CLASSIFY → PRIORITIZE`
+>   2. **Remediación (fase posterior si se aprueba):** `FIX → TEST → RE-AUDIT`
 
 ---
 
-## 1. Inspección previa obligatoria
+## 1. Modos de operación
 
-Antes de lanzar cualquier prueba o comando de navegador, ejecuta una fase de inspección pasiva:
+La skill contempla dos modos de trabajo según el entorno objetivo:
 
-1. **Revisar `package.json`**:
-   - Verificar scripts (`pnpm dev`, `pnpm test:e2e`, etc.).
-   - Confirmar versiones instaladas de Playwright (`@playwright/test`) y Axe (`@axe-core/playwright`).
-2. **Revisar `playwright.config.*`**:
-   - Comprobar la URL base (`baseURL`, por defecto `http://localhost:3000`).
-   - Comprobar la configuración de `webServer` (`command: "pnpm dev"`, `reuseExistingServer`). Si el servidor ya está activo, no lances otro proceso.
-3. **Descubrimiento dinámico de rutas**:
-   - No asumas rutas fijas. Inspecciona `src/app/` y los tests E2E existentes (`tests/e2e/`, `tests/a11y/`) para determinar las rutas activas a auditar.
-   - Rutas típicas del portfolio:
-     - `/` (Home en español)
-     - `/en/` (Home en inglés)
-     - `/projects/trace/` (Case study Trace en español)
-     - `/en/projects/trace/` (Case study Trace en inglés)
-     - `/ruta-inexistente` y `/en/non-existent-route` (Manejo 404)
+### Modo A — Entorno Local (`http://localhost:3000`)
+- **Objetivo:** Verificación rápida durante desarrollo o pre-commit.
+- **Herramientas:** Servidor local (`pnpm dev` o `pnpm start`), Playwright (`@playwright/test`), Axe (`@axe-core/playwright`), Lighthouse local.
+- **Enfoque:** Validar que los cambios no introducen regresiones antes de generar commits.
+
+### Modo B — URL Externa (Preview de Vercel / Producción)
+- **Objetivo:** Validación sobre infraestructura real en la nube antes de promocionar a producción o cerrar releases.
+- **Jerarquía de herramientas:**
+  1. **Primera opción:** Browser Agent / Chrome DevTools MCP (si está configurado y expuesto en el entorno del agente para interacción y exploración asistida).
+  2. **Segunda opción (automatizada y reproducible):** Playwright instalado en el repositorio, ejecutado mediante scripts Node.js efímeros o la suite de tests (`PLAYWRIGHT_BASE_URL=$TARGET_URL`).
+  3. **Tercera opción:** CLI de Lighthouse para métricas de rendimiento en red real.
+- **Enfoque:** Inspección completa de red real (proxy de analytics de Vercel, CDN, headers HTTP reales, SSL, ausencia de errores CSP en hosting real).
 
 ---
 
-## 2. Matriz de ejecución
+## 2. Alcance y rutas obligatorias
 
-Toda auditoría completa debe recorrer como mínimo la siguiente matriz de viewports, temas e idiomas:
+Dada una URL base objetivo (`$TARGET_URL`):
 
-### Viewports mínimos
-| Viewport | Dispositivo de referencia | Aspectos críticos a vigilar |
+```text
+$TARGET_URL = https://... o http://localhost:3000
+```
+
+Se deben auditar como mínimo las siguientes rutas:
+
+| Tipo | Rutas | Qué comprobar |
 | :--- | :--- | :--- |
-| `390x844` | Móvil vertical (iPhone 12/13/14) | Menú hamburguesa, drawer, padding lateral, tarjetas a 1 col, sin scroll horizontal |
-| `768x1024` | Tablet vertical (iPad) | Colapso de grid (6–8 cols), ancho de tarjetas, legibilidad de diagramas |
-| `1024x768` | Tablet apaisada / Laptop compacta | Transición de menú móvil a navegación escritorio, densidad de información |
-| `1440x900` | Escritorio estándar | Max-width del contenedor (1280px), alineaciones, espaciado editorial amplio |
-
-### Temas
-- **Modo oscuro (`dark`)**: Estado por defecto del portfolio (`html:not(.light)`).
-- **Modo claro (`light`)**: Activado mediante el botón de cambio de tema (`ThemeToggle`).
-
-### Idiomas / Locales
-- **Español (`/`)**: Atributo `lang="es"`.
-- **Inglés (`/en/`)**: Atributo `lang="en"`.
+| **Páginas HTML principales** | `/`<br>`/en/`<br>`/projects/trace/`<br>`/en/projects/trace/` | Visual, responsive, temas, accesibilidad, navegación, drawer móvil, vídeo demo |
+| **Páginas de privacidad** | `/privacy/`<br>`/en/privacy/` | Renderizado, enlaces desde footer, `noindex` en meta tags, contenido bilingüe |
+| **Manejo de errores** | `/ruta-404-test`<br>`/en/route-404-test` | Página 404 personalizada, botón de retorno a Home |
+| **Recursos técnicos y SEO** | `/robots.txt`<br>`/sitemap.xml`<br>`/icon.svg`<br>`/favicon.ico` | Código HTTP 200, Content-Type adecuado, rutas canónicas correctas |
 
 ---
 
-## 3. Lista de comprobación de la auditoría
+## 3. Dimensiones de la auditoría técnica
 
-No des por buena una página solo porque no lance errores HTTP 500. Busca activamente problemas que los tests habituales no detectan:
+No des por buena una página solo porque devuelva HTTP 200. Inspecciona activamente las 6 dimensiones críticas:
 
-### A. Layout y Responsividad
-- [ ] **Overflow horizontal**: Ningún elemento debe forzar scroll horizontal (`document.documentElement.scrollWidth <= window.innerWidth`).
-- [ ] **Elementos cortados**: Textos, badges, tarjetas o diagramas que se salgan del viewport o de su contenedor padre (`overflow: hidden` accidental).
-- [ ] **Tarjetas estrechas o aplastadas**: Comprobar que en tablet o pantallas medianas el grid no comprima el contenido de forma ilegible.
-- [ ] **Espaciado y márgenes**: Separación coherente entre bloques y secciones en todos los tamaños.
+### A. Visual y Responsividad
+- **Matriz mínima de viewports:**
+  - **Móvil:** `390 × 844` (iPhone 12/13/14) — Menú hamburguesa, drawer modal, padding lateral, tarjetas a 1 columna.
+  - **Tablet vertical:** `768 × 1024` (iPad) — Colapso de grid intermedio, diagramas de arquitectura legibles.
+  - **Tablet apaisada / Laptop:** `1024 × 768` — Transición entre menú móvil y navegación de escritorio.
+  - **Escritorio:** `1440 × 900` — Ancho máximo (`max-w-6xl` / `1280px`), alineaciones y márgenes editoriales.
+- **Overflow horizontal:** Comprobar estrictamente `document.documentElement.scrollWidth <= window.innerWidth` en todos los anchos.
+- **Temas:** Alternancia fluida entre modo oscuro (`dark`, por defecto) y claro (`light`).
+- **Estados interactivos:** Capturar el menú móvil en estado abierto.
 
-### B. Navegación e Interacción
-- [ ] **Navegación escritorio**: Enlaces de cabecera visibles, anclas a secciones (`#projects`, `#about`, etc.) funcionando.
-- [ ] **Navegación móvil**: El menú hamburguesa abre el drawer accesible (`dialog`) y **se cierra automáticamente** al pulsar un ancla de sección.
-- [ ] **Skip link accesible**: Enlace `"Saltar al contenido principal"` (`#main-content`) presente y visible al hacer foco.
-- [ ] **Botones y enlaces**: Todos los enlaces tienen `href` válido (no vacíos ni `href="#"`) y los externos cuentan con atributos seguros.
-- [ ] **Selector de idioma**: Alternar entre ES y EN preserva la ruta equivalente y actualiza el atributo `lang` del `html`.
-- [ ] **Focus visible**: Indicadores de foco claros (`ring`/`outline`) al navegar con tabulador por elementos interactivos.
+### B. Consola y Runtime
+- Monitorear eventos `console` y `pageerror`:
+  - `console.error` = 0.
+  - Excepciones no controladas = 0.
+  - Violaciones de Content Security Policy (CSP) = 0.
+  - Errores de hidratación React (`Text content does not match...`) = 0.
 
-### C. Coherencia Visual y Temas
-- [ ] **Transición Dark / Light**: Sin parpadeos extraños ni pérdida de contraste en textos, bordes o fondos al cambiar de tema.
-- [ ] **Diferencias ES vs EN**: Longitudes de texto que rompan el diseño en inglés o español, textos sin traducir o cadenas residuales.
-- [ ] **Botones o controles flotantes**: Elementos fijos o sticky que no tapen contenido crítico ni desaparezcan detrás de otros bloques.
+### C. Red y Recursos (Network)
+- Monitorear todas las solicitudes salientes:
+  - Sin respuestas HTTP 4xx ni 5xx inesperadas.
+  - Identificar categorías de carga: Scripts (`_next/static/*`), Fuentes (`fonts.gstatic.com`), Imágenes (`webp`/`svg`), Vídeo (`mp4`), Analítica (`_vercel/insights/*`).
+  - En **Preview de Vercel**, verificar que `/_vercel/insights/script.js` y las peticiones a `/_vercel/insights/view` se completan con éxito (HTTP 200/204), confirmando que la infraestructura de analytics está operativa.
+  - Verificar que no se cargan scripts externos de rastreo no autorizados.
 
-### D. Integridad Técnica y Recursos
-- [ ] **Errores de consola**: Sin `console.error` ni excepciones JavaScript no controladas (`pageerror`).
-- [ ] **Errores de red**: Sin respuestas HTTP 4xx ni 5xx en fuentes, scripts, JSON o páginas.
-- [ ] **Imágenes y recursos**: Todas las imágenes (`<img>`) cargadas correctamente (`naturalWidth > 0`). Iconos Lucide renderizados sin SVGs vacíos.
-- [ ] **Accesibilidad Axe (WCAG 2.1 AA)**: Ejecutar `@axe-core/playwright` en modo oscuro y claro en cada ruta para detectar violaciones de contraste, etiquetas o roles ARIA.
+### D. Almacenamiento (Storage)
+- **Cookies:** Inspeccionar `context.cookies()`. En el portfolio de Manuel Aljama debe ser **estrictamente 0** (solución cookie-less).
+- **LocalStorage:** Comprobar que únicamente se utiliza la clave técnica `portfolio-theme` (`light` o `dark`).
+- **SessionStorage:** Comprobar que permanece completamente vacío.
+
+### E. Cabeceras HTTP de Seguridad (Headers)
+Inspeccionar las cabeceras de respuesta HTTP del servidor:
+- `Content-Security-Policy`: Debe incluir directivas restrictivas (`default-src 'self'`, `connect-src 'self'`, etc.).
+- `X-Frame-Options`: `DENY`.
+- `X-Content-Type-Options`: `nosniff`.
+- `Referrer-Policy`: `strict-origin-when-cross-origin`.
+- `Permissions-Policy`: `camera=(), microphone=(), geolocation=()`.
+- `Strict-Transport-Security` (HSTS):
+  > [!NOTE]
+  > La ausencia de HSTS en URLs temporales de Preview de Vercel (`*.vercel.app`) es esperada y **no debe clasificarse como error**, ya que HSTS se activa para el dominio canónico de producción HTTPS definitivo.
+
+### F. Accesibilidad y SEO
+- Ejecutar análisis automatizado con `@axe-core/playwright` (WCAG 2.1 AA) en modos oscuro y claro.
+- Comprobar etiquetas `<meta name="robots">`, `<link rel="canonical">`, `<title>`, `<meta name="description">` y JSON-LD estructurado.
 
 ---
 
-## 4. Captura y gestión de evidencias
+## 4. Seguridad de las herramientas de navegador
 
-1. **Ubicación de artefactos**:
-   - Guarda todas las capturas y reportes temporales en `output/playwright/audit/<timestamp_o_slug>/`.
-   - Si no existe `output/playwright/`, puedes crearlo para almacenar evidencias. Este directorio queda fuera del código fuente (`src/`).
-2. **Nomenclatura clara de screenshots**:
-   - Formato: `<ruta-slug>_<ancho>x<alto>_<tema>.png`
-   - Ejemplo: `home_390x844_dark.png`, `trace_1440x900_light.png`
-3. **Análisis visual de capturas**:
-   - Examina visualmente las capturas con herramientas de inspección (por ejemplo, `view_file`) para confirmar que el diseño cumple los estándares de calidad.
-4. **Reglas de veracidad**:
+Al auditar despliegues externos:
+1. **Navegador aislado:** Utilizar siempre perfiles de navegación efímeros/aislados (`incognito` o nuevo `browserContext`).
+2. **Sin sesiones personales:** No reutilizar perfiles de usuario locales con credenciales o historial personal.
+3. **Sin credenciales:** No introducir contraseñas reales ni datos sensibles en formularios.
+4. **Restricción de dominio:** El agente no debe navegar fuera del dominio objetivo y sus dependencias estrictas de assets.
+
+---
+
+## 5. Captura y gestión de evidencias
+
+1. **Ubicación de capturas:** Guardar en `output/playwright/audit/<timestamp_o_slug>/`. (El directorio `output/` está ignorado en `.gitignore` para no contaminar el árbol de Git).
+2. **Matriz de capturas mínimas:**
+   - `home_1440x900_dark.png`
+   - `home_1440x900_light.png`
+   - `home_390x844_dark.png`
+   - `home_390x844_drawer.png` (con el menú abierto)
+   - `trace_1440x900_dark.png`
+   - `trace_390x844_dark.png`
+3. **Reglas de veracidad:**
    - **NUNCA** generes capturas simuladas o falsas.
-   - **NO** interpretes diagramas conceptuales o esquemas como capturas de producto reales.
-   - **NO** crees snapshots de regresión permanentes (`toHaveScreenshot()`) en esta fase. Las capturas son estrictamente evidencia de auditoría hasta que el usuario apruebe una versión visual definitiva.
+   - Las evidencias deben reflejar exactamente lo renderizado por el motor Chromium.
 
 ---
 
-## 5. Clasificación de severidad de incidencias
+## 6. Lighthouse: Local vs Preview
 
-Clasifica cada problema detectado en uno de estos cuatro niveles:
-
-| Nivel | Definición | Ejemplos |
+| Aspecto | Lighthouse Local (`pnpm start`) | Lighthouse Preview (Vercel) |
 | :--- | :--- | :--- |
-| **`BLOCKER`** | Impide el uso del portfolio o bloquea completamente una funcionalidad esencial. | Página en blanco (crash 500), drawer móvil bloqueado sin poder cerrarse, navegación rota, fallo fatal que impide cargar el contenido. |
-| **`HIGH`** | Degrada severamente la experiencia de usuario o incumple accesibilidad esencial. | Scroll horizontal en móvil, textos o botones principales cortados o solapados, violación WCAG AA de contraste en texto principal, enlaces rotos, imágenes no cargadas. |
-| **`MEDIUM`** | Defecto visual o funcional evidente pero secundario. | Espaciado desalineado entre tarjetas, diferencias visuales bruscas entre ES y EN, foco de teclado poco contrastado en elemento secundario, micro-salto en cambio de tema. |
-| **`LOW`** | Detalle de pulido menor o sugerencia estética. | Sugerencia de ajuste tipográfico fino en un viewport específico, optimización menor de padding o margen secundario. |
+| **Comando** | `npx lighthouse http://localhost:3000/...` | `npx lighthouse https://<preview-url>/...` |
+| **Red** | Loopback virtual sin latencia | Red CDN real con latencia de conexión y compresión gzip/brotli |
+| **Comportamiento** | Sirve para detectar problemas de bundle o cálculo JS | Valida Core Web Vitals en condiciones reales de distribución |
+
+Reportar siempre las 4 categorías principales y las 3 métricas Core Web Vitals:
+- **Performance**, **Accessibility**, **Best Practices**, **SEO**.
+- **LCP** (Largest Contentful Paint), **TBT** (Total Blocking Time), **CLS** (Cumulative Layout Shift).
 
 ---
 
-## 6. Procedimiento de ejecución con Playwright
+## 7. Script automatizado de auditoría (Runner reproducible)
 
-Para ejecutar la auditoría de forma reproducible y sin alterar el repositorio, crea y ejecuta un runner efímero en Node.js que aproveche `@playwright/test` y `@axe-core/playwright` ya instalados:
+Para ejecutar una auditoría completa contra cualquier URL objetivo (Local o Preview) sin modificar el repositorio, se utiliza un script Node.js que aprovecha Playwright instalado:
 
 ```javascript
-// Runner de auditoría efímero (ejecutar con node)
-import { chromium } from "playwright";
+// scripts/audit-runner.mjs (ejecutable mediante: node scripts/audit-runner.mjs <TARGET_URL>)
+import { chromium } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import fs from "fs";
 import path from "path";
 
+const TARGET_URL = (process.env.TARGET_URL || process.argv[2] || "http://localhost:3000").replace(/\/$/, "");
+const OUTPUT_DIR = path.resolve("output/playwright/audit", new Date().toISOString().replace(/[:.]/g, "-"));
+fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+
+const ROUTES = [
+  "/",
+  "/en/",
+  "/projects/trace/",
+  "/en/projects/trace/",
+  "/privacy/",
+  "/en/privacy/",
+  "/robots.txt",
+  "/sitemap.xml",
+];
+
 const VIEWPORTS = [
   { name: "mobile", width: 390, height: 844 },
-  { name: "tablet-portrait", width: 768, height: 1024 },
-  { name: "tablet-landscape", width: 1024, height: 768 },
   { name: "desktop", width: 1440, height: 900 },
 ];
 
-const ROUTES = ["/", "/en/", "/projects/trace/", "/en/projects/trace/"];
-const OUTPUT_DIR = path.resolve("output/playwright/audit");
-fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-
-async function runAudit() {
+async function audit() {
   const browser = await chromium.launch({ headless: true });
-  const results = [];
+  const context = await browser.newContext();
+  const summary = { targetUrl: TARGET_URL, timestamp: new Date().toISOString(), routes: [] };
 
   for (const route of ROUTES) {
-    for (const vp of VIEWPORTS) {
-      const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
-      const consoleErrors = [];
-      page.on("console", (msg) => { if (msg.type() === "error") consoleErrors.push(msg.text()); });
-      page.on("pageerror", (err) => consoleErrors.push(err.message));
+    const isAsset = route.endsWith(".txt") || route.endsWith(".xml");
+    const fullUrl = `${TARGET_URL}${route}`;
+    const page = await context.newPage();
 
-      await page.goto(`http://localhost:3000${route}`, { waitUntil: "networkidle" });
+    const consoleMessages = [];
+    const networkErrors = [];
+    const analyticsRequests = [];
 
-      // 1. Detección de overflow horizontal
-      const hasHorizontalScroll = await page.evaluate(() => {
-        return document.documentElement.scrollWidth > window.innerWidth ||
-               document.body.scrollWidth > window.innerWidth;
-      });
-
-      // 2. Screenshot Dark
-      const slug = route.replace(/\//g, "_") || "_home";
-      await page.screenshot({ path: path.join(OUTPUT_DIR, `${slug}_${vp.width}x${vp.height}_dark.png`), fullPage: true });
-
-      // 3. Axe A11y Dark
-      const a11yDark = await new AxeBuilder({ page }).analyze();
-
-      // 4. Cambiar a Light y capturar
-      const themeBtn = page.getByRole("button", { name: /cambiar a modo claro|switch to light mode/i }).first();
-      let a11yLight = null;
-      if (await themeBtn.isVisible()) {
-        await themeBtn.click();
-        await page.screenshot({ path: path.join(OUTPUT_DIR, `${slug}_${vp.width}x${vp.height}_light.png`), fullPage: true });
-        a11yLight = await new AxeBuilder({ page }).analyze();
+    page.on("console", (msg) => {
+      if (msg.type() === "error") consoleMessages.push(msg.text());
+    });
+    page.on("requestfailed", (req) => {
+      networkErrors.push({ url: req.url(), failure: req.failure()?.errorText });
+    });
+    page.on("request", (req) => {
+      if (req.url().includes("_vercel/insights")) {
+        analyticsRequests.push({ url: req.url(), method: req.method() });
       }
+    });
 
-      results.push({ route, viewport: vp, hasHorizontalScroll, consoleErrors, a11yDarkViolations: a11yDark.violations, a11yLightViolations: a11yLight?.violations || [] });
+    const response = await page.goto(fullUrl, { waitUntil: "networkidle" });
+    const status = response?.status() || 0;
+    const headers = response?.headers() || {};
+
+    if (isAsset) {
+      summary.routes.push({ route, status, headers, contentType: headers["content-type"] });
       await page.close();
+      continue;
     }
+
+    // Inspección de Storage
+    const cookies = await context.cookies();
+    const storage = await page.evaluate(() => ({
+      localStorage: { ...localStorage },
+      sessionStorage: { ...sessionStorage },
+    }));
+
+    // Viewport desktop y screenshot
+    await page.setViewportSize(VIEWPORTS[1]);
+    const slug = route.replace(/\//g, "_") || "_home";
+    await page.screenshot({ path: path.join(OUTPUT_DIR, `${slug}_1440x900_dark.png`), fullPage: true });
+
+    // Overflow horizontal en desktop
+    const overflowDesktop = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+
+    // Viewport mobile y screenshot
+    await page.setViewportSize(VIEWPORTS[0]);
+    await page.screenshot({ path: path.join(OUTPUT_DIR, `${slug}_390x844_dark.png`), fullPage: true });
+    const overflowMobile = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+
+    // Menú móvil si es la home
+    if (route === "/" || route === "/en/") {
+      const menuBtn = page.getByRole("button", { name: /abrir menú|open menu/i });
+      if (await menuBtn.isVisible()) {
+        await menuBtn.click();
+        await page.waitForTimeout(300);
+        await page.screenshot({ path: path.join(OUTPUT_DIR, `${slug}_390x844_drawer.png`) });
+        const closeBtn = page.getByRole("button", { name: /cerrar menú|close menu/i });
+        if (await closeBtn.isVisible()) await closeBtn.click();
+      }
+    }
+
+    // Axe A11y
+    const axeResults = await new AxeBuilder({ page }).analyze();
+
+    summary.routes.push({
+      route,
+      status,
+      headers: {
+        csp: headers["content-security-policy"] ? "Presente" : "Ausente",
+        xfo: headers["x-frame-options"],
+        xcto: headers["x-content-type-options"],
+        referrer: headers["referrer-policy"],
+        permissions: headers["permissions-policy"],
+      },
+      overflow: { desktop: overflowDesktop, mobile: overflowMobile },
+      cookiesCount: cookies.length,
+      storage,
+      consoleErrors: consoleMessages,
+      networkErrors,
+      analyticsRequests,
+      a11yViolations: axeResults.violations.map((v) => ({ id: v.id, impact: v.impact, description: v.description })),
+    });
+
+    await page.close();
   }
 
   await browser.close();
-  return results;
+  fs.writeFileSync(path.join(OUTPUT_DIR, "audit-summary.json"), JSON.stringify(summary, null, 2));
+  console.log(`Auditoría guardada en: ${OUTPUT_DIR}`);
 }
-```
 
-> [!NOTE]
-> También puedes usar comandos directos del CLI de Playwright (`playwright-cli`) a través de la skill instalada de Playwright para inspeccionar estados interactivos específicos, como abrir el menú de navegación móvil o comprobar el foco de un botón.
+audit();
+```
 
 ---
 
-## 7. Estructura obligatoria del informe de auditoría
+## 8. Clasificación de severidad de incidencias
 
-El resultado de cada auditoría debe presentarse al usuario siguiendo esta plantilla exacta:
+Toda incidencia detectada debe clasificarse objetivamente:
+
+| Severidad | Criterio | Ejemplos |
+| :--- | :--- | :--- |
+| **`CRITICAL`** | Impide el acceso o uso básico del sitio; fallo fatal en servidor o cliente. | Pantalla en blanco (crash 500), drawer bloqueado, fallo de enrutamiento principal. |
+| **`HIGH`** | Degrada severamente la UX o incumple requisitos esenciales. | Scroll horizontal en móvil, textos o botones tapados, violación WCAG AA de contraste, fallo de carga de assets clave (vídeo demo, fuentes). |
+| **`MEDIUM`** | Defecto visual o funcional evidente pero no bloqueante. | Inconsistencia de espaciado en tablet, micro-salto visual en cambio de tema, advertencias menores en consola. |
+| **`LOW`** | Detalle estético menor o sugerencia de pulido. | Sugerencia de padding en resoluciones atípicas, ajuste tipográfico sutil. |
+| **`INFO`** | Observación técnica relevante sin impacto negativo. | Identificación de peticiones agregadas de Vercel Analytics, headers de CDN de Vercel. |
+
+---
+
+## 9. Plantilla estándar del informe de auditoría
+
+Al concluir, el agente debe estructurar los hallazgos según este formato:
 
 ```markdown
-# Informe de Auditoría Visual y Funcional — Portfolio
+# Informe de Auditoría Visual y Técnica — Portfolio
 
-**Fecha:** YYYY-MM-DD
-**URL Base:** http://localhost:3000
-**Entorno:** Local (Playwright + Chromium)
-**Total Incidencias:** [X] Blocker | [X] High | [X] Medium | [X] Low
-
----
-
-## 1. Qué se comprobó
-- **Rutas auditadas:** [Listado de rutas analizadas]
-- **Viewports evaluados:** 390x844, 768x1024, 1024x768, 1440x900
-- **Temas:** Modo oscuro y modo claro
-- **Verificaciones funcionales y visuales:**
-  - Overflow horizontal y límites de viewport
-  - Jerarquía de encabezados semánticos
-  - Menú de navegación (escritorio y drawer móvil)
-  - Botones, enlaces y accesibilidad por teclado (focus ring)
-  - Selector y consistencia de idiomas (ES / EN)
-  - Errores de consola y recursos de red
-  - Auditoría de accesibilidad WCAG 2.1 AA con Axe
+**Target URL:** [URL auditada]
+**Fecha:** YYYY-MM-DD HH:MM
+**Entorno:** [Local / Preview Vercel / Producción]
+**Herramienta principal:** [Browser Agent MCP / Playwright Headless]
+**Resumen de Incidencias:** [X] CRITICAL | [X] HIGH | [X] MEDIUM | [X] LOW | [X] INFO
 
 ---
 
-## 2. Qué pasó satisfactoriamente (Checks superados)
-- [Listado detallado de elementos, componentes y vistas que superaron las pruebas sin anomalías]
+## 1. Verificación de Rutas y Navegación
+- Resumen de estados HTTP (200, 404, etc.)
+- Comprobación de idiomas ES y EN
 
----
+## 2. Auditoría Visual y Responsive
+- Resultados por viewport (390x844, 768x1024, 1024x768, 1440x900)
+- Estado de desbordamiento horizontal
+- Funcionamiento del drawer móvil y temas claro/oscuro
 
-## 3. Hallazgos y qué falló
-### [BLOCKER] Título de la incidencia crítica
-- **Ruta / Viewport / Tema:** `/ruta` | `390x844` | `Dark`
-- **Descripción:** Qué falla exactamente y cómo afecta al usuario.
-- **Evidencia:** Captura `output/playwright/audit/...`, traza de consola o selector.
-- **Recomendación:** Acción técnica sugerida para subsanarlo.
+## 3. Consola y Runtime
+- Excepciones o errores de consola detectados (o ausencia de ellos)
+- Estado de hidratación de React
 
-### [HIGH] Título de la incidencia alta
-- **Ruta / Viewport / Tema:** ...
-- **Descripción:** ...
-- **Evidencia:** ...
-- **Recomendación:** ...
+## 4. Red, Assets y Analítica
+- Análisis de solicitudes de scripts, fuentes, imágenes y vídeo
+- Comprobación de endpoints de analítica (`_vercel/insights`)
+- Ausencia de 404s en recursos estáticos
 
-### [MEDIUM / LOW] Incidencias menores
-- ...
+## 5. Almacenamiento y Privacidad
+- Recuento de cookies (debe ser 0)
+- Inspección de `localStorage` y `sessionStorage`
 
----
+## 6. Cabeceras HTTP de Seguridad
+- Evaluación de CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy
 
-## 4. Evidencias visuales
-- `output/playwright/audit/home_390x844_dark.png`
-- `output/playwright/audit/trace_1440x900_light.png`
-- [Comentarios del análisis visual de las capturas]
+## 7. Performance (Lighthouse)
+- Puntuaciones: Performance | Accessibility | Best Practices | SEO
+- Métricas: LCP | TBT | CLS
 
----
+## 8. Relación de Incidencias
+### [SEVERIDAD] Título de la incidencia
+- **Ruta / Viewport:**
+- **Descripción:**
+- **Evidencia:**
+- **Acción recomendada:**
 
-## 5. Recomendaciones finales para el equipo
-- [Resumen priorizado de tareas para corregir las incidencias antes de release o PR]
+## 9. Próximos Pasos
+- Priorización técnica antes de promoción o release.
 ```
-
----
-
-## 8. Seguridad y reglas de no intervención
-
-1. **Servidor local como única fuente de confianza**: No realices peticiones contra entornos externos no autorizados ni envíes datos del portfolio a servicios de terceros.
-2. **Cero mutación de código**: Si encuentras un bug (incluso si es un cambio de 1 línea de CSS o HTML), **no lo corrijas**. Documéntalo en el informe con severidad, evidencia y la recomendación técnica correspondiente. La decisión y aplicación de cambios corresponde al flujo de desarrollo posterior.
-3. **Limpieza de temporales**: Al concluir la sesión de auditoría, conserva únicamente las capturas de evidencia requeridas en `output/playwright/audit/` y no dejes procesos en segundo plano ni archivos huérfanos en `src/`.
