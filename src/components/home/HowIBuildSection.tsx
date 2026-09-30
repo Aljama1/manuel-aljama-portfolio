@@ -29,7 +29,8 @@ export function HowIBuildSection({ content }: HowIBuildSectionProps) {
       {/* Cadena secuencial de etapas */}
       <nav
         aria-label={content.title}
-        className="mt-12 [scrollbar-width:none] overflow-x-auto pt-2 pb-4 [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        tabIndex={0}
+        className="mt-12 [scrollbar-width:none] overflow-x-auto rounded-sm pt-2 pb-4 [-ms-overflow-style:none] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary [&::-webkit-scrollbar]:hidden"
       >
         <ol className="flex min-w-max items-center gap-2 font-mono text-xs font-medium tracking-[0.14em] text-foreground-muted">
           {steps.map((step, idx) => (
