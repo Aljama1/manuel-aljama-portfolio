@@ -65,7 +65,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
         {/* Columna lateral: Idiomas & Objetivo profesional */}
         <div className="space-y-6 lg:col-span-5">
           {/* Tarjeta de Objetivo profesional */}
-          <aside className="rounded-lg border border-border bg-surface p-6 sm:p-8">
+          <div className="rounded-lg border border-border bg-surface p-6 sm:p-8">
             <span className="font-mono text-xs font-semibold tracking-[0.16em] text-primary uppercase">
               {targetRole.label}
             </span>
@@ -75,10 +75,10 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
             <p className="mt-3 text-sm leading-relaxed text-foreground-muted">
               {targetRole.description}
             </p>
-          </aside>
+          </div>
 
           {/* Tarjeta de Idiomas */}
-          <aside className="rounded-lg border border-border bg-surface p-6 sm:p-8">
+          <div className="rounded-lg border border-border bg-surface p-6 sm:p-8">
             <span className="font-mono text-xs font-semibold tracking-[0.16em] text-foreground-muted uppercase">
               {languages.heading}
             </span>
@@ -99,7 +99,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                 </li>
               ))}
             </ul>
-          </aside>
+          </div>
         </div>
       </div>
     </Section>
