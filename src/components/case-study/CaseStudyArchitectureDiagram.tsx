@@ -19,16 +19,11 @@ export function CaseStudyArchitectureDiagram({
   backend,
   integrity,
   subtitle,
-  ariaLabel,
   techBadge,
   pipelineTag,
-  title,
 }: CaseStudyArchitectureDiagramProps) {
   return (
-    <div
-      className="relative overflow-hidden rounded-xl border border-border bg-surface/70 p-5 sm:p-8"
-      aria-label={ariaLabel ?? title ?? "Diagrama conceptual de arquitectura"}
-    >
+    <div className="relative overflow-hidden rounded-xl border border-border bg-surface/70 p-5 sm:p-8">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 pb-5">
         <div>
           <span className="font-mono text-xs font-semibold tracking-[0.18em] text-secondary">
