@@ -33,13 +33,35 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
       page.locator('meta[property="og:locale:alternate"]'),
     ).toHaveAttribute("content", "en_US");
 
-    // Verified: No fake image on Home
-    await expect(page.locator('meta[property="og:image"]')).toHaveCount(0);
+    // Open Graph Image
+    const ogImage = page.locator('meta[property="og:image"]');
+    await expect(ogImage).toHaveCount(1);
+    await expect(ogImage).toHaveAttribute(
+      "content",
+      /https:\/\/manuelaljama\.com\/assets\/og\/home-og\.png$/,
+    );
+    await expect(
+      page.locator('meta[property="og:image:width"]'),
+    ).toHaveAttribute("content", "1200");
+    await expect(
+      page.locator('meta[property="og:image:height"]'),
+    ).toHaveAttribute("content", "630");
+    await expect(
+      page.locator('meta[property="og:image:type"]'),
+    ).toHaveAttribute("content", "image/png");
+    await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute(
+      "content",
+      "Manuel Aljama — Software Developer",
+    );
 
     // Twitter Card
     await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
       "content",
-      "summary",
+      "summary_large_image",
+    );
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
+      "content",
+      /https:\/\/manuelaljama\.com\/assets\/og\/home-og\.png$/,
     );
     await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
       "content",
@@ -96,13 +118,35 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
       page.locator('meta[property="og:locale:alternate"]'),
     ).toHaveAttribute("content", "es_ES");
 
-    // No fake image on Home EN
-    await expect(page.locator('meta[property="og:image"]')).toHaveCount(0);
+    // Open Graph Image
+    const ogImage = page.locator('meta[property="og:image"]');
+    await expect(ogImage).toHaveCount(1);
+    await expect(ogImage).toHaveAttribute(
+      "content",
+      /https:\/\/manuelaljama\.com\/assets\/og\/home-og\.png$/,
+    );
+    await expect(
+      page.locator('meta[property="og:image:width"]'),
+    ).toHaveAttribute("content", "1200");
+    await expect(
+      page.locator('meta[property="og:image:height"]'),
+    ).toHaveAttribute("content", "630");
+    await expect(
+      page.locator('meta[property="og:image:type"]'),
+    ).toHaveAttribute("content", "image/png");
+    await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute(
+      "content",
+      "Manuel Aljama — Software Developer",
+    );
 
     // Twitter Card
     await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
       "content",
-      "summary",
+      "summary_large_image",
+    );
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
+      "content",
+      /https:\/\/manuelaljama\.com\/assets\/og\/home-og\.png$/,
     );
 
     // Canonical

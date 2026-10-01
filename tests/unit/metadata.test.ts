@@ -31,12 +31,20 @@ describe("Metadata & Open Graph Generators", () => {
       expect(og.url).toBe("/");
       expect(og.locale).toBe("es_ES");
       expect(og.alternateLocale).toEqual(["en_US"]);
-      expect(og.images).toBeUndefined();
+
+      const images = og.images as Array<Record<string, unknown>>;
+      expect(images).toHaveLength(1);
+      expect(images[0]?.url).toBe("/assets/og/home-og.png");
+      expect(images[0]?.width).toBe(1200);
+      expect(images[0]?.height).toBe(630);
+      expect(images[0]?.type).toBe("image/png");
+      expect(images[0]?.alt).toBe("Manuel Aljama — Software Developer");
 
       const tw = meta.twitter as Record<string, unknown>;
-      expect(tw.card).toBe("summary");
+      expect(tw.card).toBe("summary_large_image");
       expect(tw.title).toBe(og.title);
       expect(tw.description).toBe(og.description);
+      expect(tw.images).toEqual(["/assets/og/home-og.png"]);
     });
 
     it("generates correct English metadata for Home with zero Spanish leakage", () => {
@@ -63,13 +71,21 @@ describe("Metadata & Open Graph Generators", () => {
       expect(og.url).toBe("/en");
       expect(og.locale).toBe("en_US");
       expect(og.alternateLocale).toEqual(["es_ES"]);
-      expect(og.images).toBeUndefined();
+
+      const images = og.images as Array<Record<string, unknown>>;
+      expect(images).toHaveLength(1);
+      expect(images[0]?.url).toBe("/assets/og/home-og.png");
+      expect(images[0]?.width).toBe(1200);
+      expect(images[0]?.height).toBe(630);
+      expect(images[0]?.type).toBe("image/png");
+      expect(images[0]?.alt).toBe("Manuel Aljama — Software Developer");
 
       const desc = og.description as string;
       expect(desc).not.toMatch(/\b(de|con|para|ideas en)\b/i);
 
       const tw = meta.twitter as Record<string, unknown>;
-      expect(tw.card).toBe("summary");
+      expect(tw.card).toBe("summary_large_image");
+      expect(tw.images).toEqual(["/assets/og/home-og.png"]);
     });
 
     it("maintains structural parity between ES and EN for Home metadata", () => {

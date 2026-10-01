@@ -33,11 +33,21 @@ export function getHomeMetadata(locale: Locale): Metadata {
       url: path,
       locale: isEs ? "es_ES" : "en_US",
       alternateLocale: [isEs ? "en_US" : "es_ES"],
+      images: [
+        {
+          url: "/assets/og/home-og.png",
+          width: 1200,
+          height: 630,
+          alt: "Manuel Aljama — Software Developer",
+          type: "image/png",
+        },
+      ],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
+      images: ["/assets/og/home-og.png"],
     },
   };
 }

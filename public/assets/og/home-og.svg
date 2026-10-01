@@ -1,0 +1,67 @@
+
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;family=Inter:wght@400&amp;family=JetBrains+Mono:wght@500&amp;display=swap');
+      .title { font-family: 'Space Grotesk', sans-serif; font-size: 72px; font-weight: 700; fill: #FFFFFF; letter-spacing: -0.05em; }
+      .subtitle { font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 400; fill: #A1A1AA; }
+      .label { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; letter-spacing: 0.15em; fill: #71717A; }
+    </style>
+    
+    <linearGradient id="bus-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A78BFA" />
+      <stop offset="100%" stop-color="#B8F34A" />
+    </linearGradient>
+
+    <linearGradient id="build-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A78BFA" />
+      <stop offset="100%" stop-color="#B8F34A" />
+    </linearGradient>
+
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.04" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="#09090B" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+
+  <g fill="none" stroke="url(#bus-grad)" stroke-width="1.5" opacity="0.6">
+    <path d="M 120 540 L 220 540 L 300 460 L 420 460 L 540 340 L 760 340 L 880 220 L 980 220 L 1080 120 L 1150 120" stroke-linejoin="round" />
+    <path d="M 100 560 L 240 560 L 320 480 L 400 480 L 560 320 L 740 320 L 900 160 L 1120 160" stroke-linejoin="round" />
+    <path d="M 80 580 L 260 580 L 340 500 L 440 500 L 580 360 L 720 360 L 860 220 L 940 220 L 1040 120" stroke-linejoin="round" />
+    <path d="M 650 335 L 700 285 L 850 285 L 900 235 L 1100 235" stroke-linejoin="round" />
+    <path d="M 650 305 L 600 255 L 450 255 L 400 305" stroke-linejoin="round" />
+  </g>
+
+  <circle cx="100" cy="560" r="6" fill="#A78BFA" />
+  <circle cx="100" cy="560" r="16" fill="none" stroke="#A78BFA" stroke-width="1" opacity="0.3" />
+  <text x="100" y="595" text-anchor="middle" class="label" fill="#A78BFA">IDEA</text>
+
+  <circle cx="320" cy="480" r="6" fill="#B3A1ED" />
+  <circle cx="320" cy="480" r="16" fill="none" stroke="#B3A1ED" stroke-width="1" opacity="0.3" />
+  <text x="320" y="515" text-anchor="middle" class="label" fill="#B3A1ED">SPEC</text>
+
+  <g transform="translate(650, 335)">
+    <circle cx="0" cy="0" r="45" fill="#18181B" stroke="url(#build-grad)" stroke-width="2" />
+    <circle cx="0" cy="0" r="30" fill="none" stroke="url(#build-grad)" stroke-width="1" opacity="0.5" />
+    <circle cx="0" cy="0" r="10" fill="url(#build-grad)" />
+    <path d="M -45 0 L -30 0" stroke="url(#build-grad)" stroke-width="1" />
+    <path d="M 30 0 L 45 0" stroke="url(#build-grad)" stroke-width="1" />
+    <path d="M 0 -45 L 0 -30" stroke="url(#build-grad)" stroke-width="1" />
+    <path d="M 0 30 L 0 45" stroke="url(#build-grad)" stroke-width="1" />
+  </g>
+  <text x="650" y="410" text-anchor="middle" class="label" fill="#C2D39A">BUILD</text>
+
+  <circle cx="900" cy="160" r="6" fill="#B3E65B" />
+  <circle cx="900" cy="160" r="16" fill="none" stroke="#B3E65B" stroke-width="1" opacity="0.3" />
+  <text x="900" y="195" text-anchor="middle" class="label" fill="#B3E65B">TEST</text>
+
+  <circle cx="1120" cy="160" r="8" fill="#B8F34A" />
+  <circle cx="1120" cy="160" r="24" fill="none" stroke="#B8F34A" stroke-width="1" opacity="0.4" />
+  <circle cx="1120" cy="160" r="36" fill="none" stroke="#B8F34A" stroke-width="1" opacity="0.1" stroke-dasharray="4 4"/>
+  <text x="1120" y="215" text-anchor="middle" class="label" fill="#B8F34A">PRODUCT</text>
+
+  <text x="80" y="140" class="title">MANUEL ALJAMA</text>
+  <text x="82" y="190" class="subtitle">Software Developer</text>
+</svg>
