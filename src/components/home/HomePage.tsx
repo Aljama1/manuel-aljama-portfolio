@@ -21,6 +21,7 @@ export function HomePage({ locale }: HomePageProps) {
     <>
       <Hero
         name={profile.name}
+        role={profile.role}
         githubUrl={profile.githubUrl}
         content={home.hero}
         actions={ui.actions}

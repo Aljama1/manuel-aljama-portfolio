@@ -36,7 +36,7 @@ test.describe("Structured Data (JSON-LD) — E2E validation", () => {
     );
     expect(webpage.inLanguage).toBe("es");
     expect(webpage.description).toContain(
-      "Portfolio de Manuel Aljama. Convierto ideas en software real.",
+      "Portfolio de Manuel Aljama, Software Developer.",
     );
   });
 
@@ -56,7 +56,7 @@ test.describe("Structured Data (JSON-LD) — E2E validation", () => {
     );
     expect(webpage.inLanguage).toBe("en");
     expect(webpage.description).toBe(
-      "Portfolio of Manuel Aljama. I turn ideas into real software.",
+      "Portfolio of Manuel Aljama, Software Developer.",
     );
     expect(webpage.description).not.toMatch(/\b(de|con|para|ideas en)\b/i);
   });

@@ -8,7 +8,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Manuel Aljama — Software Developer",
-  description: "Portfolio de Manuel Aljama. Convierto ideas en software real.",
+  description: "Portfolio de Manuel Aljama, Software Developer.",
 };
 
 const antiFlashScript = `(function(){try{var t=localStorage.getItem("portfolio-theme");if(t==="light"){document.documentElement.classList.add("light");}}catch(e){}})();`;

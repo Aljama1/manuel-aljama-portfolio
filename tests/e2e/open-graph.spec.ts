@@ -23,7 +23,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
       page.locator('meta[property="og:description"]'),
     ).toHaveAttribute(
       "content",
-      "Portfolio de Manuel Aljama. Convierto ideas en software real.",
+      "Portfolio de Manuel Aljama, Software Developer.",
     );
     await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute(
       "content",
@@ -108,7 +108,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
       page.locator('meta[property="og:description"]'),
     ).toHaveAttribute(
       "content",
-      "Portfolio of Manuel Aljama. I turn ideas into real software.",
+      "Portfolio of Manuel Aljama, Software Developer.",
     );
     await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute(
       "content",

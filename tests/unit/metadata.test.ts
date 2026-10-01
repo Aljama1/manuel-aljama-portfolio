@@ -15,7 +15,7 @@ describe("Metadata & Open Graph Generators", () => {
       expect(meta.metadataBase?.toString()).toBe(new URL(SITE_URL).toString());
       expect(meta.title).toBe("Manuel Aljama — Software Developer");
       expect(meta.description).toContain(
-        "Portfolio de Manuel Aljama. Convierto ideas en software real.",
+        "Portfolio de Manuel Aljama, Software Developer.",
       );
       expect(meta.alternates?.canonical).toBe("/");
       expect(meta.alternates?.languages).toEqual({
@@ -27,7 +27,7 @@ describe("Metadata & Open Graph Generators", () => {
       expect(og.type).toBe("website");
       expect(og.siteName).toBe(profile.name);
       expect(og.title).toBe("Manuel Aljama — Software Developer");
-      expect(og.description).toContain("Portfolio de Manuel Aljama.");
+      expect(og.description).toContain("Portfolio de Manuel Aljama,");
       expect(og.url).toBe("/");
       expect(og.locale).toBe("es_ES");
       expect(og.alternateLocale).toEqual(["en_US"]);
@@ -53,7 +53,7 @@ describe("Metadata & Open Graph Generators", () => {
       expect(meta.metadataBase?.toString()).toBe(new URL(SITE_URL).toString());
       expect(meta.title).toBe("Manuel Aljama — Software Developer");
       expect(meta.description).toBe(
-        "Portfolio of Manuel Aljama. I turn ideas into real software.",
+        "Portfolio of Manuel Aljama, Software Developer.",
       );
       expect(meta.alternates?.canonical).toBe("/en");
       expect(meta.alternates?.languages).toEqual({
@@ -66,7 +66,7 @@ describe("Metadata & Open Graph Generators", () => {
       expect(og.siteName).toBe(profile.name);
       expect(og.title).toBe("Manuel Aljama — Software Developer");
       expect(og.description).toBe(
-        "Portfolio of Manuel Aljama. I turn ideas into real software.",
+        "Portfolio of Manuel Aljama, Software Developer.",
       );
       expect(og.url).toBe("/en");
       expect(og.locale).toBe("en_US");

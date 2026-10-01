@@ -4,17 +4,13 @@ test.describe("Smoke — rutas principales", () => {
   test("home ES (/) carga correctamente", async ({ page }) => {
     await page.goto("/");
     await expect(page).toHaveTitle(/Manuel Aljama/);
-    await expect(page.locator("h1")).toContainText(
-      "CONVIERTO IDEAS EN SOFTWARE REAL.",
-    );
+    await expect(page.locator("h1")).toContainText("Software Developer");
   });
 
   test("home EN (/en/) carga correctamente", async ({ page }) => {
     await page.goto("/en/");
     await expect(page).toHaveTitle(/Manuel Aljama/);
-    await expect(page.locator("h1")).toContainText(
-      "I TURN IDEAS INTO REAL SOFTWARE.",
-    );
+    await expect(page.locator("h1")).toContainText("Software Developer");
   });
 
   test("Hero ES navigates to Projects and shows factual links", async ({

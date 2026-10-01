@@ -141,7 +141,6 @@ export interface ContactContent {
 
 export interface HomeContent {
   hero: {
-    headline: string;
     supportingCopy: string;
   };
   projects: {

@@ -2,7 +2,6 @@ import type { HomeContent } from "../types";
 
 export const esHome: HomeContent = {
   hero: {
-    headline: "CONVIERTO IDEAS EN SOFTWARE REAL.",
     supportingCopy:
       "Desarrollador de aplicaciones con formación DAM, orientado al desarrollo full-stack, la creación de productos y la ingeniería asistida por IA.",
   },

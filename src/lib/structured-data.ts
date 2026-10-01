@@ -24,8 +24,8 @@ export function getHomeStructuredData(locale: Locale): SchemaGraph {
   const homeTitle = "Manuel Aljama — Software Developer";
   const homeDescription =
     locale === "es"
-      ? "Portfolio de Manuel Aljama. Convierto ideas en software real."
-      : "Portfolio of Manuel Aljama. I turn ideas into real software.";
+      ? "Portfolio de Manuel Aljama, Software Developer."
+      : "Portfolio of Manuel Aljama, Software Developer.";
 
   const sameAsProfiles = [profile.githubUrl, profile.linkedInUrl].filter(
     (url): url is string => Boolean(url),

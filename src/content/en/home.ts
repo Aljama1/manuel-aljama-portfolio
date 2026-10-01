@@ -2,7 +2,6 @@ import type { HomeContent } from "../types";
 
 export const enHome: HomeContent = {
   hero: {
-    headline: "I TURN IDEAS INTO REAL SOFTWARE.",
     supportingCopy:
       "Application developer with DAM training, focused on full-stack development, product building, and AI-assisted engineering.",
   },

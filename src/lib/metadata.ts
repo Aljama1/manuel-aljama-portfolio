@@ -10,8 +10,8 @@ export function getHomeMetadata(locale: Locale): Metadata {
   const isEs = locale === "es";
   const title = "Manuel Aljama — Software Developer";
   const description = isEs
-    ? "Portfolio de Manuel Aljama. Convierto ideas en software real."
-    : "Portfolio of Manuel Aljama. I turn ideas into real software.";
+    ? "Portfolio de Manuel Aljama, Software Developer."
+    : "Portfolio of Manuel Aljama, Software Developer.";
   const path = isEs ? "/" : "/en";
 
   return {

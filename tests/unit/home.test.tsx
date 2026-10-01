@@ -75,7 +75,7 @@ describe("Home Block 1 & 2 sections", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: homeContent.es.hero.headline,
+        name: profile.role,
       }),
     ).toBeInTheDocument();
     expect(
@@ -95,7 +95,7 @@ describe("Home Block 1 & 2 sections", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: homeContent.en.hero.headline,
+        name: profile.role,
       }),
     ).toBeInTheDocument();
     expect(
