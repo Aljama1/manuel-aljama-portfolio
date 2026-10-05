@@ -38,7 +38,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     await expect(ogImage).toHaveCount(1);
     await expect(ogImage).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/assets\/og\/home-og\.png$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/assets\/og\/home-og\.png$/,
     );
     await expect(
       page.locator('meta[property="og:image:width"]'),
@@ -61,7 +61,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     );
     await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/assets\/og\/home-og\.png$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/assets\/og\/home-og\.png$/,
     );
     await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
       "content",
@@ -71,14 +71,20 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     // Canonical & alternates
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      /https:\/\/manuelaljama\.com\/?$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/?$/,
     );
     await expect(
       page.locator('link[rel="alternate"][hreflang="es"]'),
-    ).toHaveAttribute("href", /https:\/\/manuelaljama\.com\/?$/);
+    ).toHaveAttribute(
+      "href",
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/?$/,
+    );
     await expect(
       page.locator('link[rel="alternate"][hreflang="en"]'),
-    ).toHaveAttribute("href", /https:\/\/manuelaljama\.com\/en\/?$/);
+    ).toHaveAttribute(
+      "href",
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/en\/?$/,
+    );
 
     // Verify no duplicate og:title or og:description
     await expect(page.locator('meta[property="og:title"]')).toHaveCount(1);
@@ -123,7 +129,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     await expect(ogImage).toHaveCount(1);
     await expect(ogImage).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/assets\/og\/home-og\.png$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/assets\/og\/home-og\.png$/,
     );
     await expect(
       page.locator('meta[property="og:image:width"]'),
@@ -146,13 +152,13 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     );
     await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/assets\/og\/home-og\.png$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/assets\/og\/home-og\.png$/,
     );
 
     // Canonical
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      /https:\/\/manuelaljama\.com\/en\/?$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/en\/?$/,
     );
 
     // Verify absence of duplicate tags
@@ -195,7 +201,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     await expect(ogImage).toHaveCount(1);
     await expect(ogImage).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.webp$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/media\/projects\/trace\/demo-poster\.webp$/,
     );
     await expect(
       page.locator('meta[property="og:image:width"]'),
@@ -215,13 +221,13 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     );
     await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.webp$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/media\/projects\/trace\/demo-poster\.webp$/,
     );
 
     // Canonical
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      /https:\/\/manuelaljama\.com\/projects\/trace\/?$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/projects\/trace\/?$/,
     );
 
     // Verify absence of duplicate tags
@@ -264,7 +270,7 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     await expect(ogImage).toHaveCount(1);
     await expect(ogImage).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.webp$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/media\/projects\/trace\/demo-poster\.webp$/,
     );
     await expect(
       page.locator('meta[property="og:image:width"]'),
@@ -284,13 +290,13 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     );
     await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
       "content",
-      /https:\/\/manuelaljama\.com\/media\/projects\/trace\/demo-poster\.webp$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/media\/projects\/trace\/demo-poster\.webp$/,
     );
 
     // Canonical
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      /https:\/\/manuelaljama\.com\/en\/projects\/trace\/?$/,
+      /https:\/\/manuel-aljama-portfolio\.vercel\.app\/en\/projects\/trace\/?$/,
     );
 
     // Verify absence of duplicate tags
