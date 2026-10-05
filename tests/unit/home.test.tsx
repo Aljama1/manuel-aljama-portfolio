@@ -109,10 +109,15 @@ describe("Home Block 1 & 2 sections", () => {
     expect(within(asisteoBlock as HTMLElement).queryByRole("link")).toBeNull();
   });
 
-  it("marks the Hero visual as decorative", () => {
+  it("marks the Hero visual decorative elements as aria-hidden while exposing interactive nodes", () => {
     const { container } = render(<HeroVisual />);
 
-    expect(container.firstElementChild).toHaveAttribute("aria-hidden", "true");
+    const svgs = container.querySelectorAll("svg");
+    expect(svgs.length).toBeGreaterThan(0);
+    svgs.forEach((svg) => {
+      expect(svg).toHaveAttribute("aria-hidden", "true");
+    });
+    expect(screen.getAllByRole("button")).toHaveLength(5);
   });
 
   it("renders AboutSection with editorial copy, factual card, and no fake photo", () => {

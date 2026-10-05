@@ -19,6 +19,13 @@ const STAGES: readonly StageNode[] = [
   { id: "PRODUCT", label: "PRODUCT", deskX: 85, deskY: 15, mobX: 50, mobY: 85 },
 ];
 
+const STAGE_DELAYS: Record<string, string> = {
+  IDEA: "0.2s",
+  SPEC: "0.3s",
+  TEST: "0.5s",
+  PRODUCT: "0.6s",
+};
+
 export function HeroVisual() {
   const [activeNode, setActiveNode] = useState<string | null>(null);
 
@@ -46,15 +53,13 @@ export function HeroVisual() {
     }
   };
 
-  const getNodeState = (nodeId: string, index: number) => {
+  const getNodeState = (nodeId: string) => {
     const isViolet = nodeId === "IDEA" || nodeId === "SPEC";
     const activeTextColor = isViolet ? "text-secondary" : "text-primary";
     const activeBorderColor = isViolet ? "border-secondary" : "border-primary";
     const activeGlow = isViolet
       ? "shadow-[0_0_20px_color-mix(in_srgb,var(--secondary)_50%,transparent)]"
       : "shadow-[0_0_20px_color-mix(in_srgb,var(--primary)_50%,transparent)]";
-
-    const baseDelay = 0.2 + index * 0.1;
 
     if (!activeNode) {
       const isBuild = nodeId === "BUILD";
@@ -63,8 +68,6 @@ export function HeroVisual() {
         borderClass: isBuild ? "border-primary/50" : "border-border",
         bgClass: "bg-surface-raised",
         glowClass: isBuild ? "animate-pulse-glow" : "shadow-sm",
-        opacityClass: "opacity-100 animate-enter-node",
-        animationDelay: `${baseDelay}s`,
       };
     }
 
@@ -74,8 +77,6 @@ export function HeroVisual() {
       borderClass: isActive ? activeBorderColor : "border-border/40",
       bgClass: "bg-surface-raised",
       glowClass: isActive ? activeGlow : "shadow-none",
-      opacityClass: "opacity-100",
-      animationDelay: "0s",
     };
   };
 
@@ -84,10 +85,15 @@ export function HeroVisual() {
       className="relative isolate min-h-[28rem] w-full overflow-hidden rounded-lg border border-border bg-surface p-5 sm:min-h-[32rem] sm:p-8 lg:h-full lg:min-h-[36rem]"
       onMouseLeave={() => setActiveNode(null)}
     >
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-30" />
+      {/* Grid background - purely decorative */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-30"
+      />
 
-      {/* SVG for Desktop */}
+      {/* SVG for Desktop - purely decorative geometry */}
       <svg
+        aria-hidden="true"
         className="absolute inset-0 hidden h-full w-full sm:block"
         viewBox="0 0 1000 1000"
         fill="none"
@@ -148,8 +154,9 @@ export function HeroVisual() {
         />
       </svg>
 
-      {/* SVG for Mobile */}
+      {/* SVG for Mobile - purely decorative geometry */}
       <svg
+        aria-hidden="true"
         className="absolute inset-0 block h-full w-full sm:hidden"
         viewBox="0 0 400 1000"
         fill="none"
@@ -200,29 +207,41 @@ export function HeroVisual() {
         />
       </svg>
 
-      {/* Nodes */}
-      {STAGES.map((stage, i) => {
-        const state = getNodeState(stage.id, i);
+      {/* Accessible Interactive Nodes */}
+      {STAGES.map((stage) => {
+        const state = getNodeState(stage.id);
         const isCore = stage.id === "BUILD";
+        const isViolet = stage.id === "IDEA" || stage.id === "SPEC";
+        const focusVisibleClass = isViolet
+          ? "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+          : "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
 
         return (
           <button
             key={stage.id}
+            type="button"
             onMouseEnter={() => setActiveNode(stage.id)}
             onFocus={() => setActiveNode(stage.id)}
-            aria-label={`Highlight ${stage.label} stage`}
+            onBlur={() => setActiveNode(null)}
+            onClick={() =>
+              setActiveNode((prev) => (prev === stage.id ? null : stage.id))
+            }
+            aria-label={`Pipeline stage: ${stage.label}`}
+            aria-pressed={activeNode === stage.id}
             style={
               {
                 "--x-desk": `${stage.deskX}%`,
                 "--y-desk": `${stage.deskY}%`,
                 "--x-mob": `${stage.mobX}%`,
                 "--y-mob": `${stage.mobY}%`,
-                animationDelay: state.animationDelay,
+                ...(isCore ? {} : { animationDelay: STAGE_DELAYS[stage.id] }),
               } as React.CSSProperties
             }
             className={`absolute z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-sm border ${
-              isCore ? "h-20 w-24 sm:h-24 sm:w-28" : "px-4 py-2"
-            } font-mono text-[0.65rem] font-medium tracking-[0.16em] transition-colors duration-150 max-sm:top-[var(--y-mob)] max-sm:left-[var(--x-mob)] sm:top-[var(--y-desk)] sm:left-[var(--x-desk)] sm:text-xs ${state.bgClass} ${state.borderClass} ${state.textClass} ${state.glowClass} ${state.opacityClass}`}
+              isCore
+                ? "h-20 w-24 opacity-100 sm:h-24 sm:w-28"
+                : "animate-enter-node px-4 py-2"
+            } font-mono text-[0.65rem] font-medium tracking-[0.16em] transition-colors duration-150 max-sm:top-[var(--y-mob)] max-sm:left-[var(--x-mob)] sm:top-[var(--y-desk)] sm:left-[var(--x-desk)] sm:text-xs ${focusVisibleClass} ${state.bgClass} ${state.borderClass} ${state.textClass} ${state.glowClass}`}
           >
             {stage.label}
           </button>

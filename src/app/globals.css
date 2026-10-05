@@ -95,8 +95,7 @@ body {
     }
   }
   .animate-enter-node {
-    opacity: 0;
-    animation: enter-node 0.4s ease-out forwards;
+    animation: enter-node 0.4s ease-out both;
   }
 
   @keyframes pulse-glow {
