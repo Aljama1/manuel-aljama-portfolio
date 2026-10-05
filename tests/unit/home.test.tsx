@@ -225,8 +225,8 @@ describe("Home Block 1 & 2 sections", () => {
     ).toBeInTheDocument();
 
     // Verificación de tecnologías clave
-    expect(screen.getByText("Java")).toBeInTheDocument();
-    expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    expect(screen.getAllByText("Java").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("TypeScript").length).toBeGreaterThan(0);
     expect(screen.getByText("AI agents")).toBeInTheDocument();
 
     // Sin barras de progreso ni porcentajes inventados

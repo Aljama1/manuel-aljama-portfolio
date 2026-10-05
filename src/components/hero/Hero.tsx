@@ -12,24 +12,68 @@ interface HeroProps {
   actions: Pick<UiContent["actions"], "github" | "viewProjects">;
 }
 
-export function Hero({ name, role, githubUrl, content, actions }: HeroProps) {
+export function Hero({ role, githubUrl, content, actions }: HeroProps) {
   return (
     <Section
-      className="overflow-hidden py-16 sm:py-20 lg:py-28"
-      containerClassName="grid items-center gap-12 lg:grid-cols-12 lg:gap-8"
+      className="overflow-hidden py-12 sm:py-20 lg:py-28"
+      containerClassName="flex flex-col gap-12 lg:grid lg:grid-cols-12 lg:gap-8 lg:items-center"
     >
-      <div className="relative z-10 max-w-2xl lg:col-span-5">
-        <p className="font-mono text-xs font-medium tracking-[0.2em] text-primary">
-          {name.toUpperCase()}
-        </p>
-        <h1 className="mt-5 font-heading text-5xl font-bold tracking-[-0.055em] text-foreground sm:text-6xl lg:text-7xl xl:text-8xl">
+      <div className="relative z-10 flex w-full flex-col lg:col-span-5">
+        <h1 className="font-heading text-5xl font-bold tracking-[-0.055em] text-foreground sm:text-6xl lg:text-7xl xl:text-8xl">
           {role}
         </h1>
         <p className="mt-6 max-w-xl text-base leading-7 text-foreground-muted sm:text-lg sm:leading-8">
           {content.supportingCopy}
         </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Button href="#projects" size="lg" className="group">
+
+        {/* PROOF BLOCK - Bridge between text and execution */}
+        <div className="mt-8 mb-2 flex flex-col gap-6 border-y border-border/40 py-6 sm:flex-row sm:gap-12 lg:gap-8">
+          <div className="flex-1 space-y-2.5">
+            <p className="font-mono text-[10px] font-bold tracking-widest text-secondary uppercase">
+              {content.proof.core.label}
+            </p>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              {content.proof.core.stack.map((item, i) => (
+                <span key={item} className="flex items-center">
+                  <span className="font-mono text-xs font-medium text-foreground">
+                    {item}
+                  </span>
+                  {i < content.proof.core.stack.length - 1 && (
+                    <span aria-hidden="true" className="mx-2 text-border">
+                      ·
+                    </span>
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 space-y-2.5">
+            <p className="font-mono text-[10px] font-bold tracking-widest text-secondary uppercase">
+              {content.proof.focus.label}
+            </p>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              {content.proof.focus.stack.map((item, i) => (
+                <span key={item} className="flex items-center">
+                  <span className="font-mono text-xs font-medium text-foreground">
+                    {item}
+                  </span>
+                  {i < content.proof.focus.stack.length - 1 && (
+                    <span aria-hidden="true" className="mx-2 text-border">
+                      ·
+                    </span>
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Button
+            href="#projects"
+            size="lg"
+            className="group rounded-none shadow-none"
+          >
             {actions.viewProjects}
             <ArrowRight
               className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
@@ -41,7 +85,7 @@ export function Hero({ name, role, githubUrl, content, actions }: HeroProps) {
             external
             size="lg"
             variant="secondary"
-            className="group"
+            className="group rounded-none shadow-none"
           >
             {actions.github}
             <ArrowUpRight

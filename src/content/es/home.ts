@@ -4,6 +4,16 @@ export const esHome: HomeContent = {
   hero: {
     supportingCopy:
       "Desarrollador de aplicaciones con formación DAM, orientado al desarrollo full-stack, la creación de productos y la ingeniería asistida por IA.",
+    proof: {
+      core: {
+        label: "CORE",
+        stack: ["React", "Next.js", "TypeScript", "Java", "SQL", "PostgreSQL"],
+      },
+      focus: {
+        label: "FOCUS",
+        stack: ["Full-Stack", "AI Agents", "Automation", "SDD"],
+      },
+    },
   },
   projects: {
     eyebrow: "01 / PROYECTOS",

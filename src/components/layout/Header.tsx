@@ -71,12 +71,24 @@ export function Header({ lang }: HeaderProps) {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur-md transition-colors">
       <Container className="flex h-16 items-center justify-between">
         {/* Marca / Brand */}
-        <Link
-          href={homePath}
-          className="font-heading text-lg font-bold tracking-tight text-foreground transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-        >
-          {content.brand}
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            href={homePath}
+            className="font-mono text-[13px] font-bold tracking-tight text-foreground transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            aria-label={content.brand}
+          >
+            {content.brand.toUpperCase()}
+          </Link>
+          <span
+            aria-hidden="true"
+            className="font-mono text-[13px] text-border"
+          >
+            /
+          </span>
+          <span className="hidden font-mono text-xs font-medium text-foreground-muted sm:inline-block">
+            ~/home
+          </span>
+        </div>
 
         {/* Navegación Desktop */}
         <nav

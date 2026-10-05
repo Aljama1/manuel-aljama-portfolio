@@ -142,6 +142,10 @@ export interface ContactContent {
 export interface HomeContent {
   hero: {
     supportingCopy: string;
+    proof: {
+      core: { label: string; stack: string[] };
+      focus: { label: string; stack: string[] };
+    };
   };
   projects: {
     eyebrow: string;
