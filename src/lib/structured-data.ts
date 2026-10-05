@@ -79,7 +79,7 @@ export function getTraceStructuredData(locale: Locale): SchemaGraph {
   const content = traceContent[locale];
   const pagePath =
     projects.trace.caseStudyPath?.[locale] ??
-    (locale === "es" ? "/projects/trace/" : "/en/projects/trace/");
+    (locale === "es" ? "/projects/trace" : "/en/projects/trace");
   const pageUrl = `${SITE_URL}${pagePath}`;
 
   const sameAsProfiles = [profile.githubUrl, profile.linkedInUrl].filter(

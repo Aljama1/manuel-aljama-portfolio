@@ -40,15 +40,15 @@ test.describe("Smoke — rutas principales", () => {
     await expect(asisteo.getByRole("link")).toHaveCount(0);
   });
 
-  test("Trace ES (/projects/trace/) carga correctamente", async ({ page }) => {
-    await page.goto("/projects/trace/");
+  test("Trace ES (/projects/trace) carga correctamente", async ({ page }) => {
+    await page.goto("/projects/trace");
     await expect(page.locator("h1")).toContainText("Trace");
   });
 
-  test("Trace EN (/en/projects/trace/) carga correctamente", async ({
+  test("Trace EN (/en/projects/trace) carga correctamente", async ({
     page,
   }) => {
-    await page.goto("/en/projects/trace/");
+    await page.goto("/en/projects/trace");
     await expect(page.locator("h1")).toContainText("Trace");
   });
 

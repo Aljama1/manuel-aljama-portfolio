@@ -61,10 +61,10 @@ test.describe("Structured Data (JSON-LD) — E2E validation", () => {
     expect(webpage.description).not.toMatch(/\b(de|con|para|ideas en)\b/i);
   });
 
-  test("Trace ES (/projects/trace/) renders valid JSON-LD with CreativeWork", async ({
+  test("Trace ES (/projects/trace) renders valid JSON-LD with CreativeWork", async ({
     page,
   }) => {
-    await page.goto("/projects/trace/");
+    await page.goto("/projects/trace");
 
     const jsonLdScript = page.locator('script[type="application/ld+json"]');
     await expect(jsonLdScript).toHaveCount(1);
@@ -96,10 +96,10 @@ test.describe("Structured Data (JSON-LD) — E2E validation", () => {
     });
   });
 
-  test("Trace EN (/en/projects/trace/) renders valid JSON-LD with localized English content", async ({
+  test("Trace EN (/en/projects/trace) renders valid JSON-LD with localized English content", async ({
     page,
   }) => {
-    await page.goto("/en/projects/trace/");
+    await page.goto("/en/projects/trace");
 
     const jsonLdScript = page.locator('script[type="application/ld+json"]');
     await expect(jsonLdScript).toHaveCount(1);

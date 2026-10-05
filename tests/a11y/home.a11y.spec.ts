@@ -25,13 +25,13 @@ test.describe("Accesibilidad WCAG — Portfolio", () => {
   });
 
   test("sin violaciones WCAG en Trace ES", async ({ page }) => {
-    await page.goto("/projects/trace/");
+    await page.goto("/projects/trace");
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
   });
 
   test("sin violaciones WCAG en Trace EN", async ({ page }) => {
-    await page.goto("/en/projects/trace/");
+    await page.goto("/en/projects/trace");
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
   });

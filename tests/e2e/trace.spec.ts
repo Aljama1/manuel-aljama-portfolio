@@ -1,10 +1,10 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Trace Case Study — Rutas y navegación", () => {
-  test("Trace ES (/projects/trace/) carga con todos los bloques editoriales", async ({
+  test("Trace ES (/projects/trace) carga con todos los bloques editoriales", async ({
     page,
   }) => {
-    await page.goto("/projects/trace/");
+    await page.goto("/projects/trace");
 
     await expect(page).toHaveTitle(/Trace — Case Study/);
     await expect(page.locator("h1")).toContainText("Trace");
@@ -60,10 +60,10 @@ test.describe("Trace Case Study — Rutas y navegación", () => {
     await expect(asisteoLinks).toHaveCount(0);
   });
 
-  test("Trace EN (/en/projects/trace/) carga correctamente en inglés", async ({
+  test("Trace EN (/en/projects/trace) carga correctamente en inglés", async ({
     page,
   }) => {
-    await page.goto("/en/projects/trace/");
+    await page.goto("/en/projects/trace");
 
     await expect(page).toHaveTitle(/Trace — Case Study/);
     await expect(page.locator("h1")).toContainText("Trace");
@@ -114,7 +114,7 @@ test.describe("Trace Case Study — Responsive layout y Mobile Drawer", () => {
   for (const vp of viewports) {
     test(`sin desbordamiento horizontal en ${vp.name}`, async ({ page }) => {
       await page.setViewportSize({ width: vp.width, height: vp.height });
-      await page.goto("/projects/trace/");
+      await page.goto("/projects/trace");
 
       const hasHorizontalOverflow = await page.evaluate(() => {
         return (
@@ -131,7 +131,7 @@ test.describe("Trace Case Study — Responsive layout y Mobile Drawer", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/projects/trace/");
+    await page.goto("/projects/trace");
 
     // Abrir menú móvil
     const menuButton = page.locator('button[aria-expanded="false"]').first();
@@ -163,7 +163,7 @@ test.describe("Trace Case Study — I18n de diagramas conceptuales", () => {
   test("los diagramas en EN muestran terminología en inglés sin fugas en español", async ({
     page,
   }) => {
-    await page.goto("/en/projects/trace/");
+    await page.goto("/en/projects/trace");
 
     // Diagrama de flujo de producto
     const flowSection = page.locator("#product-flow");
@@ -192,7 +192,7 @@ test.describe("Trace Case Study — I18n de diagramas conceptuales", () => {
   test("los diagramas en ES muestran terminología localizada en español", async ({
     page,
   }) => {
-    await page.goto("/projects/trace/");
+    await page.goto("/projects/trace");
 
     // Diagrama de flujo de producto
     const flowSection = page.locator("#product-flow");

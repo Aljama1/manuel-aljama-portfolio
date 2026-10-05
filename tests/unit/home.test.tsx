@@ -57,8 +57,8 @@ describe("Home content model", () => {
   it("declares Trace and Asisteo with their correct public states", () => {
     expect(projects.trace.status).toBe("COMPLETED");
     expect(projects.trace.caseStudyPath).toEqual({
-      es: "/projects/trace/",
-      en: "/en/projects/trace/",
+      es: "/projects/trace",
+      en: "/en/projects/trace",
     });
     expect(projects.trace.technicalClaimsVerified).toBe(true);
 

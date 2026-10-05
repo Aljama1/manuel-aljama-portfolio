@@ -5,8 +5,8 @@ export const projects: Record<ProjectId, ProjectDefinition> = {
     id: "trace",
     status: "COMPLETED",
     caseStudyPath: {
-      es: "/projects/trace/",
-      en: "/en/projects/trace/",
+      es: "/projects/trace",
+      en: "/en/projects/trace",
     },
     // Los claims técnicos que el portfolio publica sobre Trace han sido revisados y verificados
     technicalClaimsVerified: true,

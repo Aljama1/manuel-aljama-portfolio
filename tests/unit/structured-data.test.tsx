@@ -195,7 +195,7 @@ describe("Structured Data (JSON-LD)", () => {
       expect(work?.creator).toEqual({ "@id": `${SITE_URL}/#person` });
 
       expect(webpage?.mainEntity).toEqual({
-        "@id": `${SITE_URL}/projects/trace/#project`,
+        "@id": `${SITE_URL}/projects/trace#project`,
       });
       expect(webpage?.isPartOf).toEqual({
         "@id": `${SITE_URL}/#website`,
@@ -220,11 +220,11 @@ describe("Structured Data (JSON-LD)", () => {
         (item) => item["@type"] === "CreativeWork",
       );
 
-      expect(webpageEs?.url).toBe(`${SITE_URL}/projects/trace/`);
-      expect(workEs?.url).toBe(`${SITE_URL}/projects/trace/`);
+      expect(webpageEs?.url).toBe(`${SITE_URL}/projects/trace`);
+      expect(workEs?.url).toBe(`${SITE_URL}/projects/trace`);
 
-      expect(webpageEn?.url).toBe(`${SITE_URL}/en/projects/trace/`);
-      expect(workEn?.url).toBe(`${SITE_URL}/en/projects/trace/`);
+      expect(webpageEn?.url).toBe(`${SITE_URL}/en/projects/trace`);
+      expect(workEn?.url).toBe(`${SITE_URL}/en/projects/trace`);
     });
 
     it("does not use SoftwareApplication and does not invent commercial properties", () => {

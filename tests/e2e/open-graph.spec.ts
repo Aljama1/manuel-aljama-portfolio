@@ -162,10 +162,10 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     );
   });
 
-  test("Trace ES (/projects/trace/) renders Open Graph with real demo-poster.webp", async ({
+  test("Trace ES (/projects/trace) renders Open Graph with real demo-poster.webp", async ({
     page,
   }) => {
-    await page.goto("/projects/trace/");
+    await page.goto("/projects/trace");
 
     await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
       "content",
@@ -231,10 +231,10 @@ test.describe("Open Graph & Twitter Cards Metadata — E2E validation", () => {
     );
   });
 
-  test("Trace EN (/en/projects/trace/) renders localized Open Graph with real demo-poster.webp", async ({
+  test("Trace EN (/en/projects/trace) renders localized Open Graph with real demo-poster.webp", async ({
     page,
   }) => {
-    await page.goto("/en/projects/trace/");
+    await page.goto("/en/projects/trace");
 
     await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
       "content",
