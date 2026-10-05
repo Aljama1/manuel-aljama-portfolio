@@ -1,11 +1,12 @@
+import { profile } from "../profile";
+
 export const privacyContent = {
   title: "Política de Privacidad",
   lastUpdated: "Última actualización: Septiembre de 2026",
   sections: [
     {
       heading: "Responsable y Contacto",
-      content:
-        "Este portfolio web es operado y mantenido por Manuel Aljama en su calidad de desarrollador de software. Si tienes alguna duda sobre esta política de privacidad, puedes contactar a través del correo electrónico proporcionado en la sección de contacto (manuel.aljama.r@gmail.com) o mediante LinkedIn.",
+      content: `Este portfolio web es operado y mantenido por Manuel Aljama en su calidad de desarrollador de software. Si tienes alguna duda sobre esta política de privacidad, puedes contactar a través del correo electrónico proporcionado en la sección de contacto (${profile.email}) o mediante LinkedIn.`,
     },
     {
       heading: "Finalidad del Sitio",

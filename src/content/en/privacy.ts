@@ -1,11 +1,12 @@
+import { profile } from "../profile";
+
 export const privacyContent = {
   title: "Privacy Policy",
   lastUpdated: "Last updated: September 2026",
   sections: [
     {
       heading: "Controller and Contact",
-      content:
-        "This web portfolio is operated and maintained by Manuel Aljama as a software developer. If you have any questions regarding this privacy policy, you can reach out via the email address provided in the contact section (manuel.aljama.r@gmail.com) or through LinkedIn.",
+      content: `This web portfolio is operated and maintained by Manuel Aljama as a software developer. If you have any questions regarding this privacy policy, you can reach out via the email address provided in the contact section (${profile.email}) or through LinkedIn.`,
     },
     {
       heading: "Purpose of the Website",
