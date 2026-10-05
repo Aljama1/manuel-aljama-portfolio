@@ -29,13 +29,25 @@ export function Hero({ name, role, githubUrl, content, actions }: HeroProps) {
           {content.supportingCopy}
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Button href="#projects" size="lg">
+          <Button href="#projects" size="lg" className="group">
             {actions.viewProjects}
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <ArrowRight
+              className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
           </Button>
-          <Button href={githubUrl} external size="lg" variant="secondary">
+          <Button
+            href={githubUrl}
+            external
+            size="lg"
+            variant="secondary"
+            className="group"
+          >
             {actions.github}
-            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            <ArrowUpRight
+              className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              aria-hidden="true"
+            />
           </Button>
         </div>
       </div>
