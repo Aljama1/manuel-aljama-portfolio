@@ -7,6 +7,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Section } from "@/components/ui/Section";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { AiEngineeringContent } from "@/content";
 
 interface AiEngineeringSectionProps {
@@ -30,7 +31,7 @@ export function AiEngineeringSection({ content }: AiEngineeringSectionProps) {
       id="ai-engineering"
       className="scroll-mt-20 border-b border-border/60"
     >
-      <div className="max-w-3xl">
+      <ScrollReveal className="max-w-3xl">
         <p className="font-mono text-xs font-medium tracking-[0.18em] text-secondary">
           {content.eyebrow}
         </p>
@@ -40,68 +41,79 @@ export function AiEngineeringSection({ content }: AiEngineeringSectionProps) {
         <p className="mt-5 text-base leading-relaxed text-foreground-muted sm:text-lg sm:leading-8">
           {content.description}
         </p>
-      </div>
+      </ScrollReveal>
 
-      {/* Mensaje central destacado con acento secundario (violeta) */}
-      <div className="mt-10 overflow-hidden rounded-lg border border-secondary/30 bg-secondary/5 p-6 sm:p-8">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <span className="font-mono text-[11px] font-semibold tracking-[0.18em] text-secondary uppercase">
-              {content.principleLabel}
-            </span>
-            <p className="mt-2 font-heading text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl">
-              &ldquo;{content.coreMessage}&rdquo;
-            </p>
-          </div>
+      {/* Mensaje central destacado con acento secundario (violeta) y aura ambiental */}
+      <ScrollReveal delayMs={100}>
+        <div className="card-glass relative mt-10 overflow-hidden rounded-2xl border border-secondary/35 bg-gradient-to-br from-secondary/[0.08] via-surface to-surface p-7 shadow-lg sm:p-9">
           <div
             aria-hidden="true"
-            className="flex items-center gap-1.5 font-mono text-xs text-secondary sm:self-end"
-          >
-            <span className="inline-block h-2 w-2 rounded-full bg-secondary" />
-            <span>HUMAN_IN_THE_LOOP</span>
+            className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-secondary/15 blur-2xl"
+          />
+          <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-2xl">
+              <span className="font-mono text-[11px] font-semibold tracking-[0.18em] text-secondary uppercase">
+                {content.principleLabel}
+              </span>
+              <p className="mt-2.5 font-heading text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl">
+                &ldquo;{content.coreMessage}&rdquo;
+              </p>
+            </div>
+            <div
+              aria-hidden="true"
+              className="flex shrink-0 items-center gap-2 rounded-full border border-secondary/30 bg-secondary/10 px-3.5 py-1.5 font-mono text-xs font-medium text-secondary sm:self-center"
+            >
+              <span className="h-2 w-2 rounded-full bg-secondary shadow-[0_0_8px_var(--secondary)]" />
+              <span>HUMAN_IN_THE_LOOP</span>
+            </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
 
-      {/* Grid de pilares / prácticas */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-        {pillars.map((pillar, idx) => {
-          const IconComponent = PILLAR_ICONS[idx % PILLAR_ICONS.length] ?? Cpu;
+      {/* Grid de 6 pilares de ingeniería con jerarquía visual e iconos reactivos */}
+      <ScrollReveal delayMs={200}>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {pillars.map((pillar, idx) => {
+            const IconComponent =
+              PILLAR_ICONS[idx % PILLAR_ICONS.length] ?? Cpu;
 
-          return (
-            <div
-              key={pillar.title}
-              className="group relative flex flex-col justify-between rounded-lg border border-border bg-surface p-6 transition-colors duration-200 hover:border-secondary/40"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-md border border-secondary/20 bg-secondary/10 text-secondary">
-                    <IconComponent className="h-4 w-4" aria-hidden="true" />
-                  </div>
-                  <span className="font-mono text-xs font-medium text-foreground-muted">
-                    0{idx + 1}
-                  </span>
-                </div>
-                <h3 className="mt-4 font-heading text-lg font-bold tracking-[-0.02em] text-foreground">
-                  {pillar.title}
-                </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-foreground-muted">
-                  {pillar.description}
-                </p>
-              </div>
-
-              {/* Detalle visual sutil de conexión de nodo */}
+            return (
               <div
-                aria-hidden="true"
-                className="mt-6 flex items-center gap-2 border-t border-border/60 pt-4 font-mono text-[10px] tracking-widest text-foreground-muted"
+                key={pillar.title}
+                className="group card-glass relative flex flex-col justify-between rounded-xl border border-border/70 bg-surface/80 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-secondary/50 hover:shadow-[0_12px_28px_-8px_color-mix(in_srgb,var(--secondary)_20%,transparent)] sm:p-7"
               >
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-secondary/60" />
-                <span>PRACTICE_NODE</span>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-secondary/25 bg-secondary/10 text-secondary transition-all duration-300 group-hover:scale-110 group-hover:bg-secondary group-hover:text-background group-hover:shadow-[0_0_16px_var(--secondary)]">
+                      <IconComponent className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <span className="font-mono text-xs font-semibold tracking-wider text-foreground-dim transition-colors group-hover:text-secondary">
+                      0{idx + 1}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-heading text-lg font-bold tracking-[-0.02em] text-foreground transition-colors group-hover:text-foreground">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-foreground-muted">
+                    {pillar.description}
+                  </p>
+                </div>
+
+                {/* Detalle visual sutil de pie de pilar: se ha eliminado PRACTICE_NODE */}
+                <div
+                  aria-hidden="true"
+                  className="mt-6 flex items-center justify-between border-t border-border/40 pt-3.5 font-mono text-[10px] text-foreground-dim"
+                >
+                  <span className="tracking-widest uppercase">
+                    PILLAR // 0{idx + 1}
+                  </span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-secondary/40 transition-all duration-300 group-hover:scale-125 group-hover:bg-secondary group-hover:shadow-[0_0_6px_var(--secondary)]" />
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      </ScrollReveal>
     </Section>
   );
 }

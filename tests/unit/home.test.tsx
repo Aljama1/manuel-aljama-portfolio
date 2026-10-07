@@ -85,7 +85,7 @@ describe("Home Block 1 & 2 sections", () => {
       screen.getByRole("link", { name: uiContent.es.actions.github }),
     ).toHaveAttribute("href", profile.githubUrl);
     expect(
-      screen.getByRole("link", { name: uiContent.es.actions.viewTrace }),
+      screen.getAllByRole("link", { name: uiContent.es.actions.viewTrace })[0],
     ).toHaveAttribute("href", "/projects/trace");
   });
 
@@ -99,7 +99,7 @@ describe("Home Block 1 & 2 sections", () => {
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: uiContent.en.actions.viewTrace }),
+      screen.getAllByRole("link", { name: uiContent.en.actions.viewTrace })[0],
     ).toHaveAttribute("href", "/en/projects/trace");
 
     const asisteoBlock = screen
@@ -142,8 +142,10 @@ describe("Home Block 1 & 2 sections", () => {
       ),
     ).toBeInTheDocument();
 
-    // Sin fotografía si profile.photo es undefined
-    expect(within(aboutSection as HTMLElement).queryByRole("img")).toBeNull();
+    // Fotografía real de Manuel configurada
+    expect(
+      within(aboutSection as HTMLElement).getByRole("img"),
+    ).toBeInTheDocument();
   });
 
   it("renders HowIBuildSection with the exact 7-step sequence and closure", () => {
@@ -220,13 +222,17 @@ describe("Home Block 1 & 2 sections", () => {
     ).toBeInTheDocument();
 
     // Verificación de tecnologías clave
-    expect(screen.getByText("Java")).toBeInTheDocument();
-    expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    expect(screen.getAllByText("Java")[0]).toBeInTheDocument();
+    expect(screen.getAllByText("TypeScript")[0]).toBeInTheDocument();
     expect(screen.getByText("AI agents")).toBeInTheDocument();
 
-    // Sin barras de progreso ni porcentajes inventados
-    expect(screen.queryByRole("progressbar")).toBeNull();
-    expect(screen.queryByText(/%/)).toBeNull();
+    // Sin barras de progreso ni porcentajes inventados en la sección de skills
+    const skillsSection = document.getElementById("skills");
+    expect(skillsSection).not.toBeNull();
+    expect(
+      within(skillsSection as HTMLElement).queryByRole("progressbar"),
+    ).toBeNull();
+    expect(within(skillsSection as HTMLElement).queryByText(/%/)).toBeNull();
   });
 
   it("renders ExperienceSection with DAM education and target role without invented data", () => {
@@ -259,7 +265,7 @@ describe("Home Block 1 & 2 sections", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders ContactSection with confirmed email and GitHub, and hides LinkedIn and CV when undefined", () => {
+  it("renders ContactSection with confirmed email, GitHub, LinkedIn, and CV", () => {
     render(<HomePage locale="es" />);
 
     expect(
@@ -281,17 +287,18 @@ describe("Home Block 1 & 2 sections", () => {
     });
     expect(githubLink).toHaveAttribute("href", profile.githubUrl);
 
-    // LinkedIn y CV ocultos porque son undefined en profile
+    // LinkedIn confirmado visible
+    const linkedinLink = screen.getByRole("link", {
+      name: new RegExp(homeContent.es.contact.linkedinLabel, "i"),
+    });
+    expect(linkedinLink).toHaveAttribute("href", profile.linkedInUrl);
+
+    // CV confirmado visible porque profile.cvUrl está definido
     expect(
-      screen.queryByRole("link", {
-        name: new RegExp(homeContent.es.contact.linkedinLabel, "i"),
-      }),
-    ).toBeNull();
-    expect(
-      screen.queryByRole("link", {
+      screen.getByRole("link", {
         name: new RegExp(homeContent.es.contact.cvLabel, "i"),
       }),
-    ).toBeNull();
+    ).toHaveAttribute("href", profile.cvUrl);
   });
 
   it("renders English Home with localized labels for HowIBuild, AiEngineering, and Skills without hardcoded Spanish", () => {

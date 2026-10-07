@@ -43,14 +43,14 @@ describe("Layout Components", () => {
       );
     });
 
-    it("oculta el botón de CV cuando cvUrl es undefined", () => {
+    it("muestra el botón de CV cuando cvUrl está definido", () => {
       render(
         <ThemeProvider>
           <Header lang="es" />
         </ThemeProvider>,
       );
 
-      expect(screen.queryByRole("link", { name: /cv/i })).toBeNull();
+      expect(screen.getByRole("link", { name: /cv/i })).toBeInTheDocument();
     });
 
     it("abre el menú móvil y se cierra al pulsar un enlace de ancla", () => {
@@ -99,7 +99,7 @@ describe("Layout Components", () => {
       ).toBeInTheDocument();
     });
 
-    it("contiene enlaces a GitHub y Email, y oculta LinkedIn cuando no está definido", () => {
+    it("contiene enlaces a GitHub, Email y LinkedIn", () => {
       render(<Footer lang="es" />);
 
       const github = screen.getByRole("link", { name: "GitHub" });
@@ -108,7 +108,11 @@ describe("Layout Components", () => {
       const email = screen.getByRole("link", { name: "Email" });
       expect(email).toHaveAttribute("href", "mailto:manuelaljama9@gmail.com");
 
-      expect(screen.queryByRole("link", { name: "LinkedIn" })).toBeNull();
+      const linkedin = screen.getByRole("link", { name: "LinkedIn" });
+      expect(linkedin).toHaveAttribute(
+        "href",
+        "https://www.linkedin.com/in/manuelaljama",
+      );
     });
 
     it("incluye el copyright 2026", () => {

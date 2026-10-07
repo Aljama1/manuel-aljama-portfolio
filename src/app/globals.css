@@ -18,20 +18,30 @@
   --primary: #b8f34a;
   --primary-hover: #c7ff6a;
   --secondary: #a78bfa;
+
+  /* Malla ambiental sutil (2-4% opacidad para atmósfera sin saturar) */
+  --ambient-mesh-1: color-mix(in srgb, var(--primary) 3.5%, transparent);
+  --ambient-mesh-2: color-mix(in srgb, var(--secondary) 2.5%, transparent);
+  --ambient-mesh-3: color-mix(in srgb, var(--primary) 2%, transparent);
 }
 
 html.light {
   /* Modo claro con contraste propio (WCAG AA >= 4.5:1) */
-  --background: #fafafa;
+  --background: #f4f4f6;
   --surface: #ffffff;
-  --surface-raised: #f4f4f5;
+  --surface-raised: #e9eaec;
   --foreground: #18181b;
   --foreground-muted: #52525b;
   --foreground-dim: #71717a;
-  --border: #e4e4e7;
-  --primary: #4d760f;
-  --primary-hover: #3f610c;
+  --border: #d4d4d8;
+  --primary: #365314;
+  --primary-hover: #2d4510;
   --secondary: #7c3aed;
+
+  /* Malla ambiental en modo claro */
+  --ambient-mesh-1: color-mix(in srgb, var(--primary) 3%, transparent);
+  --ambient-mesh-2: color-mix(in srgb, var(--secondary) 2.2%, transparent);
+  --ambient-mesh-3: color-mix(in srgb, var(--primary) 2%, transparent);
 }
 
 @theme {
@@ -59,6 +69,81 @@ html.light {
 
   /* Contenedor */
   --max-width-container: 1280px;
+
+  /* Tokens de Motion */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 450ms;
+  --duration-hero: 520ms;
+  --stagger-step: 75ms;
+  --duration-reveal: 650ms;
+}
+
+/* Keyframes acelerados por GPU (solo transform y opacity) */
+@keyframes heroFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contentReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-card {
+  animation: heroFadeSlide var(--duration-hero) var(--ease-editorial) both;
+  animation-delay: calc(var(--stagger-index, 0) * var(--stagger-step));
+}
+
+.animate-reveal {
+  animation: contentReveal var(--duration-reveal) var(--ease-editorial) both;
+}
+
+.scroll-reveal {
+  opacity: 0;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  animation: contentReveal var(--duration-reveal) var(--ease-editorial) both;
+}
+
+/* Fallback si JavaScript está desactivado */
+@media (scripting: none) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@keyframes tabFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-tab-fade {
+  animation: tabFade 180ms ease-out forwards;
+}
+
+html {
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -67,8 +152,144 @@ html.light {
   }
 }
 
+/* Respeto estricto a prefers-reduced-motion (WCAG 2.2 AA) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal.is-revealed {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* Malla ambiental fija en el body con gradientes radiales sutiles */
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: clip;
+  background-image:
+    radial-gradient(
+      ellipse 80% 50% at 50% -120px,
+      var(--ambient-mesh-1),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 45% at 100% 25%,
+      var(--ambient-mesh-2),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 45% at 0% 70%,
+      var(--ambient-mesh-3),
+      transparent 70%
+    );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* Clases de elevación, superficie táctil y micro-resplandor */
+.card-glass {
+  background-color: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  transition:
+    border-color 250ms var(--ease-editorial),
+    box-shadow 250ms var(--ease-editorial),
+    transform 250ms var(--ease-editorial);
+}
+
+.card-glass:hover {
+  border-color: color-mix(in srgb, var(--border) 90%, var(--primary) 10%);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    0 8px 24px -4px rgba(0, 0, 0, 0.35),
+    0 0 0 1px color-mix(in srgb, var(--primary) 15%, transparent);
+}
+
+html.light .card-glass {
+  background-color: color-mix(in srgb, var(--surface) 92%, transparent);
+  border-color: color-mix(in srgb, var(--border) 90%, transparent);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    0 1px 3px 0 rgba(0, 0, 0, 0.04);
+}
+
+html.light .card-glass:hover {
+  border-color: color-mix(in srgb, var(--border) 80%, var(--primary) 20%);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 1),
+    0 8px 20px -4px rgba(0, 0, 0, 0.06),
+    0 0 0 1px color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+.card-elevation {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+    0 1px 2px 0 rgba(0, 0, 0, 0.25);
+  transition:
+    border-color 250ms var(--ease-editorial),
+    box-shadow 250ms var(--ease-editorial),
+    transform 250ms var(--ease-editorial);
+}
+
+.card-elevation:hover {
+  border-color: color-mix(in srgb, var(--border) 80%, var(--primary) 20%);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    0 6px 20px -3px rgba(0, 0, 0, 0.35),
+    0 0 0 1px color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+html.light .card-elevation {
+  background-color: var(--surface);
+  border-color: var(--border);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+    0 1px 3px 0 rgba(0, 0, 0, 0.04);
+}
+
+html.light .card-elevation:hover {
+  border-color: color-mix(in srgb, var(--border) 70%, var(--primary) 30%);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 1),
+    0 8px 20px -4px rgba(0, 0, 0, 0.06),
+    0 0 0 1px color-mix(in srgb, var(--primary) 15%, transparent);
+}
+
+.glow-subtle {
+  box-shadow: 0 0 20px -4px color-mix(in srgb, var(--primary) 15%, transparent);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 20px -4px
+    color-mix(in srgb, var(--secondary) 15%, transparent);
+}
+
+.interactive-tactile {
+  transition:
+    transform 150ms var(--ease-editorial),
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.interactive-tactile:active {
+  transform: scale(0.985);
 }

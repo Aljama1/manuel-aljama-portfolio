@@ -27,9 +27,10 @@ test.describe("Structured Data (JSON-LD) — E2E validation", () => {
       (item: Record<string, unknown>) => item["@type"] === "Person",
     );
     expect(person.name).toBe("Manuel Aljama");
-    expect(person.jobTitle).toBeUndefined();
-    expect(person.sameAs).toEqual(["https://github.com/Aljama1"]);
-    expect(person.worksFor).toBeUndefined();
+    expect(person.sameAs).toEqual([
+      "https://github.com/Aljama1",
+      "https://www.linkedin.com/in/manuelaljama",
+    ]);
 
     const webpage = data["@graph"].find(
       (item: Record<string, unknown>) => item["@type"] === "WebPage",

@@ -26,10 +26,9 @@ test.describe("Smoke — rutas principales", () => {
     await expect(
       home.getByRole("link", { name: "GitHub", exact: true }),
     ).toHaveAttribute("href", "https://github.com/Aljama1");
-    await expect(home.getByRole("link", { name: "Ver Trace" })).toHaveAttribute(
-      "href",
-      "/projects/trace",
-    );
+    await expect(
+      page.locator("#projects").getByRole("link", { name: "Ver Trace" }),
+    ).toHaveAttribute("href", "/projects/trace");
   });
 
   test("Asisteo does not show a public case study CTA", async ({ page }) => {

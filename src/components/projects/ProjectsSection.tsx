@@ -1,5 +1,6 @@
 import { ProjectBlock } from "@/components/projects/ProjectBlock";
 import { Section } from "@/components/ui/Section";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type {
   HomeContent,
   Locale,
@@ -23,31 +24,35 @@ export function ProjectsSection({
   return (
     <Section
       id="projects"
-      className="scroll-mt-20 border-y border-border/60 bg-surface/30"
+      className="scroll-mt-20 border-y border-border/60 bg-surface/30 py-20 md:py-28 lg:py-32"
     >
-      <div className="max-w-3xl">
+      <ScrollReveal className="max-w-3xl">
         <p className="font-mono text-xs font-medium tracking-[0.18em] text-primary">
           {content.eyebrow}
         </p>
         <h2 className="mt-4 font-heading text-4xl font-bold tracking-[-0.045em] text-foreground sm:text-5xl">
           {content.title}
         </h2>
-      </div>
-      <div className="mt-12 space-y-5 sm:mt-16 sm:space-y-8">
-        <ProjectBlock
-          project={projects.trace}
-          locale={locale}
-          content={content.trace}
-          ctaLabel={actions.viewTrace}
-          index="01"
-        />
-        <ProjectBlock
-          project={projects.asisteo}
-          locale={locale}
-          content={content.asisteo}
-          ctaLabel={actions.viewTrace}
-          index="02"
-        />
+      </ScrollReveal>
+      <div className="mt-14 space-y-10 sm:mt-20 sm:space-y-14 lg:mt-24 lg:space-y-16">
+        <ScrollReveal delayMs={100}>
+          <ProjectBlock
+            project={projects.trace}
+            locale={locale}
+            content={content.trace}
+            ctaLabel={actions.viewTrace}
+            index="01"
+          />
+        </ScrollReveal>
+        <ScrollReveal delayMs={200}>
+          <ProjectBlock
+            project={projects.asisteo}
+            locale={locale}
+            content={content.asisteo}
+            ctaLabel={actions.viewTrace}
+            index="02"
+          />
+        </ScrollReveal>
       </div>
     </Section>
   );

@@ -57,7 +57,7 @@ export function Button(props: ButtonProps) {
   } = props;
 
   const baseClasses =
-    "inline-flex items-center justify-center transition-colors duration-150 select-none cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed";
+    "inline-flex items-center justify-center transition-[color,background-color,border-color,transform,opacity] duration-150 select-none cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed";
   const classes = `${baseClasses} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 
   if (props.href !== undefined) {
