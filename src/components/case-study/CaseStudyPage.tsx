@@ -43,7 +43,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
   return (
     <article className="min-h-screen bg-background text-foreground">
       {/* 1. HERO SECTION */}
-      <header className="relative overflow-hidden border-b border-border/80 bg-surface/40 pt-8 pb-8 sm:pt-10 sm:pb-10">
+      <header className="relative flex min-h-[calc(100svh-4rem)] flex-col justify-between overflow-hidden border-b border-border/80 bg-surface/40 pt-8 pb-8 sm:pt-10 sm:pb-10">
         {/* Ambient background video layer */}
         <div
           className="pointer-events-none absolute inset-0 -z-0 overflow-hidden"
@@ -70,7 +70,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
           aria-hidden="true"
         />
 
-        <Container className="relative z-10">
+        <Container className="relative z-10 flex flex-1 flex-col justify-between">
           <div className="flex items-center justify-between gap-4">
             <Button
               href={hero.backHref}
