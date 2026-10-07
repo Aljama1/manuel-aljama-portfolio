@@ -27,7 +27,7 @@ export function AboutSection({ content, profile, locale }: AboutSectionProps) {
       <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-16">
         {/* Columna izquierda: texto editorial */}
         <ScrollReveal
-          delayMs={70}
+          delayMs={100}
           className="space-y-5 text-base leading-relaxed text-foreground-muted sm:text-lg sm:leading-8 lg:col-span-7"
         >
           {content.paragraphs.map((p, index) => (
@@ -36,7 +36,7 @@ export function AboutSection({ content, profile, locale }: AboutSectionProps) {
         </ScrollReveal>
 
         {/* Columna derecha: ficha breve (y foto solo si existe) */}
-        <ScrollReveal delayMs={140} className="space-y-6 lg:col-span-5">
+        <ScrollReveal delayMs={220} className="space-y-6 lg:col-span-5">
           {photo ? (
             <div className="relative aspect-square w-32 overflow-hidden rounded-lg border border-border sm:w-40">
               <Image

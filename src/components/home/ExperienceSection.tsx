@@ -22,7 +22,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
 
       <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-16">
         {/* Timeline / Educación */}
-        <ScrollReveal delayMs={70} className="space-y-8 lg:col-span-7">
+        <ScrollReveal delayMs={100} className="space-y-8 lg:col-span-7">
           <h3 className="font-mono text-xs font-semibold tracking-[0.16em] text-foreground-muted uppercase">
             {education.heading}
           </h3>
@@ -64,7 +64,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
         </ScrollReveal>
 
         {/* Columna lateral: Idiomas & Objetivo profesional */}
-        <ScrollReveal delayMs={140} className="space-y-6 lg:col-span-5">
+        <ScrollReveal delayMs={220} className="space-y-6 lg:col-span-5">
           {/* Tarjeta de Objetivo profesional */}
           <div className="rounded-lg border border-border bg-surface p-6 sm:p-8">
             <span className="font-mono text-xs font-semibold tracking-[0.16em] text-primary uppercase">

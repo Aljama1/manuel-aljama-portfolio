@@ -26,7 +26,7 @@ export function SkillsSection({ content }: SkillsSectionProps) {
       <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
         {/* Grupo 1: Built with */}
         <ScrollReveal
-          delayMs={70}
+          delayMs={100}
           className="flex flex-col justify-between rounded-lg border border-border bg-surface p-6 sm:p-8"
         >
           <div>
@@ -63,7 +63,7 @@ export function SkillsSection({ content }: SkillsSectionProps) {
 
         {/* Grupo 2: Currently exploring */}
         <ScrollReveal
-          delayMs={140}
+          delayMs={220}
           className="flex flex-col justify-between rounded-lg border border-border bg-surface p-6 sm:p-8"
         >
           <div>

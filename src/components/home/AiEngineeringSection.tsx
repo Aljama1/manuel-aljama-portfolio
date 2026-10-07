@@ -44,7 +44,7 @@ export function AiEngineeringSection({ content }: AiEngineeringSectionProps) {
       </ScrollReveal>
 
       {/* Mensaje central destacado con acento secundario (violeta) */}
-      <ScrollReveal delayMs={70}>
+      <ScrollReveal delayMs={100}>
         <div className="mt-10 overflow-hidden rounded-lg border border-secondary/30 bg-secondary/5 p-6 sm:p-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -67,7 +67,7 @@ export function AiEngineeringSection({ content }: AiEngineeringSectionProps) {
       </ScrollReveal>
 
       {/* Grid de pilares / prácticas */}
-      <ScrollReveal delayMs={140}>
+      <ScrollReveal delayMs={220}>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {pillars.map((pillar, idx) => {
             const IconComponent =

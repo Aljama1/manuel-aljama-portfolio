@@ -35,7 +35,7 @@ export function ProjectsSection({
         </h2>
       </ScrollReveal>
       <div className="mt-12 space-y-5 sm:mt-16 sm:space-y-8">
-        <ScrollReveal delayMs={70}>
+        <ScrollReveal delayMs={100}>
           <ProjectBlock
             project={projects.trace}
             locale={locale}
@@ -44,7 +44,7 @@ export function ProjectsSection({
             index="01"
           />
         </ScrollReveal>
-        <ScrollReveal delayMs={140}>
+        <ScrollReveal delayMs={220}>
           <ProjectBlock
             project={projects.asisteo}
             locale={locale}

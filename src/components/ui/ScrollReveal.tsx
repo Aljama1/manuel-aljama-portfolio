@@ -18,9 +18,9 @@ export function ScrollReveal({
 
   useEffect(() => {
     // Fallback asíncrono para entornos sin IntersectionObserver (ej. navegadores antiguos o tests JSDOM)
-    if (!("IntersectionObserver" in window)) {
-      const rafId = window.requestAnimationFrame(() => setIsVisible(true));
-      return () => window.cancelAnimationFrame(rafId);
+    if (typeof IntersectionObserver === "undefined") {
+      const rafId = requestAnimationFrame(() => setIsVisible(true));
+      return () => cancelAnimationFrame(rafId);
     }
 
     const element = ref.current;

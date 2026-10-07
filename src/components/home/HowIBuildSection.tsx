@@ -28,7 +28,7 @@ export function HowIBuildSection({ content }: HowIBuildSectionProps) {
       </ScrollReveal>
 
       {/* Cadena secuencial de etapas */}
-      <ScrollReveal delayMs={50}>
+      <ScrollReveal delayMs={80}>
         <nav
           aria-label={content.title}
           tabIndex={0}
@@ -53,7 +53,7 @@ export function HowIBuildSection({ content }: HowIBuildSectionProps) {
       </ScrollReveal>
 
       {/* Grid de etapas explicadas */}
-      <ScrollReveal delayMs={100}>
+      <ScrollReveal delayMs={180}>
         <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {steps.map((step) => (
             <li
@@ -82,7 +82,7 @@ export function HowIBuildSection({ content }: HowIBuildSectionProps) {
       </ScrollReveal>
 
       {/* Cierre conceptual */}
-      <ScrollReveal delayMs={150}>
+      <ScrollReveal delayMs={280}>
         <div className="mt-12 rounded-lg border border-border/80 bg-surface/50 p-6 text-center sm:p-8">
           <p className="font-mono text-xs font-medium tracking-[0.2em] text-foreground-muted uppercase">
             {content.cyclePhilosophyLabel}
