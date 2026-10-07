@@ -1993,8 +1993,8 @@ Utilizar:
 - [ ] CI verde;
 - [ ] Preview deployment;
 - [ ] Production deployment;
-- [ ] dominio;
-- [ ] HTTPS;
+- [x] dominio;
+- [x] HTTPS;
 - [ ] analytics;
 - [ ] ruta de recuperación/rollback conocida.
 

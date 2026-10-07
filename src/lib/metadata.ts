@@ -111,8 +111,8 @@ export function getPrivacyMetadata(locale: Locale): Metadata {
     ? "Política de Privacidad | Manuel Aljama"
     : "Privacy Policy | Manuel Aljama";
   const description = isEs
-    ? "Política de privacidad y analítica de manuel-aljama-portfolio.vercel.app"
-    : "Privacy policy and analytics for manuel-aljama-portfolio.vercel.app";
+    ? "Política de privacidad y analítica de manuelaljama.com"
+    : "Privacy policy and analytics for manuelaljama.com";
   const path = isEs ? "/privacy" : "/en/privacy";
 
   return {

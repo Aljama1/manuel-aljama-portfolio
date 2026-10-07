@@ -335,7 +335,7 @@ export const enTrace: TraceCaseStudyContent = {
         title: "Reactive Filtering Across 14 EU Allergens",
         subtitle: "Compliance with EU Regulation No 1169/2011",
         context:
-          "European food safety regulations mandate clear disclosure of 14 major allergens. Diners with celiac disease or nut allergies need absolute menu filtering certainty.",
+          "European food safety regulations mandate clear disclosure of 14 major allergens. Diners with celiac disease or nut allergies need reliable, immediate menu filtering without guesswork.",
         decision:
           "Tag each recipe item with standardized allergen identifiers and compute an in-memory boolean exclusion filter that instantly updates visible dishes as preferences change.",
         justification:
