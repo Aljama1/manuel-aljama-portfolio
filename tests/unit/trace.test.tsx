@@ -157,19 +157,40 @@ describe("Trace Case Study presentation components", () => {
       }),
     ).toBeInTheDocument();
 
-    const video = document.querySelector("video");
-    expect(video).toBeInTheDocument();
-    expect(video).toHaveAttribute(
+    // 1. Ambient Hero Background Video
+    const heroVideo = document.querySelector("header video");
+    expect(heroVideo).toBeInTheDocument();
+    expect(heroVideo).toHaveAttribute(
+      "poster",
+      "/media/projects/trace/hero-bg-poster.webp",
+    );
+    expect(heroVideo).toHaveAttribute("preload", "metadata");
+    expect(heroVideo).toHaveAttribute("autoplay");
+    expect(heroVideo).toHaveAttribute("loop");
+    expect(heroVideo).toHaveProperty("muted", true);
+    expect(heroVideo).toHaveAttribute("playsinline");
+    const heroSource = heroVideo?.querySelector("source");
+    expect(heroSource).toBeInTheDocument();
+    expect(heroSource).toHaveAttribute(
+      "src",
+      "/media/projects/trace/hero-bg.mp4",
+    );
+    expect(heroSource).toHaveAttribute("type", "video/mp4");
+
+    // 2. Interactive Demo Section Video
+    const demoVideo = document.querySelector("#demo video");
+    expect(demoVideo).toBeInTheDocument();
+    expect(demoVideo).toHaveAttribute(
       "poster",
       "/media/projects/trace/demo-poster.webp",
     );
-    expect(video).toHaveAttribute("preload", "metadata");
-    expect(video).toHaveAttribute("controls");
-    expect(video).not.toHaveAttribute("autoplay");
-    const source = video?.querySelector("source");
-    expect(source).toBeInTheDocument();
-    expect(source).toHaveAttribute("src", "/media/projects/trace/demo.mp4");
-    expect(source).toHaveAttribute("type", "video/mp4");
+    expect(demoVideo).toHaveAttribute("preload", "metadata");
+    expect(demoVideo).toHaveAttribute("controls");
+    expect(demoVideo).not.toHaveAttribute("autoplay");
+    const demoSource = demoVideo?.querySelector("source");
+    expect(demoSource).toBeInTheDocument();
+    expect(demoSource).toHaveAttribute("src", "/media/projects/trace/demo.mp4");
+    expect(demoSource).toHaveAttribute("type", "video/mp4");
 
     expect(
       screen.getByRole("heading", {

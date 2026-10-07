@@ -14,6 +14,7 @@ const config = [
       "coverage/**",
       "playwright-report/**",
       "output/**",
+      "scripts/**",
     ],
   },
   ...coreWebVitals,

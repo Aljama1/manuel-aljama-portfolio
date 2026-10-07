@@ -43,14 +43,34 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
   return (
     <article className="min-h-screen bg-background text-foreground">
       {/* 1. HERO SECTION */}
-      <header className="relative overflow-hidden border-b border-border/80 bg-surface/40 pt-28 pb-16 sm:pt-32 sm:pb-20">
+      <header className="relative flex min-h-[calc(100svh-4rem)] flex-col justify-between overflow-hidden border-b border-border/80 bg-surface/40 pt-8 pb-8 sm:pt-10 sm:pb-10">
+        {/* Ambient background video layer */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-0 overflow-hidden"
+          aria-hidden="true"
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster="/media/projects/trace/hero-bg-poster.webp"
+            className="h-full w-full object-cover opacity-50 motion-reduce:hidden dark:opacity-55"
+          >
+            <source src="/media/projects/trace/hero-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Contrast scrim & gradient mask to protect WCAG AA readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/30 dark:from-background/95 dark:via-background/85 dark:to-background/25" />
+        </div>
+
         {/* Ambient lighting flare */}
         <div
           className="pointer-events-none absolute -top-16 -right-16 h-72 w-72 rounded-full bg-gradient-to-bl from-primary/10 via-secondary/5 to-transparent blur-3xl"
           aria-hidden="true"
         />
 
-        <Container>
+        <Container className="relative z-10 flex flex-1 flex-col justify-between">
           <div className="flex items-center justify-between gap-4">
             <Button
               href={hero.backHref}
