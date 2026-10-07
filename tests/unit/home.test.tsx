@@ -265,7 +265,7 @@ describe("Home Block 1 & 2 sections", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders ContactSection with confirmed email and GitHub, and hides LinkedIn and CV when undefined", () => {
+  it("renders ContactSection with confirmed email, GitHub, LinkedIn, and CV", () => {
     render(<HomePage locale="es" />);
 
     expect(
@@ -287,12 +287,11 @@ describe("Home Block 1 & 2 sections", () => {
     });
     expect(githubLink).toHaveAttribute("href", profile.githubUrl);
 
-    // LinkedIn oculto porque es undefined en profile
-    expect(
-      screen.queryByRole("link", {
-        name: new RegExp(homeContent.es.contact.linkedinLabel, "i"),
-      }),
-    ).toBeNull();
+    // LinkedIn confirmado visible
+    const linkedinLink = screen.getByRole("link", {
+      name: new RegExp(homeContent.es.contact.linkedinLabel, "i"),
+    });
+    expect(linkedinLink).toHaveAttribute("href", profile.linkedInUrl);
 
     // CV confirmado visible porque profile.cvUrl está definido
     expect(

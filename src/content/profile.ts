@@ -4,6 +4,7 @@ export const profile: Profile = {
   name: "Manuel Aljama",
   role: "Software Developer",
   githubUrl: "https://github.com/Aljama1",
+  linkedInUrl: "https://www.linkedin.com/in/manuelaljama",
   email: "manuelaljama9@gmail.com",
   cvUrl: "/assets/cv/manuel-aljama-cv.pdf",
   photo: {

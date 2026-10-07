@@ -106,7 +106,7 @@ describe("Structured Data (JSON-LD)", () => {
       expect(webpageEn?.["@id"]).toBe(`${SITE_URL}/en/#webpage`);
     });
 
-    it("does not include invented Person data (LinkedIn, fake companies, fake metrics)", () => {
+    it("does not include invented Person data, and reflects verified profiles (GitHub, LinkedIn)", () => {
       const esData = getHomeStructuredData("es");
       const person = esData["@graph"].find(
         (item) => item["@type"] === "Person",
@@ -115,7 +115,7 @@ describe("Structured Data (JSON-LD)", () => {
       expect(person).toBeDefined();
       expect(person?.name).toBe(profile.name);
       expect(person?.["jobTitle"]).toBeUndefined();
-      expect(person?.sameAs).toEqual([profile.githubUrl]);
+      expect(person?.sameAs).toEqual([profile.githubUrl, profile.linkedInUrl]);
 
       // Assert absence of unverified/unpresent attributes
       expect(person?.["worksFor"]).toBeUndefined();
@@ -123,7 +123,6 @@ describe("Structured Data (JSON-LD)", () => {
       expect(person?.["address"]).toBeUndefined();
       expect(person?.["award"]).toBeUndefined();
       expect(person?.["hasCredential"]).toBeUndefined();
-      expect(person?.sameAs).not.toContain("https://linkedin.com");
     });
 
     it("has inLanguage 'es' for ES and 'en' for EN without Spanish leakage in EN Home", () => {

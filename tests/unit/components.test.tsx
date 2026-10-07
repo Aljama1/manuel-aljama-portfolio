@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 describe("Base UI Components", () => {
   describe("Container", () => {
@@ -81,6 +82,86 @@ describe("Base UI Components", () => {
       render(<Button disabled>Desactivado</Button>);
       const button = screen.getByRole("button", { name: "Desactivado" });
       expect(button).toBeDisabled();
+    });
+  });
+
+  describe("ScrollReveal", () => {
+    it("renderiza contenido y aplica las clases scroll-reveal con separación limpia de espacio", async () => {
+      render(
+        <ScrollReveal data-testid="reveal-item">
+          <span>Contenido animado</span>
+        </ScrollReveal>,
+      );
+
+      const item = screen.getByText("Contenido animado").parentElement!;
+      expect(item).toBeInTheDocument();
+      // Verificamos que la clase base esté presente
+      expect(item.className).toContain("scroll-reveal");
+      // Verificamos que no exista el bug de concatenación sin espacio
+      expect(item.className).not.toContain("scroll-revealis-revealed");
+    });
+
+    it("combina className personalizada con scroll-reveal e is-revealed correctamente", async () => {
+      render(
+        <ScrollReveal className="custom-card max-w-3xl">
+          <span>Card personalizada</span>
+        </ScrollReveal>,
+      );
+
+      const item = screen.getByText("Card personalizada").parentElement!;
+      expect(item).toHaveClass("max-w-3xl");
+      expect(item).toHaveClass("custom-card");
+      expect(item).toHaveClass("scroll-reveal");
+
+      await waitFor(() => {
+        expect(item).toHaveClass("is-revealed");
+      });
+      expect(item.className).not.toContain("scroll-revealis-revealed");
+    });
+
+    it("aplica animationDelay cuando delayMs > 0 y es visible", async () => {
+      render(
+        <ScrollReveal delayMs={250}>
+          <span>Retardado</span>
+        </ScrollReveal>,
+      );
+
+      const item = screen.getByText("Retardado").parentElement!;
+      await waitFor(() => {
+        expect(item.style.animationDelay).toBe("250ms");
+      });
+    });
+
+    it("activa visibilidad inmediata cuando prefers-reduced-motion está habilitado", async () => {
+      const originalMatchMedia = window.matchMedia;
+      window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+        matches: query === "(prefers-reduced-motion: reduce)",
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      }));
+
+      try {
+        render(
+          <ScrollReveal>
+            <span>Accesibilidad de movimiento</span>
+          </ScrollReveal>,
+        );
+
+        const item = screen.getByText(
+          "Accesibilidad de movimiento",
+        ).parentElement!;
+        expect(item).toHaveClass("scroll-reveal");
+        await waitFor(() => {
+          expect(item).toHaveClass("is-revealed");
+        });
+      } finally {
+        window.matchMedia = originalMatchMedia;
+      }
     });
   });
 });

@@ -26,20 +26,26 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
     locale === "en" ? "/en/projects/trace" : "/projects/trace";
 
   return (
-    <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border bg-surface p-4 shadow-sm transition-all duration-300 hover:border-border/80 sm:p-5">
+    <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-surface/90 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-border sm:p-5">
+      {/* Ambient background flare */}
+      <div
+        className="pointer-events-none absolute -top-12 -right-12 h-36 w-36 rounded-full bg-gradient-to-bl from-primary/10 via-secondary/5 to-transparent blur-2xl"
+        aria-hidden="true"
+      />
+
       {/* Browser Window Mockup */}
-      <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-border bg-background shadow-xs">
-        {/* Browser Chrome Header (Titlebar & Tab) */}
-        <div className="flex items-center justify-between border-b border-border bg-surface-raised px-3 py-2">
+      <div className="relative flex flex-1 flex-col overflow-hidden rounded-xl border border-border/80 bg-background shadow-xs">
+        {/* Browser Chrome Header (Titlebar & Tabs with Satin Finish) */}
+        <div className="flex items-center justify-between border-b border-border/80 bg-surface-raised/90 px-3 py-2 backdrop-blur-xs">
           {/* Mac Window Dots */}
           <div className="flex items-center gap-1.5" aria-hidden="true">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#ef4444]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#eab308]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-[#22c55e]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#ef4444] shadow-2xs" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#eab308] shadow-2xs" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#22c55e] shadow-2xs" />
           </div>
 
-          {/* Active Browser Tab */}
-          <div className="flex items-center gap-2 rounded-t-lg border-x border-t border-border bg-background px-3 py-1 font-mono text-[11px] font-medium text-foreground">
+          {/* Active Browser Tab with clear contrast against satin titlebar */}
+          <div className="flex items-center gap-2 rounded-t-lg border-x border-t border-border/80 bg-background px-3 py-1 font-mono text-[11px] font-medium text-foreground shadow-xs">
             <span className="flex h-3.5 w-3.5 items-center justify-center rounded-xs bg-primary text-[10px] font-bold text-background">
               T
             </span>
@@ -57,7 +63,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
         </div>
 
         {/* Browser Navigation / Omnibox Bar */}
-        <div className="flex items-center gap-2 border-b border-border bg-surface px-3 py-1.5">
+        <div className="flex items-center gap-2 border-b border-border/70 bg-surface/80 px-3 py-1.5 backdrop-blur-xs">
           <div
             className="flex items-center gap-1 text-foreground-muted"
             aria-hidden="true"
@@ -68,7 +74,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
           </div>
 
           {/* Address Bar */}
-          <div className="flex min-w-0 flex-1 items-center gap-1.5 overflow-hidden rounded-md border border-border bg-background px-2.5 py-0.5 font-mono text-[11px] text-foreground-muted">
+          <div className="flex min-w-0 flex-1 items-center gap-1.5 overflow-hidden rounded-md border border-border/80 bg-background/90 px-2.5 py-0.5 font-mono text-[11px] text-foreground-muted shadow-2xs">
             <Lock
               className="h-2.5 w-2.5 shrink-0 text-primary"
               aria-hidden="true"
@@ -79,8 +85,11 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
           </div>
 
           {/* Live Status Pill */}
-          <div className="hidden shrink-0 items-center gap-1.5 rounded-full bg-primary/10 px-2 py-0.5 font-mono text-[10px] font-medium text-primary sm:inline-flex">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
+          <div className="hidden shrink-0 items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 font-mono text-[10px] font-medium text-primary shadow-xs sm:inline-flex">
+            <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+            </span>
             <span>
               {locale === "es" ? "Firestore: En línea" : "Firestore: Online"}
             </span>
@@ -90,9 +99,9 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
         {/* Browser Viewport (Web App Dashboard) */}
         <div className="flex flex-1 flex-col justify-between bg-background p-3.5 sm:p-4">
           {/* Dashboard Header Bar */}
-          <div className="grid grid-cols-1 gap-2.5 border-b border-border pb-3 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-2.5 border-b border-border/80 pb-3 sm:grid-cols-2">
             {/* Real Metrics Box */}
-            <div className="rounded-lg border border-border bg-surface p-2.5 font-mono text-xs">
+            <div className="rounded-lg border border-border/70 bg-surface/80 p-2.5 font-mono text-xs shadow-2xs">
               <p className="flex items-center gap-1 text-[10px] font-semibold tracking-wider text-foreground-muted uppercase">
                 <Sparkles className="h-2.5 w-2.5 text-primary" />
                 {locale === "es"
@@ -107,7 +116,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
             </div>
 
             {/* Sync Telemetry Box */}
-            <div className="flex items-center justify-between rounded-lg border border-border bg-surface p-2.5 font-mono text-xs">
+            <div className="flex items-center justify-between rounded-lg border border-border/70 bg-surface/80 p-2.5 font-mono text-xs shadow-2xs">
               <div>
                 <p className="text-[10px] font-semibold tracking-wider text-foreground-muted uppercase">
                   {locale === "es" ? "Sincronización" : "Synchronization"}
@@ -116,7 +125,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                   {locale === "es" ? "Tiempo Real (0ms)" : "Realtime (0ms)"}
                 </p>
               </div>
-              <div className="rounded-full bg-primary/10 p-1.5 text-primary">
+              <div className="rounded-full bg-primary/10 p-1.5 text-primary shadow-2xs">
                 <ShieldCheck className="h-3.5 w-3.5" />
               </div>
             </div>
@@ -130,8 +139,8 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                 onClick={() => setActiveTab("kds")}
                 className={`inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-mono text-[11px] transition-all duration-150 active:scale-[0.98] sm:px-2.5 ${
                   activeTab === "kds"
-                    ? "border border-border bg-surface-raised font-medium text-foreground shadow-xs"
-                    : "text-foreground-muted hover:text-foreground"
+                    ? "border border-border/80 bg-surface-raised font-medium text-foreground shadow-xs ring-1 ring-border/30"
+                    : "border border-transparent text-foreground-muted hover:bg-surface-raised/50 hover:text-foreground"
                 }`}
               >
                 <UtensilsCrossed className="h-3 w-3 shrink-0" />
@@ -148,8 +157,8 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                 onClick={() => setActiveTab("audit")}
                 className={`inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-mono text-[11px] transition-all duration-150 active:scale-[0.98] sm:px-2.5 ${
                   activeTab === "audit"
-                    ? "border border-border bg-surface-raised font-medium text-foreground shadow-xs"
-                    : "text-foreground-muted hover:text-foreground"
+                    ? "border border-border/80 bg-surface-raised font-medium text-foreground shadow-xs ring-1 ring-border/30"
+                    : "border border-transparent text-foreground-muted hover:bg-surface-raised/50 hover:text-foreground"
                 }`}
               >
                 <ShieldCheck className="h-3 w-3 shrink-0" />
@@ -166,8 +175,8 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                 onClick={() => setActiveTab("stack")}
                 className={`inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-mono text-[11px] transition-all duration-150 active:scale-[0.98] sm:px-2.5 ${
                   activeTab === "stack"
-                    ? "border border-border bg-surface-raised font-medium text-foreground shadow-xs"
-                    : "text-foreground-muted hover:text-foreground"
+                    ? "border border-border/80 bg-surface-raised font-medium text-foreground shadow-xs ring-1 ring-border/30"
+                    : "border border-transparent text-foreground-muted hover:bg-surface-raised/50 hover:text-foreground"
                 }`}
               >
                 <Layers className="h-3 w-3 shrink-0" />
@@ -181,16 +190,16 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
           </div>
 
           {/* Active Tab Panel Content */}
-          <div className="flex min-h-[140px] flex-col justify-between rounded-lg border border-border bg-surface p-3 font-mono text-xs">
+          <div className="flex min-h-[140px] flex-col justify-between rounded-lg border border-border/70 bg-surface/80 p-3 font-mono text-xs shadow-2xs">
             {activeTab === "kds" && (
               <div className="animate-tab-fade flex flex-col gap-2">
-                <div className="flex items-center justify-between border-b border-border pb-1.5">
+                <div className="flex items-center justify-between border-b border-border/60 pb-1.5">
                   <span className="text-[11px] font-semibold text-foreground">
                     {locale === "es"
                       ? "Comanda activa #128 · QR Sala"
                       : "Active order #128 · Dine-in QR"}
                   </span>
-                  <span className="rounded bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary">
+                  <span className="rounded-full border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary shadow-2xs">
                     {locale === "es" ? "Sincronizado" : "Synchronized"}
                   </span>
                 </div>
@@ -198,7 +207,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                 <div className="space-y-1.5 text-[11px]">
                   <div className="flex items-center justify-between text-foreground-muted">
                     <span>1x Carpaccio de buey</span>
-                    <span className="rounded border border-border bg-surface-raised px-1.5 py-0.5 text-[10px] text-foreground">
+                    <span className="rounded border border-border/60 bg-surface-raised px-1.5 py-0.5 text-[10px] text-foreground">
                       {locale === "es" ? "Sin Gluten" : "Gluten-Free"}
                     </span>
                   </div>
@@ -212,8 +221,8 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                   </div>
                 </div>
 
-                {/* Glowing Activity SVG Curve (Mockup style) */}
-                <div className="relative mt-2 h-14 w-full overflow-hidden rounded pt-1">
+                {/* Glowing Activity SVG Curve with Smoothed Bezier and Pulse */}
+                <div className="relative mt-2 h-14 w-full overflow-hidden rounded-md border border-border/40 bg-background/50 pt-1">
                   <svg
                     viewBox="0 0 500 65"
                     preserveAspectRatio="none"
@@ -231,7 +240,12 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                         <stop
                           offset="0%"
                           stopColor="var(--primary)"
-                          stopOpacity="0.25"
+                          stopOpacity="0.32"
+                        />
+                        <stop
+                          offset="60%"
+                          stopColor="var(--primary)"
+                          stopOpacity="0.08"
                         />
                         <stop
                           offset="100%"
@@ -241,17 +255,26 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                       </linearGradient>
                     </defs>
                     <path
-                      d="M0,45 Q60,15 120,35 T240,20 T360,10 T440,25 T500,18 L500,65 L0,65 Z"
+                      d="M0,45 C60,20 100,38 160,24 C220,10 260,32 320,18 C360,8 410,22 450,14 C470,10 490,16 500,12 L500,65 L0,65 Z"
                       fill="url(#traceWaveGradient)"
                     />
                     <path
-                      d="M0,45 Q60,15 120,35 T240,20 T360,10 T440,25 T500,18"
+                      d="M0,45 C60,20 100,38 160,24 C220,10 260,32 320,18 C360,8 410,22 450,14 C470,10 490,16 500,12"
                       fill="none"
                       stroke="var(--primary)"
                       strokeWidth="2"
+                      strokeLinecap="round"
                     />
-                    {/* Live Peak Point */}
-                    <circle cx="360" cy="10" r="3.5" fill="var(--primary)" />
+                    {/* Live Peak Point with pulse ring */}
+                    <circle
+                      cx="360"
+                      cy="8"
+                      r="6"
+                      fill="var(--primary)"
+                      className="origin-center animate-ping"
+                      opacity="0.4"
+                    />
+                    <circle cx="360" cy="8" r="2.5" fill="var(--primary)" />
                   </svg>
                 </div>
               </div>
@@ -259,7 +282,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
 
             {activeTab === "audit" && (
               <div className="animate-tab-fade flex flex-col gap-2">
-                <div className="flex items-center justify-between border-b border-border pb-1.5">
+                <div className="flex items-center justify-between border-b border-border/60 pb-1.5">
                   <span className="text-[11px] font-semibold text-foreground">
                     {locale === "es"
                       ? "Trazabilidad de Facturación (SHA-256)"
@@ -269,7 +292,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                     ✓ Verificado
                   </span>
                 </div>
-                <div className="space-y-1.5 rounded border border-border bg-surface-raised p-2.5 text-[10px]">
+                <div className="space-y-1.5 rounded border border-border/60 bg-surface-raised/70 p-2.5 text-[10px]">
                   <p>
                     <span className="font-semibold text-foreground">
                       prev_hash:
@@ -314,7 +337,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                   ].map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-md border border-border bg-surface-raised px-2 py-0.5 text-[11px] text-foreground"
+                      className="rounded-md border border-border/60 bg-surface-raised px-2 py-0.5 text-[11px] text-foreground transition-colors hover:border-primary/40 hover:text-primary"
                     >
                       {tech}
                     </span>
@@ -332,7 +355,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
       </div>
 
       {/* Footer Link to Case Study */}
-      <div className="mt-3 flex items-center justify-between border-t border-border pt-2">
+      <div className="mt-3 flex items-center justify-between border-t border-border/70 pt-2">
         <h2 className="font-heading text-sm font-semibold text-foreground">
           {locale === "es"
             ? "Trace: Sistema para Hostelería"
@@ -340,10 +363,15 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
         </h2>
         <Link
           href={caseStudyUrl}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary transition-all duration-150 group-hover:translate-x-0.5 hover:text-primary-hover"
+          className="group inline-flex items-center gap-1.5 text-xs font-semibold text-primary transition-all duration-150 hover:text-primary-hover"
         >
-          {viewTraceLabel || (locale === "es" ? "Ver Trace" : "View Trace")}
-          <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+          <span>
+            {viewTraceLabel || (locale === "es" ? "Ver Trace" : "View Trace")}
+          </span>
+          <ArrowRight
+            className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5"
+            aria-hidden="true"
+          />
         </Link>
       </div>
     </div>

@@ -43,19 +43,31 @@ export function Hero({
         {/* Card 1: Identity & Conversion (Profile Card) */}
         <div
           style={{ "--stagger-index": 0 } as React.CSSProperties}
-          className="animate-hero-card relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border bg-surface p-6 shadow-sm transition-all duration-300 hover:border-border/80 sm:p-7 md:col-span-5 lg:col-span-4"
+          className="animate-hero-card relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-surface/90 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-border hover:shadow-md sm:p-7 md:col-span-5 lg:col-span-4"
         >
-          <div>
-            {/* Centered Avatar */}
-            <div className="relative mx-auto h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-border/80 bg-surface-raised shadow-md sm:h-28 sm:w-28">
-              <Image
-                src={photoSrc}
-                alt={photoAlt}
-                fill
-                sizes="(max-width: 640px) 96px, 112px"
-                className="object-cover"
-                priority
+          {/* Subtle atmospheric ambient glow */}
+          <div
+            className="pointer-events-none absolute -top-12 -left-12 h-36 w-36 rounded-full bg-gradient-to-br from-primary/10 via-secondary/5 to-transparent blur-2xl"
+            aria-hidden="true"
+          />
+
+          <div className="relative">
+            {/* Centered Avatar with Perimetral Diffuse Halo */}
+            <div className="relative mx-auto flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28">
+              <div
+                className="absolute -inset-1 rounded-full bg-gradient-to-tr from-primary/25 to-secondary/20 blur-md"
+                aria-hidden="true"
               />
+              <div className="relative h-full w-full shrink-0 overflow-hidden rounded-full border-2 border-border/80 bg-surface-raised shadow-md">
+                <Image
+                  src={photoSrc}
+                  alt={photoAlt}
+                  fill
+                  sizes="(max-width: 640px) 96px, 112px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </div>
 
             {/* Name, Role & Location */}
@@ -71,10 +83,10 @@ export function Hero({
               </p>
             </div>
 
-            {/* Live Availability Badge (Sin "Remoto") */}
+            {/* Live Availability Badge (Live status pill) */}
             <div className="mt-3 flex justify-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs text-primary">
-                <span className="relative flex h-2 w-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-mono text-xs text-primary shadow-xs transition-colors hover:border-primary/40">
+                <span className="relative flex h-2 w-2" aria-hidden="true">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                 </span>
@@ -93,13 +105,13 @@ export function Hero({
           </div>
 
           {/* Action CTAs: Full-width CV + 2-col Grid for Projects & GitHub */}
-          <div className="mt-5 flex flex-col gap-2 border-t border-border/60 pt-4">
+          <div className="relative mt-5 flex flex-col gap-2 border-t border-border/60 pt-4">
             {cvUrl && (
               <Button
                 href={cvUrl}
                 external
                 variant="secondary"
-                className="w-full justify-center gap-2 rounded-xl py-2.5 text-xs font-medium"
+                className="w-full justify-center gap-2 rounded-xl py-2.5 text-xs font-medium transition-all duration-150 hover:border-primary/40 hover:bg-surface-raised active:scale-[0.98]"
               >
                 <Download className="h-3.5 w-3.5" aria-hidden="true" />
                 {actions.downloadCv ||
@@ -113,7 +125,7 @@ export function Hero({
               <Button
                 href="#projects"
                 size="sm"
-                className="justify-center gap-1.5 rounded-xl bg-foreground text-xs font-medium text-background shadow-xs hover:bg-foreground/90"
+                className="justify-center gap-1.5 rounded-xl bg-foreground text-xs font-medium text-background shadow-xs transition-all duration-150 hover:bg-foreground/90 active:scale-[0.98]"
               >
                 {actions.viewProjects}
                 <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -124,7 +136,7 @@ export function Hero({
                 external
                 size="sm"
                 variant="secondary"
-                className="justify-center gap-1.5 rounded-xl text-xs font-medium"
+                className="justify-center gap-1.5 rounded-xl text-xs font-medium transition-all duration-150 hover:border-primary/40 hover:bg-surface-raised active:scale-[0.98]"
               >
                 {actions.github}
                 <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />

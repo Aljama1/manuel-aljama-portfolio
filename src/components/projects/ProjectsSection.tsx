@@ -24,7 +24,7 @@ export function ProjectsSection({
   return (
     <Section
       id="projects"
-      className="scroll-mt-20 border-y border-border/60 bg-surface/30"
+      className="scroll-mt-20 border-y border-border/60 bg-surface/30 py-20 md:py-28 lg:py-32"
     >
       <ScrollReveal className="max-w-3xl">
         <p className="font-mono text-xs font-medium tracking-[0.18em] text-primary">
@@ -34,7 +34,7 @@ export function ProjectsSection({
           {content.title}
         </h2>
       </ScrollReveal>
-      <div className="mt-12 space-y-5 sm:mt-16 sm:space-y-8">
+      <div className="mt-14 space-y-10 sm:mt-20 sm:space-y-14 lg:mt-24 lg:space-y-16">
         <ScrollReveal delayMs={100}>
           <ProjectBlock
             project={projects.trace}
@@ -44,7 +44,7 @@ export function ProjectsSection({
             index="01"
           />
         </ScrollReveal>
-        <ScrollReveal delayMs={220}>
+        <ScrollReveal delayMs={200}>
           <ProjectBlock
             project={projects.asisteo}
             locale={locale}

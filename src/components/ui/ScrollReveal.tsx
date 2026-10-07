@@ -17,10 +17,47 @@ export function ScrollReveal({
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Si el usuario prefiere movimiento reducido, revelar de inmediato sin animación
+    const motionQuery =
+      typeof window !== "undefined" && typeof window.matchMedia === "function"
+        ? window.matchMedia("(prefers-reduced-motion: reduce)")
+        : null;
+
+    if (motionQuery?.matches) {
+      const rafId =
+        typeof requestAnimationFrame !== "undefined"
+          ? requestAnimationFrame(() => setIsVisible(true))
+          : setTimeout(() => setIsVisible(true), 0);
+
+      return () => {
+        if (
+          typeof cancelAnimationFrame !== "undefined" &&
+          typeof rafId === "number"
+        ) {
+          cancelAnimationFrame(rafId);
+        } else {
+          clearTimeout(rafId as unknown as NodeJS.Timeout);
+        }
+      };
+    }
+
     // Fallback asíncrono para entornos sin IntersectionObserver (ej. navegadores antiguos o tests JSDOM)
     if (typeof IntersectionObserver === "undefined") {
-      const rafId = requestAnimationFrame(() => setIsVisible(true));
-      return () => cancelAnimationFrame(rafId);
+      const rafId =
+        typeof requestAnimationFrame !== "undefined"
+          ? requestAnimationFrame(() => setIsVisible(true))
+          : setTimeout(() => setIsVisible(true), 0);
+
+      return () => {
+        if (
+          typeof cancelAnimationFrame !== "undefined" &&
+          typeof rafId === "number"
+        ) {
+          cancelAnimationFrame(rafId);
+        } else {
+          clearTimeout(rafId as unknown as NodeJS.Timeout);
+        }
+      };
     }
 
     const element = ref.current;
@@ -35,7 +72,7 @@ export function ScrollReveal({
         }
       },
       {
-        rootMargin: "0px 0px -60px 0px", // Trigger anticipado
+        rootMargin: "0px 0px -40px 0px", // Trigger anticipado fluido
         threshold: 0.05,
       },
     );
@@ -43,6 +80,13 @@ export function ScrollReveal({
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
+
+  const revealClasses = isVisible
+    ? "scroll-reveal is-revealed"
+    : "scroll-reveal";
+  const combinedClassName = className
+    ? `${className} ${revealClasses}`
+    : revealClasses;
 
   return (
     <div
@@ -52,7 +96,7 @@ export function ScrollReveal({
           ? { animationDelay: `${delayMs}ms` }
           : undefined
       }
-      className={`${className} scroll-reveal${isVisible ? "is-revealed" : ""}`}
+      className={combinedClassName}
     >
       {children}
     </div>
