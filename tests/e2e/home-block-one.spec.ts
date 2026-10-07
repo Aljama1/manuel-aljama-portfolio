@@ -49,7 +49,7 @@ test.describe("Home Block 1 responsive layout", () => {
     await expect(page.locator("#contact")).toBeInViewport();
   });
 
-  test("renders confirmed contact channels and hides LinkedIn and CV when undefined", async ({
+  test("renders confirmed contact channels and renders LinkedIn and CV correctly", async ({
     page,
   }) => {
     await page.goto("/");
@@ -66,8 +66,8 @@ test.describe("Home Block 1 responsive layout", () => {
     const linkedinLinks = page.locator("a[href*='linkedin.com']");
     expect(await linkedinLinks.count()).toBe(0);
 
-    // Botón de CV NO debe existir mientras no haya archivo real
+    // Botón de CV real debe existir y ser visible
     const cvLinks = page.locator("a[href*='.pdf']");
-    expect(await cvLinks.count()).toBe(0);
+    expect(await cvLinks.count()).toBeGreaterThanOrEqual(1);
   });
 });

@@ -43,14 +43,14 @@ describe("Layout Components", () => {
       );
     });
 
-    it("oculta el botón de CV cuando cvUrl es undefined", () => {
+    it("muestra el botón de CV cuando cvUrl está definido", () => {
       render(
         <ThemeProvider>
           <Header lang="es" />
         </ThemeProvider>,
       );
 
-      expect(screen.queryByRole("link", { name: /cv/i })).toBeNull();
+      expect(screen.getByRole("link", { name: /cv/i })).toBeInTheDocument();
     });
 
     it("abre el menú móvil y se cierra al pulsar un enlace de ancla", () => {

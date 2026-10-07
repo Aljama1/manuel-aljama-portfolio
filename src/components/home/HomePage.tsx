@@ -25,6 +25,8 @@ export function HomePage({ locale }: HomePageProps) {
         githubUrl={profile.githubUrl}
         content={home.hero}
         actions={ui.actions}
+        locale={locale}
+        profile={profile}
       />
       <ProjectsSection
         locale={locale}
