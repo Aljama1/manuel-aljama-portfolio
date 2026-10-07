@@ -43,7 +43,7 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
   return (
     <article className="min-h-screen bg-background text-foreground">
       {/* 1. HERO SECTION */}
-      <header className="relative overflow-hidden border-b border-border/80 bg-surface/40 pt-8 pb-14 sm:pt-10 sm:pb-16">
+      <header className="relative overflow-hidden border-b border-border/80 bg-surface/40 pt-8 pb-8 sm:pt-10 sm:pb-10">
         {/* Ambient background video layer */}
         <div
           className="pointer-events-none absolute inset-0 -z-0 overflow-hidden"
@@ -56,13 +56,12 @@ export function CaseStudyPage({ content, locale }: CaseStudyPageProps) {
             playsInline
             preload="metadata"
             poster="/media/projects/trace/hero-bg-poster.webp"
-            className="h-full w-full object-cover opacity-40 motion-reduce:hidden dark:opacity-45"
+            className="h-full w-full object-cover opacity-50 motion-reduce:hidden dark:opacity-55"
           >
             <source src="/media/projects/trace/hero-bg.mp4" type="video/mp4" />
           </video>
           {/* Contrast scrim & gradient mask to protect WCAG AA readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/70 dark:from-background dark:via-background/85 dark:to-background/60" />
-          <div className="absolute inset-0 bg-background/20 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/30 dark:from-background/95 dark:via-background/85 dark:to-background/25" />
         </div>
 
         {/* Ambient lighting flare */}
