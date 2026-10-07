@@ -16,6 +16,18 @@ test.describe("Trace Case Study — Rutas y navegación", () => {
     await expect(page.locator("#product-flow")).toBeVisible();
     await expect(page.locator("#demo")).toBeVisible();
 
+    // Ambient hero video en cabecera
+    const heroVideoES = page.locator("header video");
+    await expect(heroVideoES).toBeAttached();
+    await expect(heroVideoES).toHaveAttribute(
+      "poster",
+      "/media/projects/trace/hero-bg-poster.webp",
+    );
+    await expect(heroVideoES.locator("source")).toHaveAttribute(
+      "src",
+      "/media/projects/trace/hero-bg.mp4",
+    );
+
     const videoES = page.locator("#demo video");
     await expect(videoES).toBeVisible();
     await expect(videoES).toHaveAttribute("controls", "");
@@ -72,6 +84,18 @@ test.describe("Trace Case Study — Rutas y navegación", () => {
     await expect(
       page.getByRole("heading", { level: 2, name: /bridging table service/i }),
     ).toBeVisible();
+
+    // Ambient hero video en cabecera
+    const heroVideoEN = page.locator("header video");
+    await expect(heroVideoEN).toBeAttached();
+    await expect(heroVideoEN).toHaveAttribute(
+      "poster",
+      "/media/projects/trace/hero-bg-poster.webp",
+    );
+    await expect(heroVideoEN.locator("source")).toHaveAttribute(
+      "src",
+      "/media/projects/trace/hero-bg.mp4",
+    );
 
     // Sección demo visible y con video
     await expect(page.locator("#demo")).toBeVisible();
