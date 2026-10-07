@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/Section";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { SkillsContent } from "@/content";
 
 interface SkillsSectionProps {
@@ -13,18 +14,21 @@ export function SkillsSection({ content }: SkillsSectionProps) {
       id="skills"
       className="scroll-mt-20 border-b border-border/60 bg-surface/20"
     >
-      <div className="max-w-3xl">
+      <ScrollReveal className="max-w-3xl">
         <p className="font-mono text-xs font-medium tracking-[0.18em] text-primary">
           {content.eyebrow}
         </p>
         <h2 className="mt-4 font-heading text-3xl font-bold tracking-[-0.04em] text-foreground sm:text-4xl md:text-5xl">
           {content.title}
         </h2>
-      </div>
+      </ScrollReveal>
 
       <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
         {/* Grupo 1: Built with */}
-        <div className="flex flex-col justify-between rounded-lg border border-border bg-surface p-6 sm:p-8">
+        <ScrollReveal
+          delayMs={70}
+          className="flex flex-col justify-between rounded-lg border border-border bg-surface p-6 sm:p-8"
+        >
           <div>
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs font-medium tracking-[0.18em] text-primary uppercase">
@@ -55,10 +59,13 @@ export function SkillsSection({ content }: SkillsSectionProps) {
               ))}
             </ul>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Grupo 2: Currently exploring */}
-        <div className="flex flex-col justify-between rounded-lg border border-border bg-surface p-6 sm:p-8">
+        <ScrollReveal
+          delayMs={140}
+          className="flex flex-col justify-between rounded-lg border border-border bg-surface p-6 sm:p-8"
+        >
           <div>
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs font-medium tracking-[0.18em] text-secondary uppercase">
@@ -89,7 +96,7 @@ export function SkillsSection({ content }: SkillsSectionProps) {
               ))}
             </ul>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </Section>
   );

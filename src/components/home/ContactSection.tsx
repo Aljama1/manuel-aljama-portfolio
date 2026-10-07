@@ -1,6 +1,7 @@
 import { ArrowUpRight, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { ContactContent, Profile } from "@/content";
 
 interface ContactSectionProps {
@@ -11,7 +12,7 @@ interface ContactSectionProps {
 export function ContactSection({ content, profile }: ContactSectionProps) {
   return (
     <Section id="contact" className="scroll-mt-20">
-      <div className="rounded-2xl border border-border bg-surface p-8 sm:p-12 lg:p-16">
+      <ScrollReveal className="rounded-2xl border border-border bg-surface p-8 sm:p-12 lg:p-16">
         <div className="max-w-3xl">
           <p className="font-mono text-xs font-medium tracking-[0.18em] text-primary">
             {content.eyebrow}
@@ -72,7 +73,7 @@ export function ContactSection({ content, profile }: ContactSectionProps) {
             </a>
           ) : null}
         </div>
-      </div>
+      </ScrollReveal>
     </Section>
   );
 }

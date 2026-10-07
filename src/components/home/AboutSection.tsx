@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Section } from "@/components/ui/Section";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { AboutContent, Locale, Profile } from "@/content";
 
 interface AboutSectionProps {
@@ -14,25 +15,28 @@ export function AboutSection({ content, profile, locale }: AboutSectionProps) {
 
   return (
     <Section id="about" className="scroll-mt-20 border-b border-border/60">
-      <div className="max-w-3xl">
+      <ScrollReveal className="max-w-3xl">
         <p className="font-mono text-xs font-medium tracking-[0.18em] text-primary">
           {content.eyebrow}
         </p>
         <h2 className="mt-4 font-heading text-3xl font-bold tracking-[-0.04em] text-foreground sm:text-4xl md:text-5xl">
           {content.title}
         </h2>
-      </div>
+      </ScrollReveal>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-16">
         {/* Columna izquierda: texto editorial */}
-        <div className="space-y-5 text-base leading-relaxed text-foreground-muted sm:text-lg sm:leading-8 lg:col-span-7">
+        <ScrollReveal
+          delayMs={70}
+          className="space-y-5 text-base leading-relaxed text-foreground-muted sm:text-lg sm:leading-8 lg:col-span-7"
+        >
           {content.paragraphs.map((p, index) => (
             <p key={index}>{p}</p>
           ))}
-        </div>
+        </ScrollReveal>
 
         {/* Columna derecha: ficha breve (y foto solo si existe) */}
-        <div className="space-y-6 lg:col-span-5">
+        <ScrollReveal delayMs={140} className="space-y-6 lg:col-span-5">
           {photo ? (
             <div className="relative aspect-square w-32 overflow-hidden rounded-lg border border-border sm:w-40">
               <Image
@@ -91,7 +95,7 @@ export function AboutSection({ content, profile, locale }: AboutSectionProps) {
               </div>
             </dl>
           </aside>
-        </div>
+        </ScrollReveal>
       </div>
     </Section>
   );

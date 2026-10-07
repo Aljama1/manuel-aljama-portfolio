@@ -128,7 +128,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
               <button
                 type="button"
                 onClick={() => setActiveTab("kds")}
-                className={`inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-mono text-[11px] transition-colors sm:px-2.5 ${
+                className={`inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-mono text-[11px] transition-all duration-150 active:scale-[0.98] sm:px-2.5 ${
                   activeTab === "kds"
                     ? "border border-border bg-surface-raised font-medium text-foreground shadow-xs"
                     : "text-foreground-muted hover:text-foreground"
@@ -146,7 +146,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
               <button
                 type="button"
                 onClick={() => setActiveTab("audit")}
-                className={`inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-mono text-[11px] transition-colors sm:px-2.5 ${
+                className={`inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-mono text-[11px] transition-all duration-150 active:scale-[0.98] sm:px-2.5 ${
                   activeTab === "audit"
                     ? "border border-border bg-surface-raised font-medium text-foreground shadow-xs"
                     : "text-foreground-muted hover:text-foreground"
@@ -164,7 +164,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
               <button
                 type="button"
                 onClick={() => setActiveTab("stack")}
-                className={`inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-mono text-[11px] transition-colors sm:px-2.5 ${
+                className={`inline-flex items-center gap-1.5 rounded-lg px-2 py-1 font-mono text-[11px] transition-all duration-150 active:scale-[0.98] sm:px-2.5 ${
                   activeTab === "stack"
                     ? "border border-border bg-surface-raised font-medium text-foreground shadow-xs"
                     : "text-foreground-muted hover:text-foreground"
@@ -183,7 +183,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
           {/* Active Tab Panel Content */}
           <div className="flex min-h-[140px] flex-col justify-between rounded-lg border border-border bg-surface p-3 font-mono text-xs">
             {activeTab === "kds" && (
-              <div className="flex flex-col gap-2">
+              <div className="animate-tab-fade flex flex-col gap-2">
                 <div className="flex items-center justify-between border-b border-border pb-1.5">
                   <span className="text-[11px] font-semibold text-foreground">
                     {locale === "es"
@@ -258,7 +258,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
             )}
 
             {activeTab === "audit" && (
-              <div className="flex flex-col gap-2">
+              <div className="animate-tab-fade flex flex-col gap-2">
                 <div className="flex items-center justify-between border-b border-border pb-1.5">
                   <span className="text-[11px] font-semibold text-foreground">
                     {locale === "es"
@@ -296,7 +296,7 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
             )}
 
             {activeTab === "stack" && (
-              <div className="flex flex-col gap-2">
+              <div className="animate-tab-fade flex flex-col gap-2">
                 <p className="text-xs font-semibold text-foreground">
                   {locale === "es"
                     ? "Stack verificado del proyecto:"

@@ -41,7 +41,10 @@ export function Hero({
       {/* Bento Grid Layout */}
       <div className="grid grid-cols-1 items-stretch gap-4 md:grid-cols-12 lg:gap-5">
         {/* Card 1: Identity & Conversion (Profile Card) */}
-        <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border bg-surface p-6 shadow-sm transition-all duration-300 hover:border-border/80 sm:p-7 md:col-span-5 lg:col-span-4">
+        <div
+          style={{ "--stagger-index": 0 } as React.CSSProperties}
+          className="animate-hero-card relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border bg-surface p-6 shadow-sm transition-all duration-300 hover:border-border/80 sm:p-7 md:col-span-5 lg:col-span-4"
+        >
           <div>
             {/* Centered Avatar */}
             <div className="relative mx-auto h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-border/80 bg-surface-raised shadow-md sm:h-28 sm:w-28">
@@ -131,17 +134,26 @@ export function Hero({
         </div>
 
         {/* Card 2: Trace Showcase Card */}
-        <div className="flex h-full flex-col md:col-span-7 lg:col-span-8">
+        <div
+          style={{ "--stagger-index": 1 } as React.CSSProperties}
+          className="animate-hero-card flex h-full flex-col md:col-span-7 lg:col-span-8"
+        >
           <TraceHeroCard locale={locale} viewTraceLabel={actions.viewTrace} />
         </div>
 
         {/* Card 3: Engineering Stack (50% width on md/lg) */}
-        <div className="flex h-full flex-col md:col-span-6 lg:col-span-6">
+        <div
+          style={{ "--stagger-index": 2 } as React.CSSProperties}
+          className="animate-hero-card flex h-full flex-col md:col-span-6 lg:col-span-6"
+        >
           <TechStackBentoCard locale={locale} />
         </div>
 
         {/* Card 4: Engineering Discipline & DAM (50% width on md/lg) */}
-        <div className="flex h-full flex-col md:col-span-6 lg:col-span-6">
+        <div
+          style={{ "--stagger-index": 3 } as React.CSSProperties}
+          className="animate-hero-card flex h-full flex-col md:col-span-6 lg:col-span-6"
+        >
           <EngineeringPhilosophyCard locale={locale} />
         </div>
       </div>

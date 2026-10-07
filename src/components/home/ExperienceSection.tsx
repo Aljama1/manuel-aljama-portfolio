@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/Section";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { ExperienceContent } from "@/content";
 
 interface ExperienceSectionProps {
@@ -10,18 +11,18 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
 
   return (
     <Section id="experience" className="scroll-mt-20 border-b border-border/60">
-      <div className="max-w-3xl">
+      <ScrollReveal className="max-w-3xl">
         <p className="font-mono text-xs font-medium tracking-[0.18em] text-primary">
           {content.eyebrow}
         </p>
         <h2 className="mt-4 font-heading text-3xl font-bold tracking-[-0.04em] text-foreground sm:text-4xl md:text-5xl">
           {content.title}
         </h2>
-      </div>
+      </ScrollReveal>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-16">
         {/* Timeline / Educación */}
-        <div className="space-y-8 lg:col-span-7">
+        <ScrollReveal delayMs={70} className="space-y-8 lg:col-span-7">
           <h3 className="font-mono text-xs font-semibold tracking-[0.16em] text-foreground-muted uppercase">
             {education.heading}
           </h3>
@@ -60,10 +61,10 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
               </article>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Columna lateral: Idiomas & Objetivo profesional */}
-        <div className="space-y-6 lg:col-span-5">
+        <ScrollReveal delayMs={140} className="space-y-6 lg:col-span-5">
           {/* Tarjeta de Objetivo profesional */}
           <div className="rounded-lg border border-border bg-surface p-6 sm:p-8">
             <span className="font-mono text-xs font-semibold tracking-[0.16em] text-primary uppercase">
@@ -100,7 +101,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
               ))}
             </ul>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </Section>
   );
