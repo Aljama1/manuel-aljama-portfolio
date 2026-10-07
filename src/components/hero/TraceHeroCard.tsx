@@ -10,7 +10,6 @@ import {
   UtensilsCrossed,
   ShieldCheck,
   Layers,
-  Sparkles,
 } from "lucide-react";
 import type { Locale } from "@/content";
 
@@ -103,7 +102,6 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
             {/* Real Metrics Box */}
             <div className="rounded-lg border border-border/70 bg-surface/80 p-2.5 font-mono text-xs shadow-2xs">
               <p className="flex items-center gap-1 text-[10px] font-semibold tracking-wider text-foreground-muted uppercase">
-                <Sparkles className="h-2.5 w-2.5 text-primary" />
                 {locale === "es"
                   ? "Comandas en Vivo (KDS)"
                   : "Live Orders (KDS)"}
@@ -122,7 +120,9 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                   {locale === "es" ? "Sincronización" : "Synchronization"}
                 </p>
                 <p className="mt-1 text-xs font-semibold text-primary">
-                  {locale === "es" ? "Tiempo Real (0ms)" : "Realtime (0ms)"}
+                  {locale === "es"
+                    ? "Tiempo Real (onSnapshot)"
+                    : "Realtime (onSnapshot)"}
                 </p>
               </div>
               <div className="rounded-full bg-primary/10 p-1.5 text-primary shadow-2xs">
@@ -219,63 +219,45 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                         : "Allergens: Dairy"}
                     </span>
                   </div>
+                  <div className="flex items-center justify-between text-foreground-muted">
+                    <span>2x Cerveza artesana 33cl</span>
+                    <span className="rounded border border-secondary/30 bg-secondary/10 px-1.5 py-0.5 text-[10px] text-secondary">
+                      {locale === "es" ? "Partida: Barra" : "Station: Bar"}
+                    </span>
+                  </div>
                 </div>
 
-                {/* Glowing Activity SVG Curve with Smoothed Bezier and Pulse */}
-                <div className="relative mt-2 h-14 w-full overflow-hidden rounded-md border border-border/40 bg-background/50 pt-1">
-                  <svg
-                    viewBox="0 0 500 65"
-                    preserveAspectRatio="none"
-                    className="h-full w-full"
-                    aria-hidden="true"
-                  >
-                    <defs>
-                      <linearGradient
-                        id="traceWaveGradient"
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="1"
-                      >
-                        <stop
-                          offset="0%"
-                          stopColor="var(--primary)"
-                          stopOpacity="0.32"
-                        />
-                        <stop
-                          offset="60%"
-                          stopColor="var(--primary)"
-                          stopOpacity="0.08"
-                        />
-                        <stop
-                          offset="100%"
-                          stopColor="var(--primary)"
-                          stopOpacity="0"
-                        />
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d="M0,45 C60,20 100,38 160,24 C220,10 260,32 320,18 C360,8 410,22 450,14 C470,10 490,16 500,12 L500,65 L0,65 Z"
-                      fill="url(#traceWaveGradient)"
-                    />
-                    <path
-                      d="M0,45 C60,20 100,38 160,24 C220,10 260,32 320,18 C360,8 410,22 450,14 C470,10 490,16 500,12"
-                      fill="none"
-                      stroke="var(--primary)"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                    {/* Live Peak Point with pulse ring */}
-                    <circle
-                      cx="360"
-                      cy="8"
-                      r="6"
-                      fill="var(--primary)"
-                      className="origin-center animate-ping"
-                      opacity="0.4"
-                    />
-                    <circle cx="360" cy="8" r="2.5" fill="var(--primary)" />
-                  </svg>
+                {/* Real-time KDS Pipeline Status & Ticket Timer */}
+                <div className="mt-2 flex items-center justify-between rounded-md border border-border/60 bg-background/60 px-2.5 py-1.5 text-[10px]">
+                  <div className="flex items-center gap-1.5 text-foreground-muted">
+                    <span
+                      className="relative flex h-1.5 w-1.5"
+                      aria-hidden="true"
+                    >
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    </span>
+                    <span>
+                      {locale === "es"
+                        ? "Mesa 04 (4p) → Pase Cocina"
+                        : "Table 04 (4p) → Kitchen Pass"}
+                    </span>
+                  </div>
+                  <span className="rounded border border-border/60 bg-surface-raised px-1.5 py-0.5 font-mono text-[10px] text-primary">
+                    {locale === "es" ? "Tiempo: 04:18 min" : "Timer: 04:18 min"}
+                  </span>
+                </div>
+
+                {/* Subtotal & Financial breakdown */}
+                <div className="flex items-center justify-between border-t border-border/50 pt-1.5 text-[10px] text-foreground-muted">
+                  <span>
+                    {locale === "es"
+                      ? "Base: 38,50 € · IVA (10%): 3,85 €"
+                      : "Subtotal: €38.50 · VAT (10%): €3.85"}
+                  </span>
+                  <span className="font-semibold text-foreground">
+                    {locale === "es" ? "Total: 42,35 €" : "Total: €42.35"}
+                  </span>
                 </div>
               </div>
             )}
@@ -293,6 +275,16 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                   </span>
                 </div>
                 <div className="space-y-1.5 rounded border border-border/60 bg-surface-raised/70 p-2.5 text-[10px]">
+                  <div className="flex items-center justify-between border-b border-border/40 pb-1 text-foreground-muted">
+                    <span>
+                      {locale === "es"
+                        ? "Factura: F-2024-0128"
+                        : "Invoice: F-2024-0128"}
+                    </span>
+                    <span className="font-semibold text-primary">
+                      {locale === "es" ? "Bloque #0042" : "Block #0042"}
+                    </span>
+                  </div>
                   <p>
                     <span className="font-semibold text-foreground">
                       prev_hash:
@@ -310,10 +302,22 @@ export function TraceHeroCard({ locale, viewTraceLabel }: TraceHeroCardProps) {
                     </span>
                   </p>
                 </div>
-                <p className="mt-1 text-[10px] text-foreground-muted">
+                <div className="flex items-center justify-between rounded bg-background/60 px-2 py-1 text-[10px] text-foreground-muted">
+                  <span>
+                    {locale === "es"
+                      ? "Enlace criptográfico:"
+                      : "Chained cryptographic link:"}
+                  </span>
+                  <span className="font-semibold text-primary">
+                    {locale === "es"
+                      ? "Válido · 0 alteraciones"
+                      : "Valid · 0 tampering"}
+                  </span>
+                </div>
+                <p className="text-[10px] text-foreground-muted">
                   {locale === "es"
-                    ? "Garantía de inalterabilidad demostrativa inspirada en normativas como TicketBAI."
-                    : "Demonstrative immutability guarantee inspired by TicketBAI regulations."}
+                    ? "Mecanismo demostrativo de inalterabilidad inspirado en normativas como TicketBAI."
+                    : "Demonstrative immutability mechanism inspired by TicketBAI regulations."}
                 </p>
               </div>
             )}

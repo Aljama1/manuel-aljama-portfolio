@@ -144,7 +144,7 @@ export function ProjectBlock({
                       className="h-1.5 w-1.5 rounded-full bg-primary"
                       aria-hidden="true"
                     />
-                    Cloud Firestore 0ms
+                    Cloud Firestore Realtime
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface-raised px-2.5 py-1 font-mono text-xs text-foreground shadow-2xs">
                     <span
@@ -157,7 +157,7 @@ export function ProjectBlock({
               </div>
 
               {/* Telemetría de Proyecto */}
-              <div className="rounded-lg border border-border/80 bg-surface/90 p-3.5 font-mono text-xs">
+              <div className="rounded-lg border border-border/80 bg-surface/90 p-3.5 font-mono text-xs shadow-2xs">
                 <div className="flex items-center justify-between border-b border-border/60 pb-2 text-[11px]">
                   <span className="flex items-center gap-1.5 text-foreground-muted">
                     <ShieldCheck
@@ -171,7 +171,7 @@ export function ProjectBlock({
                     </span>
                   </span>
                   <span className="text-[10px] font-semibold text-primary">
-                    0ms LATENCY
+                    REALTIME SYNC
                   </span>
                 </div>
 
@@ -181,7 +181,17 @@ export function ProjectBlock({
                       {locale === "es" ? "Sincronización KDS:" : "KDS Sync:"}
                     </span>
                     <span className="font-medium text-foreground">
-                      Realtime Snapshot
+                      Realtime (onSnapshot)
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-foreground-muted">
+                      {locale === "es" ? "Enrutamiento KDS:" : "KDS Routing:"}
+                    </span>
+                    <span className="font-medium text-foreground">
+                      {locale === "es"
+                        ? "Cocina & Barra independientes"
+                        : "Kitchen & Bar queues"}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
@@ -189,59 +199,40 @@ export function ProjectBlock({
                       {locale === "es" ? "Encadenamiento:" : "Ledger Chaining:"}
                     </span>
                     <span className="font-medium text-primary">
-                      SHA-256 Inmutable
+                      Ledger SHA-256
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-foreground-muted">
-                      {locale === "es" ? "Despliegue:" : "Deployment:"}
+                      {locale === "es" ? "Sesión comensal:" : "Diner Session:"}
                     </span>
                     <span className="font-medium text-foreground">
-                      Web PWA + Android
+                      {locale === "es"
+                        ? "UID anónimo en mesa"
+                        : "Table-scoped anon UID"}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-foreground-muted">
+                      {locale === "es" ? "Multiplataforma:" : "Cross-Platform:"}
+                    </span>
+                    <span className="font-medium text-foreground">
+                      Web PWA + Android (Capacitor 8)
                     </span>
                   </div>
                 </div>
 
-                {/* Micro-onda de actividad SVG */}
-                <div className="relative mt-3 h-7 w-full overflow-hidden rounded bg-background/50 pt-0.5">
-                  <svg
-                    viewBox="0 0 400 30"
-                    preserveAspectRatio="none"
-                    className="h-full w-full"
-                    aria-hidden="true"
-                  >
-                    <defs>
-                      <linearGradient
-                        id="traceProjectWave"
-                        x1="0"
-                        y1="0"
-                        x2="0"
-                        y2="1"
-                      >
-                        <stop
-                          offset="0%"
-                          stopColor="var(--primary)"
-                          stopOpacity="0.25"
-                        />
-                        <stop
-                          offset="100%"
-                          stopColor="var(--primary)"
-                          stopOpacity="0"
-                        />
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d="M0,20 Q50,8 100,16 T200,10 T300,5 T360,14 T400,10 L400,30 L0,30 Z"
-                      fill="url(#traceProjectWave)"
-                    />
-                    <path
-                      d="M0,20 Q50,8 100,16 T200,10 T300,5 T360,14 T400,10"
-                      fill="none"
-                      stroke="var(--primary)"
-                      strokeWidth="1.5"
-                    />
-                    <circle cx="300" cy="5" r="2.5" fill="var(--primary)" />
-                  </svg>
+                {/* Pie de verificación de calidad */}
+                <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-2.5 text-[10px] text-foreground-muted">
+                  <span>
+                    {locale === "es"
+                      ? "Verificación automatizada:"
+                      : "Automated verification:"}
+                  </span>
+                  <span className="flex items-center gap-1 font-semibold text-primary">
+                    <CheckCircle2 className="h-3 w-3" aria-hidden="true" />
+                    48 unit tests (Vitest)
+                  </span>
                 </div>
               </div>
             </div>

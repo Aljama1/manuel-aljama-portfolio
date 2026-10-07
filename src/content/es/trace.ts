@@ -307,7 +307,7 @@ export const esTrace: TraceCaseStudyContent = {
         decision:
           "Utilizar suscripciones en tiempo real con `onSnapshot` de Cloud Firestore para escuchar cambios en las colecciones de comandas y mesas.",
         justification:
-          "Garantiza latencia inferior al segundo en la actualización visual de las pantallas KDS sin incurrir en peticiones de sondeo continuo (polling) que saturarían el ancho de banda y elevarían costes.",
+          "Ofrece actualización reactiva sub-segundo en la visualización de las pantallas KDS sin incurrir en peticiones de sondeo continuo (polling) que saturarían el ancho de banda y elevarían costes.",
         tradeOff:
           "Aumenta el consumo de lecturas concurrentes en Firestore. Requiere diseñar suscripciones acotadas por fecha y estado para evitar escuchar histórico innecesario.",
       },
@@ -504,7 +504,7 @@ export const esTrace: TraceCaseStudyContent = {
       {
         title: "Filtrado Rápido de 14 Alérgenos",
         description:
-          "Experiencia de consulta inclusiva y segura para comensales con intolerancias alimentarias.",
+          "Experiencia de consulta inclusiva con filtrado preventivo de alérgenos para comensales con intolerancias alimentarias.",
       },
       {
         title: "Mecanismo Demostrativo de Trazabilidad",
