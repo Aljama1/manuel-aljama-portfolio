@@ -53,7 +53,7 @@ export function Hero({
 
           <div className="relative">
             {/* Centered Avatar with Perimetral Diffuse Halo */}
-            <div className="relative mx-auto flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28">
+            <div className="relative mx-auto flex h-28 w-28 items-center justify-center sm:h-32 sm:w-32">
               <div
                 className="absolute -inset-1 rounded-full bg-gradient-to-tr from-primary/25 to-secondary/20 blur-md"
                 aria-hidden="true"
@@ -63,7 +63,7 @@ export function Hero({
                   src={photoSrc}
                   alt={photoAlt}
                   fill
-                  sizes="(max-width: 640px) 96px, 112px"
+                  sizes="(max-width: 640px) 112px, 128px"
                   className="object-cover"
                   priority
                 />
@@ -79,7 +79,7 @@ export function Hero({
                 {role}
               </h1>
               <p className="mt-0.5 text-xs text-foreground-muted">
-                Málaga, España
+                Sevilla, España
               </p>
             </div>
 

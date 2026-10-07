@@ -61,7 +61,7 @@ export function ContactSection({ content, profile }: ContactSectionProps) {
             <Button
               href={profile.githubUrl}
               variant="secondary"
-              className="interactive-tactile gap-2 px-5 py-3"
+              className="interactive-tactile gap-2 px-5 py-3 hover:border-foreground hover:text-foreground hover:shadow-md"
               external
             >
               <span>{content.githubLabel}</span>
@@ -73,7 +73,7 @@ export function ContactSection({ content, profile }: ContactSectionProps) {
             <Button
               href={profile.linkedInUrl}
               variant="secondary"
-              className="interactive-tactile gap-2 px-5 py-3"
+              className="interactive-tactile gap-2 px-5 py-3 hover:border-[#0a66c2]/60 hover:text-[#0a66c2] hover:shadow-[0_0_15px_rgba(10,102,194,0.2)]"
               external
             >
               <span>{content.linkedinLabel}</span>
